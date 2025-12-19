@@ -1,7 +1,18 @@
 import { team } from '../data/team.js';
 import { teams, teamCategories } from '../data/teams_data.js';
+import { platino_teams, platino_teamCategories } from '../data/platino_teams_data.js';
 import { translateType } from '../data/translations.js';
 import { moveData, getCategoryIcon } from '../data/move_types.js';
+import { getSelectedGame, GAMES } from '../data/gameManager.js';
+
+// Get the correct teams and categories based on game version
+function getCurrentTeamsData() {
+  const game = getSelectedGame();
+  if (game === GAMES.PLATINUM) {
+    return { teams: platino_teams, categories: platino_teamCategories };
+  }
+  return { teams, categories: teamCategories };
+}
 
 // Get saved team selection from localStorage, default to 'competitive'
 function getSavedTeamId() {
@@ -24,12 +35,13 @@ function saveCategoryId(categoryId) {
 }
 
 function renderTeamSelector() {
+  const { teams: currentTeams, categories: currentCategories } = getCurrentTeamsData();
   const currentCategoryId = getSavedCategoryId();
   const currentTeamId = getSavedTeamId();
-  const currentTeam = teams[currentTeamId];
+  const currentTeam = currentTeams[currentTeamId];
 
   // Get teams for current category
-  const teamsByCategory = Object.values(teams).filter(t => t.category === currentCategoryId);
+  const teamsByCategory = Object.values(currentTeams).filter(t => t.category === currentCategoryId);
 
   return `
     <div class="team-selector-container">
@@ -37,7 +49,7 @@ function renderTeamSelector() {
       
       <!-- Category Tabs -->
       <div class="category-tabs">
-        ${teamCategories.map(category => `
+        ${currentCategories.map(category => `
           <button 
             class="category-tab ${category.id === currentCategoryId ? 'active' : ''}"
             data-category-id="${category.id}"
@@ -135,8 +147,9 @@ export function renderTeamView() {
   const container = document.getElementById('team');
   if (!container) return;
 
+  const { teams: currentTeams } = getCurrentTeamsData();
   const currentTeamId = getSavedTeamId();
-  const currentTeam = teams[currentTeamId];
+  const currentTeam = currentTeams[currentTeamId];
 
   container.innerHTML = `
     ${renderTeamSelector()}

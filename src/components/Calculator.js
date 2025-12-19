@@ -1,14 +1,18 @@
 import { types, typeMatrix } from '../data/types.js';
 import { team } from '../data/team.js';
 import { teams } from '../data/teams_data.js';
+import { platino_teams } from '../data/platino_teams_data.js';
 import { translateType, typeTranslations } from '../data/translations.js';
+import { getSelectedGame, GAMES } from '../data/gameManager.js';
 
 let allPokemon = [];
 
 // Get the currently selected team
 function getCurrentTeam() {
   const selectedTeamId = localStorage.getItem('selectedTeamId') || 'competitive';
-  const selectedTeam = teams[selectedTeamId];
+  const game = getSelectedGame();
+  const currentTeams = game === GAMES.PLATINUM ? platino_teams : teams;
+  const selectedTeam = currentTeams[selectedTeamId];
   return selectedTeam ? selectedTeam.pokemon : team;
 }
 

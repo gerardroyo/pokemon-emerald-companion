@@ -1,9 +1,9 @@
 :root {
-  /* Rayquaza Palette */
+  /* Rayquaza Palette (Emerald) */
   --ray-black: #050505;
   --ray-charcoal: #121212;
-  --ray-green: #2d9e6d;
-  --ray-green-glow: #4ade80;
+  --primary-color: #2d9e6d;
+  --primary-glow: #4ade80;
   --ray-yellow: #f7cf52;
   --ray-red: #ff4081;
 
@@ -21,6 +21,19 @@
   --ease-out: cubic-bezier(0.34, 1.56, 0.64, 1);
   --blur-amount: 10px;
 }
+
+/* Platino Theme (Gold) */
+body.platino-theme {
+  --primary-color: #d4af37;
+  --primary-glow: #f5d76e;
+}
+
+/* Aliases for backward compatibility */
+:root {
+  --ray-green: var(--primary-color);
+  --ray-green-glow: var(--primary-glow);
+}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -72,9 +85,9 @@ body {
 header {
   padding: 1.5rem 2rem;
   display: flex;
-  /* Flex layout */
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   position: relative;
   overflow: hidden;
   max-width: 1200px;
@@ -1151,4 +1164,203 @@ h3 {
     font-size: 0.75rem;
     padding: 0.6rem 0.8rem;
   }
+}
+
+/* Game Selector Button - Pokémon Icons */
+.game-selector-btn {
+  width: 56px;
+  height: 56px;
+  padding: 6px;
+  background: rgba(45, 158, 109, 0.15);
+  border: 2px solid rgba(45, 158, 109, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-selector-btn:hover {
+  background: rgba(45, 158, 109, 0.25);
+  border-color: rgba(45, 158, 109, 0.6);
+  box-shadow: 0 0 15px rgba(45, 158, 109, 0.4);
+  transform: scale(1.08);
+}
+
+.game-selector-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(45, 158, 109, 0.6);
+  transform: scale(1.15);
+}
+
+/* Platino theme button state */
+.platino-theme .game-selector-btn.active {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* Single Game Selector Button */
+.game-selector-btn-single {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.game-selector-btn-single:hover {
+  box-shadow: 0 6px 20px rgba(45, 158, 109, 0.5);
+  transform: scale(1.12) translateY(-2px);
+}
+
+.game-selector-btn-single:active {
+  transform: scale(1.05) translateY(0px);
+}
+
+.game-selector-btn-single img {
+  transition: all 0.3s ease-out;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.game-selector-btn-single:hover img {
+  filter: brightness(1.1);
+}
+
+/* Platino theme shadow */
+.platino-theme .game-selector-btn-single:hover {
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Game Modal - Nintendo DS Style */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+.game-modal.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.game-modal-content {
+  position: relative;
+  z-index: 10000;
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+  border: 2px solid rgba(45, 158, 109, 0.5);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: modalSlideUp 0.4s var(--ease-out);
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.game-options {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.game-option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(45, 158, 109, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  min-width: 180px;
+}
+
+.game-option-card:hover {
+  background: rgba(45, 158, 109, 0.15);
+  border-color: rgba(45, 158, 109, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(45, 158, 109, 0.2);
+}
+
+.game-option-card.platinum:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.game-sprite {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease-out;
+}
+
+.game-option-card:hover .game-sprite {
+  transform: scale(1.08) rotate(-5deg);
+}
+
+.game-option-card.platinum:hover .game-sprite {
+  transform: scale(1.08) rotate(5deg);
+}
+
+.game-name {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.game-subtitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-glow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
