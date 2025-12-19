@@ -1,37 +1,15 @@
 import { hms, tms } from '../data/locations.js';
 import { emeraldItemsList } from '../data/emerald_items.js';
 import { renderSaveScanner } from './SaveScanner.js';
+import { gymLeaders, eliteFour } from '../data/gym_leaders.js';
+import { moveData, getCategoryIcon } from '../data/move_types.js';
 
 export function renderGuide() {
   const container = document.getElementById('guide');
   if (!container) return;
 
   const spriteBase = "https://play.pokemonshowdown.com/sprites/trainers/";
-
-  const gyms = [
-    { name: "Petra", type: "Roca", img: "roxanne-gen3.png", team: "Nv 14 Geodude, Nv 15 Nosepass.", strat: "Agua o Planta (Mudkip/Treecko/Lotad/Shroomish)." },
-    { name: "Marcial", type: "Lucha", img: "brawly-gen3.png", team: "Nv 16 Machop, Nv 19 Makuhita.", strat: "Volador (Taillow/Wingull) o Psíquico (Ralts)." },
-    { name: "Erico", type: "Eléctrico", img: "wattson-gen3.png", team: "Nv 20 Voltorb, Nv 20 Electrike, Nv 22 Magneton, Nv 24 Manectric.", strat: "Tierra (Marshtomp/Geodude). Cuidado con Magneton (Acero)." },
-    { name: "Candela", type: "Fuego", img: "flannery-gen3.png", team: "Nv 24 Numel, Nv 24 Slugma, Nv 26 Camerupt, Nv 29 Torkoal.", strat: "Agua (Marshtomp/Tentacool/Gyarados)." },
-    { name: "Norman", type: "Normal", img: "norman-gen3.png", team: "Nv 27 Spinda, Nv 27 Vigoroth, Nv 29 Linoone, Nv 31 Slaking.", strat: "Lucha (Breloom). Usa Protección/Excavar contra Slaking." },
-    { name: "Alana", type: "Volador", img: "winona-gen3.png", team: "Nv 29 Swablu, Nv 29 Tropius, Nv 30 Pelipper, Nv 31 Skarmory, Nv 33 Altaria.", strat: "Rayo Hielo. Electricidad para todo menos Altaria." },
-    { name: "Vito y Leti", type: "Psíquico", img: "tateandliza-gen3.png", team: "Nv 41 Claydol, Nv 41 Xatu, Nv 42 Lunatone, Nv 42 Solrock.", strat: "Surf (Swampert) golpea a ambos. Siniestro o Fantasma." },
-    { name: "Galano", type: "Agua", img: "juan-gen3.png", team: "Nv 41 Luvdisc, Nv 41 Whiscash, Nv 43 Sealeo, Nv 43 Crawdaunt, Nv 46 Kingdra.", strat: "Planta y Electricidad. Kingdra necesita daño neutro fuerte." }
-  ];
-
-  const eliteFour = [
-    { name: "Sixto", type: "Siniestro", img: "sidney-gen3.png", team: "Mightyena (46), Shiftry (48), Cacturne (46), Crawdaunt (48), Absol (49).", strat: "Lucha (Breloom/Hariyama) barre casi todo. Fuego o Volador para Shiftry/Cacturne." },
-    { name: "Fátima", type: "Fantasma", img: "phoebe-gen3.png", team: "Dusclops (48), Banette (49), Sableye (50), Banette (49), Dusclops (51).", strat: "Siniestro (Absol/Mightyena) o Fantasma. Sableye solo tiene debilidad a Hada (no existe en Gen 3), usa fuerza bruta." },
-    { name: "Nívea", type: "Hielo", img: "glacia-gen3.png", team: "Sealeo (50), Glalie (50), Sealeo (52), Glalie (52), Walrein (53).", strat: "Lucha (Breloom) y Electricidad (Manectric). Walrein es muy tanque, cuidado con Frío Polar." },
-    { name: "Dracón", type: "Dragón", img: "drake-gen3.png", team: "Shelgon (52), Altaria (54), Kingdra (53), Flygon (53), Salamence (55).", strat: "Rayo Hielo es obligatorio (x4 a casi todos). Kingdra es débil a Dragón." },
-    { name: "Plubio", type: "Campeón (Agua)", img: "wallace-gen3.png", team: "Wailord (57), Tentacruel (55), Ludicolo (56), Whiscash (56), Gyarados (56), Milotic (58).", strat: "Planta para Whiscash/Wailord. Electricidad para Gyarados/Tentacruel/Milotic. Volador para Ludicolo." }
-  ];
-
-  /* New Data for Held Items */
-
-  // Placeholder for emeraldItems data. This array should contain all items with name, loc, img, desc, and category.
-  // Example structure: { name: "Restos", loc: "S.S. Tidal (Sótano)", img: "leftovers", desc: "Recupera PS cada turno.", category: "Utilidad" }
-  // Data imported from ../data/emerald_items.js
+  const pokeSpriteBase = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
   /* Full Item Dex Logic */
   const renderItemDex = (items) => {
@@ -60,14 +38,90 @@ export function renderGuide() {
   };
 
   function getCategoryColor(cat) {
-    if (cat === 'Evolución') return '#f0932b'; // Orange
-    if (cat === 'Combate') return '#eb4d4b'; // Red
-    if (cat === 'Utilidad') return '#48dbfb'; // Blue
-    if (cat === 'Clave') return '#f1c40f'; // Yellow
-    if (cat === 'Baya') return '#7bed9f'; // Greenish
-    if (cat === 'Concurso') return '#ff6b81'; // Pinkish
+    if (cat === 'Evolución') return '#f0932b';
+    if (cat === 'Combate') return '#eb4d4b';
+    if (cat === 'Utilidad') return '#48dbfb';
+    if (cat === 'Clave') return '#f1c40f';
+    if (cat === 'Baya') return '#7bed9f';
+    if (cat === 'Concurso') return '#ff6b81';
     return '#ccc';
   }
+
+  // Badge images from local files (downloaded from Bulbagarden Archives)
+  const badgeImages = {
+    "Medalla Piedra": "/pokemon-emerald-companion/badges/stone_badge.png",
+    "Medalla Puño": "/pokemon-emerald-companion/badges/knuckle_badge.png",
+    "Medalla Dinamo": "/pokemon-emerald-companion/badges/dynamo_badge.png",
+    "Medalla Calor": "/pokemon-emerald-companion/badges/heat_badge.png",
+    "Medalla Equilibrio": "/pokemon-emerald-companion/badges/balance_badge.png",
+    "Medalla Pluma": "/pokemon-emerald-companion/badges/feather_badge.png",
+    "Medalla Mente": "/pokemon-emerald-companion/badges/mind_badge.png",
+    "Medalla Lluvia": "/pokemon-emerald-companion/badges/rain_badge.png"
+  };
+
+  const renderPokemonTeam = (pokemon) => {
+    return `
+      <div class="leader-team">
+        ${pokemon.map(p => `
+          <div class="leader-poke-card">
+            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom: 0.75rem;">
+                <img src="${pokeSpriteBase}${p.id}.png" class="leader-poke-img" alt="${p.name}" style="width:80px; height:80px;">
+                <div style="text-align:left; flex:1;">
+                    <div class="leader-poke-name">${p.name}</div>
+                    <div class="leader-poke-lvl">Nv. ${p.level}</div>
+                    <div style="display:flex; gap:0.25rem; flex-wrap:wrap; margin-top:0.25rem;">
+                      ${p.types.map(t => `<span class="type-pill type-${t.toLowerCase()}" style="font-size:0.6rem; padding:2px 6px;">${t}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="moves-section">
+              <div class="moves-label">⚔️ Movimientos:</div>
+              <div class="leader-moves">
+                ${p.moves.map(m => {
+      const data = moveData[m] || { type: 'Normal', category: 'Físico', desc: 'Ataque normal.', power: null };
+      const categoryIcon = getCategoryIcon(data.category);
+      const powerText = data.power ? `Potencia: ${data.power}` : 'Sin potencia';
+      return `
+                    <div class="move-wrapper">
+                      <span class="leader-move-tag">
+                        <span class="move-type-indicator type-${data.type.toLowerCase()}">${data.type.substring(0, 3).toUpperCase()}</span>
+                        ${m}
+                      </span>
+                      <div class="move-tooltip">
+                        <div class="tooltip-header">
+                          <span class="tooltip-name">${m}</span>
+                          <span class="tooltip-type type-pill type-${data.type.toLowerCase()}">${data.type}</span>
+                        </div>
+                        <div class="tooltip-category">${categoryIcon} ${data.category} · ${powerText}</div>
+                        <p class="tooltip-desc">${data.desc}</p>
+                      </div>
+                    </div>
+                  `;
+    }).join('')}
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  };
+
+
+  const trainerImages = {
+    "Petra": "roxanne-gen3.png",
+    "Marcial": "brawly-gen3.png",
+    "Erico": "wattson-gen3.png",
+    "Candela": "flannery-gen3.png",
+    "Norman": "norman-gen3.png",
+    "Alana": "winona-gen3.png",
+    "Vito y Leti": "tateandliza-gen3.png",
+    "Juan": "juan-gen3.png",
+    "Sixto": "sidney-gen3.png",
+    "Fátima": "phoebe-gen3.png",
+    "Glacia": "glacia-gen3.png",
+    "Dracón": "drake-gen3.png",
+    "Plubio": "wallace-gen3.png"
+  };
 
   // Initial Render for Search Tab
   const searchHtml = `
@@ -94,29 +148,43 @@ export function renderGuide() {
     </div>
 
     <!-- GYMS -->
-    <div id="tab-gyms" class="tab-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
-       ${gyms.map((g, i) => `
-         <div class="emulator-box" style="display:flex; gap:1rem; align-items:center;">
-            <img src="${spriteBase}${g.img}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
-            <div>
-              <h3 style="margin-bottom:0.25rem;">${i + 1}. ${g.name} <span style="font-size:0.8em; opacity:0.7;">(${g.type})</span></h3>
-              <p class="pixel-text" style="font-size:0.85rem; margin-bottom:0.5rem; color:#ccc;">${g.team}</p>
-              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Estrategia:</em> ${g.strat}</p>
+    <div id="tab-gyms" class="tab-content" style="display:grid; grid-template-columns: 1fr; gap:1.5rem;">
+       ${gymLeaders.map((g, i) => `
+         <div class="emulator-box" style="display:block;">
+            <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+              <img src="${spriteBase}${trainerImages[g.name]}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
+              <div>
+                <h3 style="margin-bottom:0.25rem; font-size: 1.4rem;">${i + 1}. ${g.name} <span style="font-size:0.7em; opacity:0.7;">(${g.city})</span></h3>
+                <div style="display:flex; gap:0.8rem; align-items:center; margin-bottom:0.5rem;">
+                  <span class="type-pill type-${g.type.toLowerCase()}">${g.type}</span>
+                  <div style="display:flex; align-items:center; gap:0.4rem;">
+                    <img src="${badgeImages[g.badge]}" alt="${g.badge}" style="width:36px; height:36px; image-rendering:auto; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4));">
+                    <span style="color:var(--ray-yellow); font-size:0.9rem; font-weight:bold;">${g.badge}</span>
+                  </div>
+                </div>
+                <p style="font-size:0.85rem; color:var(--ray-green-glow); line-height: 1.4;"><em>Estrategia:</em> ${g.strategy}</p>
+              </div>
             </div>
+            ${renderPokemonTeam(g.pokemon)}
          </div>
        `).join('')}
     </div>
 
     <!-- ELITE FOUR -->
-    <div id="tab-e4" class="tab-content hidden" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+    <div id="tab-e4" class="tab-content hidden" style="display:grid; grid-template-columns: 1fr; gap:1.5rem;">
        ${eliteFour.map((e, i) => `
-         <div class="emulator-box" style="display:flex; gap:1rem; align-items:center; border-color:${i === 4 ? 'var(--ray-yellow)' : 'var(--glass-border)'};">
-            <img src="${spriteBase}${e.img}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
-            <div>
-              <h3 style="margin-bottom:0.25rem; color:${i === 4 ? 'var(--ray-yellow)' : 'white'};">${e.name} <span style="font-size:0.8em; opacity:0.7;">(${e.type})</span></h3>
-              <p class="pixel-text" style="font-size:0.85rem; margin-bottom:0.5rem; color:#ccc;">${e.team}</p>
-              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Estrategia:</em> ${e.strat}</p>
+         <div class="emulator-box" style="display:block; border-color:${i === 4 ? 'var(--ray-yellow)' : 'var(--glass-border)'};">
+            <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+              <img src="${spriteBase}${trainerImages[e.name]}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
+              <div>
+                <h3 style="margin-bottom:0.25rem; font-size: 1.4rem; color:${i === 4 ? 'var(--ray-yellow)' : 'white'};">${i === 4 ? 'CAMPEÓN: ' : ''}${e.name}</h3>
+                <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.5rem;">
+                  <span class="type-pill type-${e.type.toLowerCase().includes('/') ? 'water' : e.type.toLowerCase()}">${e.type}</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--ray-green-glow); line-height: 1.4;"><em>Estrategia:</em> ${e.strategy}</p>
+              </div>
             </div>
+            ${renderPokemonTeam(e.pokemon)}
          </div>
        `).join('')}
     </div>
@@ -127,16 +195,7 @@ export function renderGuide() {
         <h3>Ubicación de MOs</h3>
         <ul style="list-style: none; margin-top: 1rem; display:grid; gap:0.75rem;">
           ${hms.map(hm => {
-    // Simple type inference for color/icon
-    let type = 'normal';
-    if (hm.name.includes('Surf') || hm.name.includes('Cascada') || hm.name.includes('Buceo')) type = 'water';
-    if (hm.name.includes('Vuelo')) type = 'flying';
-    if (hm.name.includes('Golpe Roca') || hm.name.includes('Fuerza')) type = 'fighting';
-    if (hm.name.includes('Corte')) type = 'grass';
-    if (hm.name.includes('Destello')) type = 'electric';
-
     const safeItemUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png";
-
     return `
             <li style="padding: 0.75rem; background:rgba(255,255,255,0.03); border-radius:12px; display:flex; align-items:center; gap:1rem;">
               <img src="${safeItemUrl}" style="width:32px; height:32px; image-rendering:pixelated;">
@@ -190,7 +249,6 @@ export function renderGuide() {
       );
       renderItemDex(filtered);
     });
-    // Initial render of all items
     renderItemDex(emeraldItemsList);
   }
 
@@ -200,15 +258,10 @@ export function renderGuide() {
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Scanner Logic
       if (tab.id === 'scanner-btn') {
         tabs.forEach(t => t.classList.remove('active'));
         content.forEach(c => c.classList.add('hidden'));
-
         tab.classList.add('active');
-        // We reuse the held-items container or create a new one dynamically if needed, 
-        // but ideally we should have a dedicated div in the HTML above.
-        // Let's modify the HTML injection to include a scanner tab content.
         document.getElementById('tab-scanner').classList.remove('hidden');
         renderSaveScanner();
         return;
