@@ -33,4 +33,5 @@ jobs:
           branch: gh-pages
           target-folder: ${{ github.ref == 'refs/heads/main' && '.' || 'dev' }}
           clean: true
-          clean-exclude: ${{ github.ref == 'refs/heads/main' && '["dev"]' || '[]' }}
+          clean-exclude: |
+            dev
