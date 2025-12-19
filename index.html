@@ -6,13 +6,19 @@
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 100 100'%3E%3Ccircle cx%3D'50' cy%3D'50' r%3D'48' fill%3D'%23050505'%2F%3E%3Ccircle cx%3D'50' cy%3D'50' r%3D'35' fill%3D'none' stroke%3D'%23f7cf52' stroke-width%3D'10'%2F%3E%3Ccircle cx%3D'50' cy%3D'50' r%3D'10' fill%3D'%23fff700'%2F%3E%3Cpath d%3D'M25 25 L15 15 M75 25 L85 15 M25 75 L15 85 M75 75 L85 85' stroke%3D'%232d9e6d' stroke-width%3D'6' stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guía Pokémon Esmeralda</title>
+  <title id="page-title">Guía Pokémon Esmeralda</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <h1>Guía Pokémon Esmeralda</h1>
+    <div style="display:flex; align-items:center; gap:2rem; flex:1;">
+      <h1>Guía Pokémon</h1>
+      <button id="game-selector" class="game-selector-btn-single" title="Click para cambiar versión">
+        <!-- Game Logo with version-specific image -->
+        <img id="game-selector-icon" src="" alt="Pokémon Esmeralda" style="width:48px; height:48px; object-fit: contain;">
+      </button>
+    </div>
     <nav>
       <button class="nav-btn active" data-target="team">Mi Equipo</button>
       <button class="nav-btn" data-target="calculator">Calculadora</button>
@@ -20,6 +26,26 @@
       <button class="nav-btn" data-target="reference">Naturalezas</button>
     </nav>
   </header>
+
+  <!-- Game Version Modal - Nintendo DS Style -->
+  <div id="game-modal" class="game-modal hidden">
+    <div class="game-modal-backdrop"></div>
+    <div class="game-modal-content">
+      <h2 style="text-align:center; margin-bottom:2rem; font-size:1.8rem;">Elige tu Aventura</h2>
+      <div class="game-options">
+        <div class="game-option-card" data-game="emerald">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png" alt="Rayquaza" class="game-sprite">
+          <div class="game-name">Pokémon</div>
+          <div class="game-subtitle">Esmeralda</div>
+        </div>
+        <div class="game-option-card platinum" data-game="platinum">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/487.png" alt="Giratina" class="game-sprite">
+          <div class="game-name">Pokémon</div>
+          <div class="game-subtitle">Platino</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <main id="app">
     <!-- Sections will be injected here by JS -->

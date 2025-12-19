@@ -2,11 +2,18 @@ import { hms, tms } from '../data/locations.js';
 import { emeraldItemsList } from '../data/emerald_items.js';
 import { renderSaveScanner } from './SaveScanner.js';
 import { gymLeaders, eliteFour } from '../data/gym_leaders.js';
+import { platino_gymLeaders, platino_eliteFour } from '../data/platino_gym_leaders.js';
 import { moveData, getCategoryIcon } from '../data/move_types.js';
+import { getSelectedGame, GAMES } from '../data/gameManager.js';
 
 export function renderGuide() {
   const container = document.getElementById('guide');
   if (!container) return;
+
+  // Get the correct gym leaders based on game version
+  const game = getSelectedGame();
+  const currentGymLeaders = game === GAMES.PLATINUM ? platino_gymLeaders : gymLeaders;
+  const currentEliteFour = game === GAMES.PLATINUM ? platino_eliteFour : eliteFour;
 
   const spriteBase = "https://play.pokemonshowdown.com/sprites/trainers/";
   const pokeSpriteBase = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
@@ -150,7 +157,7 @@ export function renderGuide() {
 
     <!-- GYMS -->
     <div id="tab-gyms" class="tab-content" style="display:grid; grid-template-columns: 1fr; gap:1.5rem;">
-       ${gymLeaders.map((g, i) => `
+       ${currentGymLeaders.map((g, i) => `
          <div class="emulator-box" style="display:block;">
             <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
               <img src="${spriteBase}${trainerImages[g.name]}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
@@ -173,12 +180,12 @@ export function renderGuide() {
 
     <!-- ELITE FOUR -->
     <div id="tab-e4" class="tab-content hidden" style="display:grid; grid-template-columns: 1fr; gap:1.5rem;">
-       ${eliteFour.map((e, i) => `
-         <div class="emulator-box" style="display:block; border-color:${i === 4 ? 'var(--ray-yellow)' : 'var(--glass-border)'};">
+       ${currentEliteFour.map((e, i) => `
+         <div class="emulator-box" style="display:block; border-color:${i === currentEliteFour.length - 1 ? 'var(--ray-yellow)' : 'var(--glass-border)'};">
             <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
               <img src="${spriteBase}${trainerImages[e.name]}" style="height:90px; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.5));">
               <div>
-                <h3 style="margin-bottom:0.25rem; font-size: 1.4rem; color:${i === 4 ? 'var(--ray-yellow)' : 'white'};">${i === 4 ? 'CAMPEÓN: ' : ''}${e.name}</h3>
+                <h3 style="margin-bottom:0.25rem; font-size: 1.4rem; color:${i === currentEliteFour.length - 1 ? 'var(--ray-yellow)' : 'white'};">${i === currentEliteFour.length - 1 ? 'CAMPEÓN: ' : ''}${e.name}</h3>
                 <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.5rem;">
                   <span class="type-pill type-${e.type.toLowerCase().includes('/') ? 'water' : e.type.toLowerCase()}">${e.type}</span>
                 </div>
