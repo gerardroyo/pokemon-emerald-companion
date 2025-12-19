@@ -340,75 +340,92 @@ h3 {
 }
 
 /* Type Colors */
+.type-normal,
 .type-normal {
   background: #5a5a5a;
 }
 
-.type-fire {
+.type-fire,
+.type-fuego {
   background: linear-gradient(135deg, #ff6b6b, #ee5253);
 }
 
-.type-water {
+.type-water,
+.type-agua {
   background: linear-gradient(135deg, #48dbfb, #0abde3);
 }
 
-.type-grass {
+.type-grass,
+.type-planta {
   background: linear-gradient(135deg, #1dd1a1, #10ac84);
 }
 
-.type-electric {
+.type-electric,
+.type-eléctrico {
   background: linear-gradient(135deg, #feca57, #ff9f43);
   color: #000 !important;
 }
 
-.type-ice {
+.type-ice,
+.type-hielo {
   background: #48dbfb;
   color: #000 !important;
 }
 
-.type-fighting {
+.type-fighting,
+.type-lucha {
   background: #ff6b6b;
 }
 
-.type-poison {
+.type-poison,
+.type-veneno {
   background: #a29bfe;
 }
 
-.type-ground {
+.type-ground,
+.type-tierra {
   background: #eccc68;
   color: #000 !important;
 }
 
-.type-flying {
+.type-flying,
+.type-volador {
   background: #a29bfe;
 }
 
-.type-psychic {
+.type-psychic,
+.type-psíquico {
   background: #fd79a8;
 }
 
-.type-bug {
+.type-bug,
+.type-bicho {
   background: #badc58;
   color: #000 !important;
 }
 
-.type-rock {
+.type-rock,
+.type-roca {
   background: #b2bec3;
 }
 
-.type-ghost {
+.type-ghost,
+.type-fantasma {
   background: #6c5ce7;
 }
 
-.type-dragon {
+.type-dragon,
+.type-dragón {
   background: linear-gradient(135deg, #5f27cd, #341f97);
 }
 
-.type-steel {
+.type-steel,
+.type-acero {
   background: #95afc0;
 }
 
-.type-dark {
+.type-dark,
+.type-siniestro {
   background: #2d3436;
 }
 

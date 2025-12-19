@@ -1,6 +1,6 @@
 import { types, typeMatrix } from '../data/types.js';
 import { team } from '../data/team.js';
-import { translateType } from '../data/translations.js';
+import { translateType, typeTranslations } from '../data/translations.js';
 
 let allPokemon = [];
 
@@ -115,7 +115,10 @@ async function analyzePokemonUrl(url) {
         const res = await fetch(url);
         const data = await res.json();
 
-        const enemyTypes = data.types.map(t => t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1));
+        const enemyTypes = data.types.map(t => {
+            const apiType = t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1);
+            return typeTranslations[apiType] || apiType;
+        });
         analyzeTypes(enemyTypes, data.name.toUpperCase(), data.sprites.front_default);
 
     } catch (e) {
