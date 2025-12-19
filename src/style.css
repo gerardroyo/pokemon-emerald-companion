@@ -673,3 +673,49 @@ h3 {
     font-size: 0.75rem;
   }
 }
+
+/* Footer Styles */
+.main-footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  border-top: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.credits {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.credits strong {
+  color: var(--rayquaza-green);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsividad para Móviles (Ajustes Footer) */
+@media (max-width: 768px) {
+  .main-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .credits {
+    font-size: 1rem;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+  }
+}
