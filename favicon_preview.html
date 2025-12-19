@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsualización de Favicons v5 - Rayquaza's Eye Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&display=swap');
+
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #fff 0%, #2d9e6d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #f7cf52;
+            /* Rayquaza Gold */
+            background: rgba(247, 207, 82, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .svg-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
+
+        h3 {
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        p {
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .mini-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem;
+            background: #111;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .mini-svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: #f7cf52;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Prototipos: Ojo de Rayquaza</h1>
+
+    <div class="preview-container">
+        <!-- OPCIÓN 13: OJO ANILLOS (ABSTRACTO) -->
+        <div class="option">
+            <span class="badge">MINIMAL</span>
+            <div class="svg-container">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="48" fill="#050505" stroke="#2d9e6d" stroke-width="2" />
+                    <circle cx="50" cy="50" r="32" fill="none" stroke="#f7cf52" stroke-width="8" />
+                    <circle cx="50" cy="50" r="12" fill="#f7cf52" />
+                    <path d="M50 18 L50 10 M50 82 L50 90 M18 50 L10 50 M82 50 L90 50" stroke="#f7cf52" stroke-width="4"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <h3>13. Anillos de Poder</h3>
+            <p>Representación simbólica y abstracta de los patrones en la piel de Rayquaza.</p>
+            <div class="mini-preview">
+                <span>Pestaña:</span>
+                <div class="mini-svg">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="48" fill="#050505" />
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#f7cf52" stroke-width="12" />
+                        <circle cx="50" cy="50" r="10" fill="#f7cf52" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPCIÓN 14: OJO REPTILIANO (ALTA DEFINICIÓN) -->
+        <div class="option">
+            <span class="badge">DETALLADO</span>
+            <div class="svg-container">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base del ojo -->
+                    <circle cx="50" cy="50" r="48" fill="#f7cf52" stroke="#000" stroke-width="2" />
+                    <!-- Pupila rasgada -->
+                    <rect x="46" y="20" width="8" height="60" rx="4" fill="#000" />
+                    <path d="M46 50 L35 50 M54 50 L65 50" stroke="#000" stroke-width="2" />
+                    <!-- Crestas circundantes -->
+                    <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#2d9e6d" stroke-width="8"
+                        stroke-linecap="round" stroke-dasharray="10 5" />
+                    <path d="M10 50 A40 40 0 0 0 90 50" fill="none" stroke="#2d9e6d" stroke-width="8"
+                        stroke-linecap="round" stroke-dasharray="10 5" />
+                </svg>
+            </div>
+            <h3>14. Mirada del Dragón</h3>
+            <p>Un ojo de reptil realista con la pupila vertical y los anillos verdes de Rayquaza.</p>
+            <div class="mini-preview">
+                <span>Pestaña:</span>
+                <div class="mini-svg">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="48" fill="#f7cf52" />
+                        <rect x="45" y="20" width="10" height="60" rx="2" fill="#000" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPCIÓN 15: OJO ENERGÉTICO (GLOW) -->
+        <div class="option">
+            <span class="badge">PREMIUM</span>
+            <div class="svg-container">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="eye-glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                            <stop offset="0%" style="stop-color:#fff700;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#f7cf52;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#c49a00;stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="48" fill="#050505" />
+                    <!-- Anillo brillante -->
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#eye-glow)" stroke-width="10"
+                        filter="drop-shadow(0 0 5px #f7cf52)" />
+                    <!-- Centro -->
+                    <circle cx="50" cy="50" r="10" fill="#fff700" />
+                    <!-- Patrón Rayquaza -->
+                    <path d="M25 25 L15 15 M75 25 L85 15 M25 75 L15 85 M75 75 L85 85" stroke="#2d9e6d" stroke-width="6"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <h3>15. Brillo Ancestral</h3>
+            <p>Efecto de brillo neón sobre fondo negro, resaltando los anillos de energía.</p>
+            <div class="mini-preview">
+                <span>Pestaña:</span>
+                <div class="mini-svg">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="48" fill="#050505" />
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#f7cf52" stroke-width="12" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="margin-top: 4rem; opacity: 0.5; max-width: 600px; line-height: 1.5;">Estos prototipos se centran
+        exclusivamente en el símbolo del ojo y los anillos de Rayquaza. ¿Cuál de estos estilos encaja mejor con lo que
+        tienes en mente?</p>
+</body>
+
+</html>
