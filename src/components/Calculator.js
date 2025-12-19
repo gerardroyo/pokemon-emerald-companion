@@ -9,11 +9,11 @@ let allPokemon = [];
 
 // Get the currently selected team
 function getCurrentTeam() {
-  const selectedTeamId = localStorage.getItem('selectedTeamId') || 'competitive';
-  const game = getSelectedGame();
-  const currentTeams = game === GAMES.PLATINUM ? platino_teams : teams;
-  const selectedTeam = currentTeams[selectedTeamId];
-  return selectedTeam ? selectedTeam.pokemon : team;
+    const selectedTeamId = localStorage.getItem('selectedTeamId') || 'competitive';
+    const game = getSelectedGame();
+    const currentTeams = game === GAMES.PLATINUM ? platino_teams : teams;
+    const selectedTeam = currentTeams[selectedTeamId];
+    return selectedTeam ? selectedTeam.pokemon : team;
 }
 
 export async function renderCalculator() {
@@ -23,38 +23,35 @@ export async function renderCalculator() {
     container.innerHTML = `
     <h2>Calculadora de Tipos</h2>
     
-    <div class="calculator-container">
+    <div class="calculator-container" style="max-width:1200px;">
       
-      <!-- Only Search - Compact -->
-      <div class="emulator-box" style="margin: 0 auto 1.5rem auto; padding: 1rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <h3>Pokédex</h3>
-            <span style="font-size:0.75rem; color:var(--text-muted);">Busca un Pokémon (Gen 1-3)</span>
-        </div>
-
-        <div class="search-container" style="position:relative;">
-          <input type="text" id="poke-search" class="search-input" placeholder="Ej. Milotic..." autocomplete="off">
-          <div id="search-suggestions" style="position:absolute; width:100%; max-height:200px; overflow-y:auto; background:var(--ray-charcoal); border:1px solid var(--glass-border); border-top:none; display:none; z-index:100; border-radius: 0 0 12px 12px;"></div>
+      <!-- Search Panel -->
+      <div style="max-width:600px; margin:0 auto 2rem auto; position:relative; z-index:50;">
+        <div class="emulator-box" style="padding:0; overflow:visible; border-radius:100px; border:none; background:transparent; box-shadow:none;">
+             <input type="text" id="poke-search" class="search-input" placeholder="Buscar Pokémon rival (ej. Milotic...)" autocomplete="off" style="padding-left: 3.5rem; height:3.5rem; font-size:1.2rem;">
+             <span style="position:absolute; left:1.2rem; top:50%; transform:translateY(-50%); font-size:1.4rem; opacity:0.5;">🔍</span>
+             <div id="search-suggestions" style="position:absolute; width:100%; top:110%; left:0; max-height:300px; overflow-y:auto; background:var(--ray-charcoal); border:1px solid var(--glass-border); display:none; border-radius: 12px; box-shadow:0 10px 40px rgba(0,0,0,0.5);"></div>
         </div>
       </div>
 
-    </div>
+      <!-- Results Area -->
+      <div id="calc-results" class="results-panel" style="display:none; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:2rem; background:transparent; border:none; box-shadow:none; backdrop-filter:none; padding:0;">
+        
+        <!-- Left Col: Enemy Info -->
+        <div class="emulator-box" style="display:flex; flex-direction:column; gap:1.5rem; height:fit-content;">
+           <div id="enemy-header" style="text-align:center; padding-bottom: 0;"></div>
+           <div id="weakness-info" style="display:flex; flex-direction:column; gap:1rem;"></div>
+        </div>
 
-    <!-- Results Area - Compact Grid -->
-    <div id="calc-results" class="results-panel" style="display:none; animation: slideUpFade 0.5s var(--ease-out);">
-      
-      <!-- Left Col: Enemy Info + Weaknesses -->
-      <div>
-        <div id="enemy-header" style="text-align:center; padding-bottom: 1rem; border-bottom: 1px dashed var(--glass-border); margin-bottom:1rem;"></div>
-        <div id="weakness-info" style="margin-bottom: 1rem;"></div>
+        <!-- Right Col: Team Suggestions -->
+        <div class="emulator-box" style="display:flex; flex-direction:column; height:fit-content;">
+          <h3 style="margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--glass-border); display:flex; align-items:center; gap:0.5rem;">
+             <span>🛡️</span> Análisis de tu Equipo
+          </h3>
+          <div id="team-analysis" style="display:grid; gap:0.75rem;"></div>
+        </div>
+
       </div>
-
-      <!-- Right Col: Team Suggestions -->
-      <div>
-        <h3 style="margin-bottom:1rem; border-bottom:1px solid var(--glass-border); padding-bottom:0.5rem;">Análisis de tu Equipo</h3>
-        <div id="team-analysis" style="display:grid; gap:0.5rem;"></div>
-      </div>
-
     </div>
   `;
 
@@ -92,9 +89,9 @@ export async function renderCalculator() {
                 const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
                 return `
-                <div class="suggestion-item" data-url="${p.url}" style="padding:0.4rem 0.8rem; cursor:pointer; border-bottom:1px solid var(--glass-border); color:#fff; transition:0.2s; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem;">
-                    <img src="${spriteUrl}" alt="${p.name}" style="width:30px; height:30px; object-fit:contain;">
-                    <span>${p.name.toUpperCase()}</span>
+                <div class="suggestion-item" data-url="${p.url}" style="padding:0.75rem 1rem; cursor:pointer; border-bottom:1px solid var(--glass-border); color:var(--text-main); transition:0.2s; font-size:1rem; display:flex; align-items:center; gap:1rem;">
+                    <img src="${spriteUrl}" alt="${p.name}" style="width:40px; height:40px; object-fit:contain;">
+                    <span style="font-weight:600;">${p.name.charAt(0).toUpperCase() + p.name.slice(1)}</span>
                 </div>
               `;
             }).join('');
@@ -114,13 +111,20 @@ export async function renderCalculator() {
             suggestions.style.display = 'none';
         }
     });
+
+    // Close suggestions on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container') && !e.target.closest('#poke-search')) {
+            suggestions.style.display = 'none';
+        }
+    });
 }
 
 async function analyzePokemonUrl(url) {
     const container = document.getElementById('calc-results');
     const header = document.getElementById('enemy-header');
 
-    container.style.display = 'grid'; // Ensure grid display from CSS is respected/overridden if needed, but CSS handles it
+    container.style.display = 'grid';
     header.innerHTML = '<div style="padding:2rem;">Cargando datos...</div>';
 
     try {
@@ -146,16 +150,21 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
     const teamContainer = document.getElementById('team-analysis');
 
     // Make sure container is visible
-    container.style.display = 'grid'; // CSS media query handles 1 vs 2 cols
+    container.style.display = 'grid';
 
     // 1. Header (Image + Types)
     let html = '';
     if (spriteUrl) {
-        html += `<img src="${spriteUrl}" style="width:100px; height:100px; animation: float 3s infinite ease-in-out;">`;
+        html += `
+          <div style="position:relative; width:120px; height:120px; margin:0 auto;">
+             <div style="position:absolute; inset:0; background:var(--primary-glow); filter:blur(40px); opacity:0.2; border-radius:50%;"></div>
+             <img src="${spriteUrl}" style="width:100%; height:100%; position:relative; z-index:1; image-rendering:pixelated; transform:scale(1.2);">
+          </div>
+        `;
     }
-    html += `<h2 style="margin:0.25rem 0; color:var(--text-main); font-size:1.4rem; text-shadow:0 0 10px rgba(45,158,109,0.5);">${name}</h2>`;
-    html += `<div class="poke-types" style="justify-content:center; gap:0.25rem;">
-      ${enemyTypes.map(t => `<span class="type-pill type-${t.toLowerCase()}">${translateType(t)}</span>`).join('')}
+    html += `<h2 style="margin:0.5rem 0 1rem 0; color:var(--text-main); font-size:1.8rem; letter-spacing:-1px;">${name}</h2>`;
+    html += `<div class="poke-types" style="justify-content:center; gap:0.5rem; margin-bottom:1rem;">
+      ${enemyTypes.map(t => `<span class="type-pill type-${t.toLowerCase()}" style="padding:0.3rem 1rem; font-size:1rem;">${translateType(t)}</span>`).join('')}
     </div>`;
     header.innerHTML = html;
 
@@ -177,16 +186,16 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
     const weakList = Object.entries(weaknesses).filter(([_, mod]) => mod > 1).sort((a, b) => b[1] - a[1]);
     const resistList = Object.entries(weaknesses).filter(([_, mod]) => mod < 1).sort((a, b) => a[1] - b[1]);
 
-    let weakHtml = `<div style="display:grid; gap:1rem;">`;
+    let weakHtml = `<div style="display:grid; gap:1rem; width:100%;">`;
 
     // Weak Column
     if (weakList.length > 0) {
-        weakHtml += `<div style="background:rgba(255,107,107,0.05); border:1px solid rgba(255,107,107,0.3); border-radius:12px; padding:1rem; backdrop-filter:blur(10px);">
-          <h4 style="color:#ff6b6b; margin:0 0 0.75rem 0; text-align:center; font-size:1rem; font-weight:600;">⚠️ Muy Débil A</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">`;
+        weakHtml += `<div style="background:rgba(255, 65, 129, 0.08); border:1px solid rgba(255, 65, 129, 0.2); border-radius:16px; padding:1.25rem;">
+          <h4 style="color:var(--ray-red); margin:0 0 1rem 0; text-align:center; font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:1px;">⚠️ Muy Débil A</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center;">`;
         weakHtml += weakList.map(([t, mod]) => `
-            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.2); font-weight:600;">
-                ${translateType(t)} <strong style="color:var(--ray-yellow); margin-left:4px;">x${mod}</strong>
+            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.1); font-weight:600; font-size:0.9rem;">
+                ${translateType(t)} <strong style="color:white; background:rgba(0,0,0,0.3); padding:0 4px; border-radius:4px; margin-left:4px;">x${mod}</strong>
             </span>
         `).join('');
         weakHtml += `</div></div>`;
@@ -196,17 +205,15 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
 
     // Resist Column
     if (resistList.length > 0) {
-        weakHtml += `<div style="background:rgba(72,219,251,0.05); border:1px solid rgba(72,219,251,0.3); border-radius:12px; padding:1rem; backdrop-filter:blur(10px);">
-          <h4 style="color:#48dbfb; margin:0 0 0.75rem 0; text-align:center; font-size:1rem; font-weight:600;">🛡️ Resiste</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">`;
+        weakHtml += `<div style="background:rgba(72, 219, 251, 0.08); border:1px solid rgba(72, 219, 251, 0.2); border-radius:16px; padding:1.25rem;">
+          <h4 style="color:#48dbfb; margin:0 0 1rem 0; text-align:center; font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:1px;">🛡️ Resiste</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center;">`;
         weakHtml += resistList.map(([t, mod]) => `
-            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.2); opacity:1;">
-                ${translateType(t)} <strong style="color:var(--ray-yellow); margin-left:4px;">x${mod}</strong>
+            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.1); opacity:0.9; font-size:0.9rem;">
+                ${translateType(t)} <strong style="color:white; background:rgba(0,0,0,0.3); padding:0 4px; border-radius:4px; margin-left:4px;">x${mod}</strong>
             </span>
         `).join('');
         weakHtml += `</div></div>`;
-    } else {
-        weakHtml += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center;"><span style="color:var(--text-muted); font-size:0.85rem;">Daño neutro</span></div>`;
     }
     weakHtml += `</div>`;
 
@@ -218,13 +225,16 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
         let bestMove = { name: "Ninguno", mod: 0 };
         member.moves.forEach(move => {
             if (move.category === 'Status') return;
+            // Simplified check based on type only for now as basic heuristic
             let mod = 1;
             enemyTypes.forEach(eType => {
                 const atkIdx = types.indexOf(move.type);
                 const defIdx = types.indexOf(eType);
                 if (atkIdx !== -1 && defIdx !== -1) mod *= typeMatrix[atkIdx][defIdx];
             });
+            // STAB
             if (member.types.includes(move.type)) mod *= 1.5;
+
             if (mod > bestMove.mod) bestMove = { name: move.name, mod: mod, type: move.type };
         });
 
@@ -242,25 +252,40 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
         return { member, bestMove, maxReceiveMod };
     });
 
+    // Sort: Best attackers first
     analysis.sort((a, b) => b.bestMove.mod - a.bestMove.mod);
 
     teamContainer.innerHTML = analysis.map(item => {
-        let color = "#a0a0a0";
-        if (item.bestMove.mod >= 2) color = "#2d9e6d";
-        if (item.maxReceiveMod >= 2) color = "#ff4081";
+        // Color coding based on matchup
+        let borderColor = 'transparent';
+        let bgColor = 'rgba(255,255,255,0.03)';
+
+        if (item.bestMove.mod >= 2) {
+            borderColor = 'var(--primary-color)';
+            bgColor = 'rgba(var(--primary-rgb), 0.1)';
+        } else if (item.maxReceiveMod >= 2) {
+            borderColor = 'var(--ray-red)';
+            bgColor = 'rgba(244, 63, 94, 0.05)';
+        }
 
         return `
-        <div class="recommendation-card" style="border-color:${color}; padding:0.5rem; margin-top:0;">
-          <img src="${item.member.image}" style="width:40px; height:40px;">
+        <div class="recommendation-card" style="border-left: 3px solid ${borderColor}; background:${bgColor}; padding:0.75rem 1rem; margin:0; display:flex; align-items:center; gap:1rem;">
+          <img src="${item.member.image}" style="width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.5)); transform:scale(1.1);">
+          
           <div style="flex:1;">
-            <div style="font-weight:bold; font-size:0.9rem; color:white;">${item.member.name}</div>
-            <div style="font-size:0.75rem; color:#ccc;">
-              Ataca con: <span style="color:${item.bestMove.mod >= 1.5 ? 'var(--ray-green-glow)' : 'inherit'};">${item.bestMove.name}</span> 
-              (${item.bestMove.mod.toFixed(1)}x)
-            </div>
+            <div style="font-weight:700; font-size:1rem; color:var(--text-main); margin-bottom:0.2rem;">${item.member.name}</div>
+            
+            ${item.bestMove.mod >= 1
+                ? `<div style="font-size:0.85rem; color:var(--text-muted);">Usa <span style="color:var(--primary-glow); font-weight:600;">${item.bestMove.name}</span> <span style="background:rgba(0,0,0,0.3); padding:0 4px; border-radius:4px; font-size:0.75rem;">x${item.bestMove.mod.toFixed(1)}</span></div>`
+                : `<div style="font-size:0.85rem; color:var(--text-muted);">Poco efectivo</div>`
+            }
           </div>
-          <div style="font-size:0.75rem; text-align:right;">
-             <div style="color:${item.maxReceiveMod >= 2 ? '#ff6b6b' : '#a0a0a0'}">Recibe x${item.maxReceiveMod}</div>
+
+          <div style="text-align:right;">
+             ${item.maxReceiveMod >= 2
+                ? `<div style="color:var(--ray-red); font-size:0.8rem; font-weight:600; display:flex; flex-direction:column; align-items:flex-end;"><span>⚠️ Recibe</span><span>x${item.maxReceiveMod}</span></div>`
+                : `<div style="color:var(--primary-color); font-size:0.8rem; font-weight:600;">🛡️ Seguro</div>`
+            }
           </div>
         </div>
       `;

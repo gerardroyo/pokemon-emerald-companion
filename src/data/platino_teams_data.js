@@ -1,8 +1,8 @@
 // Platino Teams Data - Similar structure to Emerald teams
 export const platino_teamCategories = [
-    { id: 'difficulty', name: 'Dificultad', icon: '⚔️' },
-    { id: 'playstyle', name: 'Estilo de Juego', icon: '🎯' },
-    { id: 'theme', name: 'Temático', icon: '🌟' }
+    { id: 'difficulty', name: 'Por Objetivo', icon: '🎯' },
+    { id: 'thematic', name: 'Por Temática', icon: '🎨' },
+    { id: 'mechanic', name: 'Por Mecánica', icon: '⚙️' }
 ];
 
 export const platino_teams = {
@@ -11,102 +11,102 @@ export const platino_teams = {
         id: 'competitive',
         name: '🏆 Competitivo',
         category: 'difficulty',
-        description: 'Equipo de alto nivel para entrenamientos serios. Pokémon con stats competitive y movimientos óptimos.',
+        description: 'Equipo óptimo para derrotar al Alto Mando y ser campeón. Balanceado y potente.',
         pokemon: [
-            {
-                name: 'Garchomp',
-                id: 445,
-                types: ['Dragón', 'Tierra'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
-                location: 'Mt. Coronet',
-                role: '💪 Físico',
-                item: 'Gafas de Precisión',
-                nature: 'Audaz',
-                moves: [
-                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Demolición', type: 'Lucha', category: 'Físico' }
-                ]
-            },
             {
                 name: 'Infernape',
                 id: 392,
                 types: ['Fuego', 'Lucha'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
                 location: 'Starter Pokémon',
-                role: '⚡ Especial',
+                role: '⚔️ Atacante Mixto',
                 item: 'Vida Orbe',
-                nature: 'Tímido',
+                nature: 'Ingenua',
                 moves: [
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
                     { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' },
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Sombra Nocturna', type: 'Fantasma', category: 'Especial' }
+                    { name: 'Hierba Lazo', type: 'Planta', category: 'Especial' },
+                    { name: 'U-turn', type: 'Bicho', category: 'Físico' }
                 ]
             },
             {
-                name: 'Empoleon',
-                id: 395,
-                types: ['Agua', 'Acero'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
-                location: 'Starter Pokémon',
-                role: '🛡️ Especial',
-                item: 'Placa Resistente',
-                nature: 'Modesto',
+                name: 'Garchomp',
+                id: 445,
+                types: ['Dragón', 'Tierra'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
+                location: 'Cueva Extravío',
+                role: '🐉 Sweeper Físico',
+                item: 'Banda Focus',
+                nature: 'Alegre',
                 moves: [
-                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
-                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
-                    { name: 'Rayo de Hielo', type: 'Hielo', category: 'Especial' },
-                    { name: 'Cabeza de Hierro', type: 'Acero', category: 'Físico' }
+                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
+                    { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
+                    { name: 'Roca Afilada', type: 'Roca', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' }
                 ]
             },
             {
-                name: 'Staraptor',
-                id: 398,
+                name: 'Lucario',
+                id: 448,
+                types: ['Lucha', 'Acero'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png',
+                location: 'Isla Hierro',
+                role: '👊 Atacante Especial',
+                item: 'Gafas Especiales',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Esfera Aural', type: 'Lucha', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Pulso Umbrío', type: 'Siniestro', category: 'Especial' },
+                    { name: 'Maquinación', type: 'Siniestro', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Togekiss',
+                id: 468,
                 types: ['Normal', 'Volador'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
-                location: 'Ruta 201-202',
-                role: '🚀 Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/468.png',
+                location: 'Huevo (Cintia)',
+                role: '✨ Tanque Especial',
+                item: 'Restos',
+                nature: 'Serena',
                 moves: [
-                    { name: 'Pico Definitivo', type: 'Volador', category: 'Físico' },
-                    { name: 'Ciclón', type: 'Volador', category: 'Especial' },
-                    { name: 'Represalia', type: 'Normal', category: 'Físico' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' }
+                    { name: 'Tajo Aéreo', type: 'Volador', category: 'Especial' },
+                    { name: 'Esfera Aural', type: 'Lucha', category: 'Especial' },
+                    { name: 'Onda Trueno', type: 'Eléctrico', category: 'Estado' },
+                    { name: 'Respiro', type: 'Volador', category: 'Estado' }
                 ]
             },
             {
-                name: 'Crobat',
-                id: 169,
-                types: ['Veneno', 'Volador'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png',
-                location: 'Cueva Ébano',
-                role: '⚡ Especial',
-                item: 'Pluma Voladora',
-                nature: 'Tímido',
+                name: 'Milotic',
+                id: 350,
+                types: ['Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png',
+                location: 'Mt. Corona (Pesca)',
+                role: '💧 Muralla Especial',
+                item: 'Restos',
+                nature: 'Osada',
                 moves: [
+                    { name: 'Surf', type: 'Agua', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
                     { name: 'Tóxico', type: 'Veneno', category: 'Estado' },
-                    { name: 'Aire Cortante', type: 'Volador', category: 'Especial' },
-                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
-                    { name: 'Pulso Dragón', type: 'Dragón', category: 'Especial' }
+                    { name: 'Recuperación', type: 'Normal', category: 'Estado' }
                 ]
             },
             {
-                name: 'Weavile',
-                id: 461,
-                types: ['Siniestro', 'Hielo'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/461.png',
-                location: 'Mt. Coronet',
-                role: '💨 Velocidad',
-                item: 'Vida Orbe',
-                nature: 'Tímido',
+                name: 'Roserade',
+                id: 407,
+                types: ['Planta', 'Veneno'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png',
+                location: 'Ruta 204',
+                role: '🌹 Atacante Especial',
+                item: 'Lodo Negro',
+                nature: 'Miedosa',
                 moves: [
-                    { name: 'Golpe Bajo', type: 'Siniestro', category: 'Físico' },
-                    { name: 'Avalancha', type: 'Hielo', category: 'Físico' },
-                    { name: 'Puño Certero', type: 'Lucha', category: 'Físico' },
-                    { name: 'Persecución', type: 'Siniestro', category: 'Físico' }
+                    { name: 'Bomba Lodo', type: 'Veneno', category: 'Especial' },
+                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
+                    { name: 'Somnífero', type: 'Planta', category: 'Estado' },
+                    { name: 'Púas Tóxicas', type: 'Veneno', category: 'Estado' }
                 ]
             }
         ]
@@ -116,7 +116,7 @@ export const platino_teams = {
         id: 'speedrun',
         name: '🏃 Speedrun',
         category: 'difficulty',
-        description: 'Equipo optimizado para completar el juego rápidamente. Pokémon con buenos tipos y niveles progresivos.',
+        description: 'Pokémon rápidos y poderosos para terminar el juego velozmente. Máxima velocidad y power.',
         pokemon: [
             {
                 name: 'Torterra',
@@ -221,7 +221,7 @@ export const platino_teams = {
         id: 'nuzlocke',
         name: '💀 Nuzlocke',
         category: 'difficulty',
-        description: 'Equipo defensivo para Nuzlocke. Pokémon resistentes con buena cobertura de tipos.',
+        description: 'Pokémon resistentes para sobrevivir a los ataques del Alto Mando. Máxima defensa.',
         pokemon: [
             {
                 name: 'Bastionage',
@@ -324,9 +324,9 @@ export const platino_teams = {
 
     favorites: {
         id: 'favorites',
-        name: '⭐ Favoritos',
+        name: '🌟 Favoritos',
         category: 'difficulty',
-        description: 'Equipo con Pokémon icónicos de Sinnoh. Para disfrutar el juego sin preocupaciones.',
+        description: 'Los Pokémon más queridos de Sinnoh. Equipo sentimental pero competitivo.',
         pokemon: [
             {
                 name: 'Dialga',
@@ -429,56 +429,40 @@ export const platino_teams = {
 
     balanced_team: {
         id: 'balanced_team',
-        name: '⚖️ Equilibrado',
-        category: 'playstyle',
-        description: 'Equipo balanceado con variedad de tipos y roles defensivos/ofensivos.',
+        name: '⚖️ Equipo Balanceado',
+        category: 'thematic',
+        description: 'Cobertura de tipos perfecta. Equipo versátil diseñado alrededor de Empoleon.',
         pokemon: [
-            {
-                name: 'Garchomp',
-                id: 445,
-                types: ['Dragón', 'Tierra'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
-                location: 'Mt. Coronet',
-                role: '💪 Físico',
-                item: 'Gafas de Precisión',
-                nature: 'Audaz',
-                moves: [
-                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Demolición', type: 'Lucha', category: 'Físico' }
-                ]
-            },
-            {
-                name: 'Infernape',
-                id: 392,
-                types: ['Fuego', 'Lucha'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
-                location: 'Starter',
-                role: '⚡ Especial',
-                item: 'Vida Orbe',
-                nature: 'Tímido',
-                moves: [
-                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' },
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Sombra Nocturna', type: 'Fantasma', category: 'Especial' }
-                ]
-            },
             {
                 name: 'Empoleon',
                 id: 395,
                 types: ['Agua', 'Acero'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
                 location: 'Starter',
-                role: '🛡️ Especial',
-                item: 'Placa Resistente',
-                nature: 'Modesto',
+                role: '🛡️ Especial / Tanque',
+                item: 'Restos',
+                nature: 'Modesta',
                 moves: [
-                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
-                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
-                    { name: 'Rayo de Hielo', type: 'Hielo', category: 'Especial' },
-                    { name: 'Cabeza de Hierro', type: 'Acero', category: 'Físico' }
+                    { name: 'Surf', type: 'Agua', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Agility', type: 'Psíquico', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Garchomp',
+                id: 445,
+                types: ['Dragón', 'Tierra'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
+                location: 'Cueva Extravío',
+                role: '💪 Físico',
+                item: 'Banda Focus',
+                nature: 'Alegre',
+                moves: [
+                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
+                    { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
+                    { name: 'Colmillo Ígneo', type: 'Fuego', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' }
                 ]
             },
             {
@@ -487,46 +471,62 @@ export const platino_teams = {
                 types: ['Normal', 'Volador'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
                 location: 'Ruta 201',
-                role: '🚀 Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                role: '🚀 Atacante Veloz',
+                item: 'Cinta Elegida',
+                nature: 'Firme',
                 moves: [
-                    { name: 'Pico Definitivo', type: 'Volador', category: 'Físico' },
-                    { name: 'Ciclón', type: 'Volador', category: 'Especial' },
-                    { name: 'Represalia', type: 'Normal', category: 'Físico' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' }
+                    { name: 'Pájaro Osado', type: 'Volador', category: 'Físico' },
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Ida y Vuelta', type: 'Bicho', category: 'Físico' },
+                    { name: 'Ataque Rápido', type: 'Normal', category: 'Físico' }
                 ]
             },
             {
-                name: 'Bronzong',
-                id: 437,
-                types: ['Acero', 'Psíquico'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/437.png',
-                location: 'Mt. Coronet',
-                role: '🛡️ Especial',
-                item: 'Restos',
-                nature: 'Modesto',
+                name: 'Luxray',
+                id: 405,
+                types: ['Eléctrico'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png',
+                location: 'Ruta 202',
+                role: '⚡ Atacante Físico',
+                item: 'Magneto',
+                nature: 'Firme',
                 moves: [
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Meteorobús', type: 'Acero', category: 'Especial' },
-                    { name: 'Tierra de Poder', type: 'Tierra', category: 'Especial' },
-                    { name: 'Reflejo', type: 'Psíquico', category: 'Estado' }
+                    { name: 'Chispazo', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Colmillo Rayo', type: 'Eléctrico', category: 'Físico' },
+                    { name: 'Triturar', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Superpotencia', type: 'Lucha', category: 'Físico' }
                 ]
             },
             {
-                name: 'Floatzel',
-                id: 419,
-                types: ['Agua'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png',
-                location: 'Ruta 203',
-                role: '⚡ Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                name: 'Roserade',
+                id: 407,
+                types: ['Planta', 'Veneno'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png',
+                location: 'Ruta 204',
+                role: '🌹 Atacante Especial',
+                item: 'Lodo Negro',
+                nature: 'Miedosa',
                 moves: [
-                    { name: 'Acuatierra', type: 'Agua', category: 'Físico' },
-                    { name: 'Golpe', type: 'Lucha', category: 'Físico' },
-                    { name: 'Giro Hidro', type: 'Agua', category: 'Físico' },
-                    { name: 'Triturar', type: 'Siniestro', category: 'Físico' }
+                    { name: 'Bomba Lodo', type: 'Veneno', category: 'Especial' },
+                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
+                    { name: 'Recurso', type: 'Normal', category: 'Estado' },
+                    { name: 'Extrasensorial', type: 'Psíquico', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Gallade',
+                id: 475,
+                types: ['Psíquico', 'Lucha'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png',
+                location: 'Ruta 208',
+                role: '🗡️ Atacante Físico',
+                item: 'Periscopio',
+                nature: 'Firme',
+                moves: [
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Psicocorte', type: 'Psíquico', category: 'Físico' },
+                    { name: 'Tajo Umbrío', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Hoja Aguda', type: 'Planta', category: 'Físico' }
                 ]
             }
         ]
@@ -535,9 +535,9 @@ export const platino_teams = {
     // More teams can be added following the same pattern
     monotype_water: {
         id: 'monotype_water',
-        name: '💧 Monotipos Agua',
-        category: 'theme',
-        description: 'Equipo mono-tipo Agua. Para maestros de las olas.',
+        name: '💧 Monotype Agua',
+        category: 'thematic',
+        description: 'Equipo 100% tipo Agua. Dominio completo de las aguas de Sinnoh.',
         pokemon: [
             {
                 name: 'Empoleon',
@@ -640,9 +640,9 @@ export const platino_teams = {
 
     monotype_dragon: {
         id: 'monotype_dragon',
-        name: '🐲 Monotipos Dragón',
-        category: 'theme',
-        description: 'Equipo mono-tipo Dragón. Para entrenadores valientes.',
+        name: '🐉 Monotype Dragón',
+        category: 'thematic',
+        description: 'Equipo 100% tipo Dragón. Poder absoluto del tipo Dragón.',
         pokemon: [
             {
                 name: 'Garchomp',
@@ -745,9 +745,9 @@ export const platino_teams = {
 
     starter_turtwig: {
         id: 'starter_turtwig',
-        name: '🌿 Starter: Turtwig',
-        category: 'theme',
-        description: 'Equipo basado en elegir a Turtwig como starter.',
+        name: '🌿 Team Turtwig',
+        category: 'thematic',
+        description: 'Equipo basado en Torterra. Defensa sólida y potencia terrestre.',
         pokemon: [
             {
                 name: 'Torterra',
@@ -755,46 +755,14 @@ export const platino_teams = {
                 types: ['Planta', 'Tierra'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png',
                 location: 'Starter',
-                role: '💪 Físico',
+                role: '🌳 Tanque Físico',
                 item: 'Restos',
-                nature: 'Audaz',
+                nature: 'Firme',
                 moves: [
                     { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Rayo Solar', type: 'Planta', category: 'Especial' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Síntesis', type: 'Planta', category: 'Estado' }
-                ]
-            },
-            {
-                name: 'Infernape',
-                id: 392,
-                types: ['Fuego', 'Lucha'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
-                location: 'Ruta 203-204',
-                role: '⚡ Especial',
-                item: 'Vida Orbe',
-                nature: 'Tímido',
-                moves: [
-                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' },
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Sombra Nocturna', type: 'Fantasma', category: 'Especial' }
-                ]
-            },
-            {
-                name: 'Empoleon',
-                id: 395,
-                types: ['Agua', 'Acero'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
-                location: 'Gran Ciénaga',
-                role: '🛡️ Especial',
-                item: 'Placa Resistente',
-                nature: 'Modesto',
-                moves: [
-                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
-                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
-                    { name: 'Rayo de Hielo', type: 'Hielo', category: 'Especial' },
-                    { name: 'Cabeza de Hierro', type: 'Acero', category: 'Físico' }
+                    { name: 'Mazo en la Cabeza', type: 'Planta', category: 'Físico' },
+                    { name: 'Roca Afilada', type: 'Roca', category: 'Físico' },
+                    { name: 'Maldición', type: 'Fantasma', category: 'Estado' }
                 ]
             },
             {
@@ -802,47 +770,79 @@ export const platino_teams = {
                 id: 398,
                 types: ['Normal', 'Volador'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
-                location: 'Ruta 201-202',
-                role: '🚀 Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                location: 'Ruta 201',
+                role: '🚀 Atacante Veloz',
+                item: 'Cinta Elegida',
+                nature: 'Alegre',
                 moves: [
-                    { name: 'Pico Definitivo', type: 'Volador', category: 'Físico' },
-                    { name: 'Ciclón', type: 'Volador', category: 'Especial' },
-                    { name: 'Represalia', type: 'Normal', category: 'Físico' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' }
+                    { name: 'Pájaro Osado', type: 'Volador', category: 'Físico' },
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Ida y Vuelta', type: 'Bicho', category: 'Físico' },
+                    { name: 'Ataque Rápido', type: 'Normal', category: 'Físico' }
                 ]
             },
             {
-                name: 'Crobat',
-                id: 169,
-                types: ['Veneno', 'Volador'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png',
-                location: 'Cueva Ébano',
-                role: '⚡ Especial',
-                item: 'Pluma Voladora',
-                nature: 'Tímido',
+                name: 'Magmortar',
+                id: 467,
+                types: ['Fuego'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png',
+                location: 'Forja Fuego',
+                role: '💥 Cañón Especial',
+                item: 'Vidasfera',
+                nature: 'Modesta',
                 moves: [
-                    { name: 'Tóxico', type: 'Veneno', category: 'Estado' },
-                    { name: 'Aire Cortante', type: 'Volador', category: 'Especial' },
-                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
-                    { name: 'Pulso Dragón', type: 'Dragón', category: 'Especial' }
+                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
+                    { name: 'Rayo', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Onda Certera', type: 'Lucha', category: 'Especial' },
+                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' }
                 ]
             },
             {
-                name: 'Garchomp',
-                id: 445,
-                types: ['Dragón', 'Tierra'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
-                location: 'Mt. Coronet',
-                role: '💪 Físico',
-                item: 'Gafas de Precisión',
-                nature: 'Audaz',
+                name: 'Milotic',
+                id: 350,
+                types: ['Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png',
+                location: 'Mt. Corona (Pesca)',
+                role: '💧 Muralla Especial',
+                item: 'Restos',
+                nature: 'Osada',
                 moves: [
-                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Demolición', type: 'Lucha', category: 'Físico' }
+                    { name: 'Surf', type: 'Agua', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Recuperación', type: 'Normal', category: 'Estado' },
+                    { name: 'Tóxico', type: 'Veneno', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Lucario',
+                id: 448,
+                types: ['Lucha', 'Acero'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png',
+                location: 'Isla Hierro (Huevo)',
+                role: '👊 Atacante Mixto',
+                item: 'Cinta Experto',
+                nature: 'Firme',
+                moves: [
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Puño Incremento', type: 'Lucha', category: 'Físico' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Velocidad Extrema', type: 'Normal', category: 'Físico' }
+                ]
+            },
+            {
+                name: 'Jolteon',
+                id: 135,
+                types: ['Eléctrico'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png',
+                location: 'Eevee (Corazón de Ciudad)',
+                role: '⚡ Atacante Veloz',
+                item: 'Imán',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Rayo', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Bola Sombra', type: 'Fantasma', category: 'Especial' },
+                    { name: 'Doble Rayo', type: 'Bicho', category: 'Especial' }
                 ]
             }
         ]
@@ -850,9 +850,9 @@ export const platino_teams = {
 
     starter_chimchar: {
         id: 'starter_chimchar',
-        name: '🔥 Starter: Chimchar',
-        category: 'theme',
-        description: 'Equipo basado en elegir a Chimchar como starter.',
+        name: '🔥 Team Chimchar',
+        category: 'thematic',
+        description: 'Equipo basado en Infernape. Poder de fuego y lucha veloz.',
         pokemon: [
             {
                 name: 'Infernape',
@@ -860,46 +860,46 @@ export const platino_teams = {
                 types: ['Fuego', 'Lucha'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
                 location: 'Starter',
-                role: '⚡ Especial',
-                item: 'Vida Orbe',
-                nature: 'Tímido',
+                role: '🔥 Cañón de Fuego Veloz',
+                item: 'Vidasfera',
+                nature: 'Activa',
                 moves: [
                     { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' },
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Sombra Nocturna', type: 'Fantasma', category: 'Especial' }
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Puño Trueno', type: 'Eléctrico', category: 'Físico' },
+                    { name: 'Ida y Vuelta', type: 'Bicho', category: 'Físico' }
                 ]
             },
             {
-                name: 'Torterra',
-                id: 389,
-                types: ['Planta', 'Tierra'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png',
-                location: 'Ruta 203-204',
-                role: '💪 Físico',
-                item: 'Restos',
-                nature: 'Audaz',
+                name: 'Floatzel',
+                id: 419,
+                types: ['Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png',
+                location: 'Ruta 203',
+                role: '🚤 Atacante Veloz',
+                item: 'Cinta Experto',
+                nature: 'Firme',
                 moves: [
-                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Rayo Solar', type: 'Planta', category: 'Especial' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Síntesis', type: 'Planta', category: 'Estado' }
+                    { name: 'Cascada', type: 'Agua', category: 'Físico' },
+                    { name: 'Triturar', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Puño Hielo', type: 'Hielo', category: 'Físico' },
+                    { name: 'Acua Jet', type: 'Agua', category: 'Físico' }
                 ]
             },
             {
-                name: 'Empoleon',
-                id: 395,
-                types: ['Agua', 'Acero'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
-                location: 'Gran Ciénaga',
-                role: '🛡️ Especial',
-                item: 'Placa Resistente',
-                nature: 'Modesto',
+                name: 'Roserade',
+                id: 407,
+                types: ['Planta', 'Veneno'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png',
+                location: 'Ruta 204',
+                role: '🌹 Atacante Especial',
+                item: 'Lodo Negro',
+                nature: 'Miedosa',
                 moves: [
-                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
-                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
-                    { name: 'Rayo de Hielo', type: 'Hielo', category: 'Especial' },
-                    { name: 'Cabeza de Hierro', type: 'Acero', category: 'Físico' }
+                    { name: 'Bomba Lodo', type: 'Veneno', category: 'Especial' },
+                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
+                    { name: 'Somnífero', type: 'Planta', category: 'Estado' },
+                    { name: 'Brillo Mágico', type: 'Hada', category: 'Especial' }
                 ]
             },
             {
@@ -907,31 +907,15 @@ export const platino_teams = {
                 id: 398,
                 types: ['Normal', 'Volador'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
-                location: 'Ruta 201-202',
-                role: '🚀 Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                location: 'Ruta 201',
+                role: '🚀 Atacante Veloz',
+                item: 'Cinta Elegida',
+                nature: 'Alegre',
                 moves: [
-                    { name: 'Pico Definitivo', type: 'Volador', category: 'Físico' },
-                    { name: 'Ciclón', type: 'Volador', category: 'Especial' },
-                    { name: 'Represalia', type: 'Normal', category: 'Físico' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' }
-                ]
-            },
-            {
-                name: 'Crobat',
-                id: 169,
-                types: ['Veneno', 'Volador'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png',
-                location: 'Cueva Ébano',
-                role: '⚡ Especial',
-                item: 'Pluma Voladora',
-                nature: 'Tímido',
-                moves: [
-                    { name: 'Tóxico', type: 'Veneno', category: 'Estado' },
-                    { name: 'Aire Cortante', type: 'Volador', category: 'Especial' },
-                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
-                    { name: 'Pulso Dragón', type: 'Dragón', category: 'Especial' }
+                    { name: 'Pájaro Osado', type: 'Volador', category: 'Físico' },
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Ataque Rápido', type: 'Normal', category: 'Físico' },
+                    { name: 'Ida y Vuelta', type: 'Bicho', category: 'Físico' }
                 ]
             },
             {
@@ -939,15 +923,31 @@ export const platino_teams = {
                 id: 445,
                 types: ['Dragón', 'Tierra'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
-                location: 'Mt. Coronet',
-                role: '💪 Físico',
-                item: 'Gafas de Precisión',
-                nature: 'Audaz',
+                location: 'Cueva Extravío',
+                role: '🐉 Power Bruto',
+                item: 'Colmillo Dragón',
+                nature: 'Alegre',
                 moves: [
                     { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
                     { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Demolición', type: 'Lucha', category: 'Físico' }
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' },
+                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Luxray',
+                id: 405,
+                types: ['Eléctrico'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png',
+                location: 'Ruta 202',
+                role: '⚡ Atacante Físico',
+                item: 'Magneto',
+                nature: 'Firme',
+                moves: [
+                    { name: 'Colmillo Rayo', type: 'Eléctrico', category: 'Físico' },
+                    { name: 'Triturar', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Superpotencia', type: 'Lucha', category: 'Físico' },
+                    { name: 'Voltiocambio', type: 'Eléctrico', category: 'Especial' }
                 ]
             }
         ]
@@ -955,9 +955,9 @@ export const platino_teams = {
 
     starter_piplup: {
         id: 'starter_piplup',
-        name: '🌊 Starter: Piplup',
-        category: 'theme',
-        description: 'Equipo basado en elegir a Piplup como starter.',
+        name: '🌊 Team Piplup',
+        category: 'thematic',
+        description: 'Equipo basado en Empoleon. Elegancia real y dominio del acero.',
         pokemon: [
             {
                 name: 'Empoleon',
@@ -965,46 +965,46 @@ export const platino_teams = {
                 types: ['Agua', 'Acero'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
                 location: 'Starter',
-                role: '🛡️ Especial',
-                item: 'Placa Resistente',
-                nature: 'Modesto',
-                moves: [
-                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
-                    { name: 'Onda Voltio', type: 'Eléctrico', category: 'Especial' },
-                    { name: 'Rayo de Hielo', type: 'Hielo', category: 'Especial' },
-                    { name: 'Cabeza de Hierro', type: 'Acero', category: 'Físico' }
-                ]
-            },
-            {
-                name: 'Infernape',
-                id: 392,
-                types: ['Fuego', 'Lucha'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
-                location: 'Ruta 203-204',
-                role: '⚡ Especial',
-                item: 'Vida Orbe',
-                nature: 'Tímido',
-                moves: [
-                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' },
-                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
-                    { name: 'Sombra Nocturna', type: 'Fantasma', category: 'Especial' }
-                ]
-            },
-            {
-                name: 'Torterra',
-                id: 389,
-                types: ['Planta', 'Tierra'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png',
-                location: 'Ruta 203-204',
-                role: '💪 Físico',
+                role: '🛡️ Tanque Especial',
                 item: 'Restos',
-                nature: 'Audaz',
+                nature: 'Modesta',
                 moves: [
-                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
-                    { name: 'Rayo Solar', type: 'Planta', category: 'Especial' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Síntesis', type: 'Planta', category: 'Estado' }
+                    { name: 'Surf', type: 'Agua', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Nudo Hierba', type: 'Planta', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Rapidash',
+                id: 78,
+                types: ['Fuego'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png',
+                location: 'Ruta 206',
+                role: '🏇 Atacante Veloz',
+                item: 'Banda Muscular',
+                nature: 'Alegre',
+                moves: [
+                    { name: 'Envite Ígneo', type: 'Fuego', category: 'Físico' },
+                    { name: 'Megacuerno', type: 'Bicho', category: 'Físico' },
+                    { name: 'Cuerpo Llama', type: 'Fuego', category: 'Estado' },
+                    { name: 'Patada Salto Alta', type: 'Lucha', category: 'Físico' }
+                ]
+            },
+            {
+                name: 'Roserade',
+                id: 407,
+                types: ['Planta', 'Veneno'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png',
+                location: 'Ruta 204',
+                role: '🌹 Atacante Especial',
+                item: 'Lodo Negro',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Bomba Lodo', type: 'Veneno', category: 'Especial' },
+                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
+                    { name: 'Extrasensorial', type: 'Psíquico', category: 'Especial' },
+                    { name: 'Paralizador', type: 'Planta', category: 'Estado' }
                 ]
             },
             {
@@ -1012,31 +1012,15 @@ export const platino_teams = {
                 id: 398,
                 types: ['Normal', 'Volador'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png',
-                location: 'Ruta 201-202',
-                role: '🚀 Físico',
-                item: 'Banda Muscular',
-                nature: 'Audaz',
+                location: 'Ruta 201',
+                role: '🚀 Atacante Veloz',
+                item: 'Cinta Elegida',
+                nature: 'Firme',
                 moves: [
-                    { name: 'Pico Definitivo', type: 'Volador', category: 'Físico' },
-                    { name: 'Ciclón', type: 'Volador', category: 'Especial' },
-                    { name: 'Represalia', type: 'Normal', category: 'Físico' },
-                    { name: 'Enfoque Energético', type: 'Lucha', category: 'Especial' }
-                ]
-            },
-            {
-                name: 'Crobat',
-                id: 169,
-                types: ['Veneno', 'Volador'],
-                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png',
-                location: 'Cueva Ébano',
-                role: '⚡ Especial',
-                item: 'Pluma Voladora',
-                nature: 'Tímido',
-                moves: [
-                    { name: 'Tóxico', type: 'Veneno', category: 'Estado' },
-                    { name: 'Aire Cortante', type: 'Volador', category: 'Especial' },
-                    { name: 'Energibola', type: 'Planta', category: 'Especial' },
-                    { name: 'Pulso Dragón', type: 'Dragón', category: 'Especial' }
+                    { name: 'Pájaro Osado', type: 'Volador', category: 'Físico' },
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Ataque Rápido', type: 'Normal', category: 'Físico' },
+                    { name: 'Ida y Vuelta', type: 'Bicho', category: 'Físico' }
                 ]
             },
             {
@@ -1044,15 +1028,346 @@ export const platino_teams = {
                 id: 445,
                 types: ['Dragón', 'Tierra'],
                 image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
-                location: 'Mt. Coronet',
-                role: '💪 Físico',
-                item: 'Gafas de Precisión',
-                nature: 'Audaz',
+                location: 'Cueva Extravío',
+                role: '🐉 Sweeper Físico',
+                item: 'Banda Focus',
+                nature: 'Alegre',
                 moves: [
                     { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
                     { name: 'Garra Dragón', type: 'Dragón', category: 'Físico' },
-                    { name: 'Piedra Afilada', type: 'Roca', category: 'Físico' },
-                    { name: 'Demolición', type: 'Lucha', category: 'Físico' }
+                    { name: 'Roca Afilada', type: 'Roca', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Lucario',
+                id: 448,
+                types: ['Lucha', 'Acero'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png',
+                location: 'Isla Hierro (Huevo)',
+                role: '👊 Atacante Mixto',
+                item: 'Cinta Experto',
+                nature: 'Ingenua',
+                moves: [
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Esfera Aural', type: 'Lucha', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Velocidad Extrema', type: 'Normal', category: 'Físico' }
+                ]
+            }
+        ]
+    },
+
+    sun_team: {
+        id: 'sun_team',
+        name: '☀️ Equipo Sol',
+        description: 'Aprovecha Día Soleado. Potencia bajo el sol.',
+        category: 'mechanic',
+        pokemon: [
+            {
+                name: 'Infernape',
+                id: 392,
+                types: ['Fuego', 'Lucha'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png',
+                location: 'Starter',
+                role: '🔥 Sol Sweeper',
+                item: 'Vida Orbe',
+                nature: 'Activa',
+                moves: [
+                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
+                    { name: 'A bocajarro', type: 'Lucha', category: 'Físico' },
+                    { name: 'Hierba Lazo', type: 'Planta', category: 'Especial' },
+                    { name: 'Día Soleado', type: 'Fuego', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Cherrim',
+                id: 421,
+                types: ['Planta'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/421.png',
+                location: 'Ruta 221',
+                role: '☀️ Soporte Sol',
+                item: 'Roca Calor',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Día Soleado', type: 'Fuego', category: 'Estado' },
+                    { name: 'Rayo Solar', type: 'Planta', category: 'Especial' },
+                    { name: 'Deseo', type: 'Normal', category: 'Estado' },
+                    { name: 'Ayuda', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Rapidash',
+                id: 78,
+                types: ['Fuego'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png',
+                location: 'Ruta 206',
+                role: '🏇 Atacante Veloz',
+                item: 'Banda Muscular',
+                nature: 'Alegre',
+                moves: [
+                    { name: 'Envite Ígneo', type: 'Fuego', category: 'Físico' },
+                    { name: 'Megacuerno', type: 'Bicho', category: 'Físico' },
+                    { name: 'Patada Salto Alta', type: 'Lucha', category: 'Físico' },
+                    { name: 'Nitrocarga', type: 'Fuego', category: 'Físico' }
+                ]
+            },
+            {
+                name: 'Leafeon',
+                id: 470,
+                types: ['Planta'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png',
+                location: 'Bosque Eterna (Eevee)',
+                role: '🍃 Clorofila Físico',
+                item: 'Tabla Pradal',
+                nature: 'Firme',
+                moves: [
+                    { name: 'Hoja Aguda', type: 'Planta', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' },
+                    { name: 'X-Scissor', type: 'Bicho', category: 'Físico' },
+                    { name: 'Sustituto', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Garchomp',
+                id: 445,
+                types: ['Dragón', 'Tierra'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png',
+                location: 'Cueva Extravío',
+                role: '🐉 Power Bruto',
+                item: 'Banda Focus',
+                nature: 'Alegre',
+                moves: [
+                    { name: 'Terremoto', type: 'Tierra', category: 'Físico' },
+                    { name: 'Carga Dragón', type: 'Dragón', category: 'Físico' },
+                    { name: 'Colmillo Ígneo', type: 'Fuego', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Magmortar',
+                id: 467,
+                types: ['Fuego'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/467.png',
+                location: 'Forja Fuego',
+                role: '💥 Cañón Especial',
+                item: 'Gafas Elegid.',
+                nature: 'Modesta',
+                moves: [
+                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
+                    { name: 'Rayo', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Onda Certera', type: 'Lucha', category: 'Especial' },
+                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' }
+                ]
+            }
+        ]
+    },
+
+    rain_team: {
+        id: 'rain_team',
+        name: '🌧️ Equipo Lluvia',
+        description: 'Aprovecha Danza Lluvia. Control del clima acuoso.',
+        category: 'mechanic',
+        pokemon: [
+            {
+                name: 'Empoleon',
+                id: 395,
+                types: ['Agua', 'Acero'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png',
+                location: 'Starter',
+                role: '🛡️ Tanque Lluvia',
+                item: 'Restos',
+                nature: 'Modesta',
+                moves: [
+                    { name: 'Surf', type: 'Agua', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Danza Lluvia', type: 'Agua', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Floatzel',
+                id: 419,
+                types: ['Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/419.png',
+                location: 'Ruta 213',
+                role: '🛶 Nado Rápido Swimmer',
+                item: 'Tabla Agua',
+                nature: 'Firme',
+                moves: [
+                    { name: 'Cascada', type: 'Agua', category: 'Físico' },
+                    { name: 'Triturar', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Puño Hielo', type: 'Hielo', category: 'Físico' },
+                    { name: 'Acua Jet', type: 'Agua', category: 'Físico' }
+                ]
+            },
+            {
+                name: 'Toxicroak',
+                id: 454,
+                types: ['Veneno', 'Lucha'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png',
+                location: 'Gran Pantano',
+                role: '🐸 Piel Seca Sweeper',
+                item: 'Lodo Negro',
+                nature: 'Alegre',
+                moves: [
+                    { name: 'Puño Drenaje', type: 'Lucha', category: 'Físico' },
+                    { name: 'Puya Nociva', type: 'Veneno', category: 'Físico' },
+                    { name: 'Tajo Umbrío', type: 'Siniestro', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Bronzong',
+                id: 437,
+                types: ['Acero', 'Psíquico'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/437.png',
+                location: 'Monte Corona',
+                role: '🔔 Soporte Defensivo',
+                item: 'Roca Lluvia',
+                nature: 'Plácida',
+                moves: [
+                    { name: 'Danza Lluvia', type: 'Agua', category: 'Estado' },
+                    { name: 'Psíquico', type: 'Psíquico', category: 'Especial' },
+                    { name: 'Giro Bola', type: 'Acero', category: 'Físico' },
+                    { name: 'Hipnosis', type: 'Psíquico', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Lumineon',
+                id: 457,
+                types: ['Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/457.png',
+                location: 'Ruta 223',
+                role: '🐟 Soporte Veloz',
+                item: 'Roca Lluvia',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Viento Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Danza Lluvia', type: 'Agua', category: 'Estado' },
+                    { name: 'U-turn', type: 'Bicho', category: 'Físico' },
+                    { name: 'Escaldar', type: 'Agua', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Rotom-Wash',
+                id: 479,
+                types: ['Eléctrico', 'Agua'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10009.png',
+                location: 'Mansión Vieja',
+                role: '🌪️ STAB Trueno',
+                item: 'Restos',
+                nature: 'Modesta',
+                moves: [
+                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
+                    { name: 'Trueno', type: 'Eléctrico', category: 'Especial' },
+                    { name: 'Fuego Fatuo', type: 'Fuego', category: 'Estado' },
+                    { name: 'Divide Dolor', type: 'Normal', category: 'Estado' }
+                ]
+            }
+        ]
+    },
+
+    legendary: {
+        id: 'legendary',
+        name: '⭐ Legendarios',
+        description: 'El equipo definitivo de Sinnoh. Los seres más poderosos de la creación.',
+        category: 'mechanic',
+        pokemon: [
+            {
+                name: 'Arceus',
+                id: 493,
+                types: ['Normal'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png',
+                location: 'Sala del Origen',
+                role: '👑 El Dios Pokémon',
+                item: 'Tabla Alfa',
+                nature: 'Firme',
+                moves: [
+                    { name: 'Velocidad Extrema', type: 'Normal', category: 'Físico' },
+                    { name: 'Danza Espada', type: 'Normal', category: 'Estado' },
+                    { name: 'Garra Umbría', type: 'Fantasma', category: 'Físico' },
+                    { name: 'Recuperación', type: 'Normal', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Darkrai',
+                id: 491,
+                types: ['Siniestro'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png',
+                location: 'Isla Nueva Luna',
+                role: '🌙 Maestro de las Pesadillas',
+                item: 'Banda Focus',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Brecha Negra', type: 'Siniestro', category: 'Estado' },
+                    { name: 'Maquinación', type: 'Siniestro', category: 'Estado' },
+                    { name: 'Pulso Umbrío', type: 'Siniestro', category: 'Especial' },
+                    { name: 'Onda Certera', type: 'Lucha', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Shaymin-Sky',
+                id: 492,
+                types: ['Planta', 'Volador'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10006.png',
+                location: 'Vía del Agradecimiento',
+                role: '🍃 Velocista de los Cielos',
+                item: 'Vidasfera',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Fogonazo', type: 'Planta', category: 'Especial' },
+                    { name: 'Tajo Aéreo', type: 'Volador', category: 'Especial' },
+                    { name: 'Tierra Viva', type: 'Tierra', category: 'Especial' },
+                    { name: 'Síntesis', type: 'Planta', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Giratina-O',
+                id: 487,
+                types: ['Fantasma', 'Dragón'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10007.png',
+                location: 'Mundo Distorsión',
+                role: '👻 Guardián del Mundo Inverso',
+                item: 'Griseosfera',
+                nature: 'Audaz',
+                moves: [
+                    { name: 'Golpe Umbrío', type: 'Fantasma', category: 'Físico' },
+                    { name: 'Cometa Draco', type: 'Dragón', category: 'Especial' },
+                    { name: 'Esfera Aural', type: 'Lucha', category: 'Especial' },
+                    { name: 'Fuego Fatuo', type: 'Fuego', category: 'Estado' }
+                ]
+            },
+            {
+                name: 'Dialga',
+                id: 483,
+                types: ['Acero', 'Dragón'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png',
+                location: 'Columna Lanza',
+                role: '⏳ Señor del Tiempo',
+                item: 'Diamansfera',
+                nature: 'Modesta',
+                moves: [
+                    { name: 'Distorsión', type: 'Dragón', category: 'Especial' },
+                    { name: 'Foco Resplandor', type: 'Acero', category: 'Especial' },
+                    { name: 'Llamarada', type: 'Fuego', category: 'Especial' },
+                    { name: 'Trueno', type: 'Eléctrico', category: 'Especial' }
+                ]
+            },
+            {
+                name: 'Palkia',
+                id: 484,
+                types: ['Agua', 'Dragón'],
+                image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/484.png',
+                location: 'Columna Lanza',
+                role: '🌌 Señor del Espacio',
+                item: 'Lustrosfera',
+                nature: 'Miedosa',
+                moves: [
+                    { name: 'Corte Vacío', type: 'Dragón', category: 'Especial' },
+                    { name: 'Hidrobomba', type: 'Agua', category: 'Especial' },
+                    { name: 'Rayo Hielo', type: 'Hielo', category: 'Especial' },
+                    { name: 'Esfera Aural', type: 'Lucha', category: 'Especial' }
                 ]
             }
         ]

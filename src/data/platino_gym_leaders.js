@@ -3,152 +3,100 @@
 export const platino_gymLeaders = [
     {
         name: "Roark",
-        city: "Oreburgh City",
+        city: "Ciudad Pirita",
         type: "Roca",
-        badge: "Medalla Roca",
-        strategy: "Domina los ataques de tipo Roca con defensas fuertes.",
+        badge: "Medalla Lignito",
+        strategy: "Los ataques de Agua, Planta y Lucha son letales. Cranidos tiene un Ataque altísimo para ser el primer gimnasio.",
         pokemon: [
-            {
-                name: "Geodude",
-                id: 74,
-                level: 12,
-                types: ["Roca", "Tierra"],
-                moves: ["Lanzarrocas", "Defensa", "Magnitud", "Explosión"]
-            },
-            {
-                name: "Onix",
-                id: 95,
-                level: 12,
-                types: ["Roca", "Tierra"],
-                moves: ["Lanzarrocas", "Bofetón Lodo", "Anticipo", "Terremoto"]
-            },
-            {
-                name: "Cranidos",
-                id: 408,
-                level: 14,
-                types: ["Roca"],
-                moves: ["Lanzarrocas", "Golpe de Cabeza", "Buena Defensa", "Represalia"]
-            }
+            { name: "Geodude", id: 74, level: 12, types: ["Roca", "Tierra"], moves: ["Trampa Rocas", "Desenrollar", "Empujón"] },
+            { name: "Onix", id: 95, level: 12, types: ["Roca", "Tierra"], moves: ["Trampa Rocas", "Chirrido", "Lanzarrocas"] },
+            { name: "Cranidos", id: 408, level: 14, types: ["Roca"], moves: ["Golpe Cabeza", "Malicioso", "Persecución"] }
+        ]
+    },
+    {
+        name: "Gardenia",
+        city: "Ciudad Eterna",
+        type: "Planta",
+        badge: "Medalla Bosque",
+        strategy: "Usa tipos Fuego, Volador o Bicho. Su Roserade usa Hierba Lazo, que hace más daño a Pokémon pesados.",
+        pokemon: [
+            { name: "Turtwig", id: 387, level: 20, types: ["Planta"], moves: ["Reflejo", "Hoja Afilada", "Día Soleado"] },
+            { name: "Cherrim", id: 421, level: 20, types: ["Planta"], moves: ["Día Soleado", "Bomba Germen", "Drenadoras"] },
+            { name: "Roserade", id: 407, level: 22, types: ["Planta", "Veneno"], moves: ["Hierba Lazo", "Hoja Mágica", "Paralizador", "Ponzoña"] }
         ]
     },
     {
         name: "Fantina",
-        city: "Hearthome City",
+        city: "Ciudad Corazón",
         type: "Fantasma",
-        badge: "Medalla Espíritu",
-        strategy: "Usa Pokémon fantasma que esquivan y confunden.",
+        badge: "Medalla Reliquia",
+        strategy: "El tipo Siniestro es tu mejor aliado. Su Mismagius es muy rápido y golpea fuerte por el lado especial.",
         pokemon: [
-            {
-                name: "Misdreavus",
-                id: 200,
-                level: 28,
-                types: ["Fantasma"],
-                moves: ["Bola Sombra", "Confusión", "Maldición", "Fuego Fatuo"]
-            },
-            {
-                name: "Haunter",
-                id: 93,
-                level: 28,
-                types: ["Fantasma", "Veneno"],
-                moves: ["Bola Sombra", "Hipnosis", "Maldición", "Paranormal"]
-            },
-            {
-                name: "Gengar",
-                id: 94,
-                level: 30,
-                types: ["Fantasma", "Veneno"],
-                moves: ["Bola Sombra", "Enfoque Energético", "Maldición", "Sombra Nocturna"]
-            }
+            { name: "Duskull", id: 355, level: 24, types: ["Fantasma"], moves: ["Sombra Nocturna", "Fuego Fatuo", "Rayo Confuso"] },
+            { name: "Haunter", id: 93, level: 24, types: ["Fantasma", "Veneno"], moves: ["Puño Sombra", "Rayo Confuso", "Hipnosis"] },
+            { name: "Mismagius", id: 429, level: 26, types: ["Fantasma"], moves: ["Bola Sombra", "Psicorrayo", "Hoja Mágica", "Rayos Confusos"] }
         ]
     },
     {
         name: "Maylene",
-        city: "Veilstone City",
+        city: "Ciudad Rocavelo",
         type: "Lucha",
-        badge: "Medalla Combate",
-        strategy: "Pokémon de lucha ágiles y poderosos.",
+        badge: "Medalla Cobalto",
+        strategy: "Los tipos Volador y Psíquico son claves. Lucario puede resistir mucho gracias a su tipo Acero secundario.",
         pokemon: [
-            {
-                name: "Meditite",
-                id: 307,
-                level: 32,
-                types: ["Lucha", "Psíquico"],
-                moves: ["Enfoque Energético", "Paz Mental", "Confusión", "Foco Energético"]
-            },
-            {
-                name: "Machoke",
-                id: 67,
-                level: 32,
-                types: ["Lucha"],
-                moves: ["Demolición", "Terremoto", "Piedra Afilada", "Enfoque Energético"]
-            },
-            {
-                name: "Machamp",
-                id: 68,
-                level: 34,
-                types: ["Lucha"],
-                moves: ["Demolición", "Terremoto", "Piedra Afilada", "Martillazo"]
-            }
+            { name: "Meditite", id: 307, level: 28, types: ["Lucha", "Psíquico"], moves: ["Detección", "Confusión", "Puño Hielo"] },
+            { name: "Machoke", id: 67, level: 29, types: ["Lucha"], moves: ["Puntapié", "Tiro Vital", "Corpulencia"] },
+            { name: "Lucario", id: 448, level: 32, types: ["Lucha", "Acero"], moves: ["Palmeo", "Garra Metal", "Ataque Óseo"] }
+        ]
+    },
+    {
+        name: "Crasher Wake",
+        city: "Ciudad Pradera",
+        type: "Agua",
+        badge: "Medalla Ciénaga",
+        strategy: "Tipo Eléctrico y Planta son necesarios. Cuidado con Quagsire, que es inmune a la electricidad por ser tipo Tierra.",
+        pokemon: [
+            { name: "Gyarados", id: 130, level: 33, types: ["Agua", "Volador"], moves: ["Cascada", "Mordisco", "Salmuera"] },
+            { name: "Quagsire", id: 195, level: 34, types: ["Agua", "Tierra"], moves: ["Bofetón Lodo", "Disparo Lodo", "Golpe Cuerpo"] },
+            { name: "Floatzel", id: 419, level: 37, types: ["Agua"], moves: ["Salmuera", "Acua-Jet", "Colmillo Hielo"] }
         ]
     },
     {
         name: "Byron",
-        city: "Canalave City",
+        city: "Ciudad Canal",
         type: "Acero",
         badge: "Medalla Mina",
-        strategy: "Defensa de acero impenetrable.",
+        strategy: "Tipo Fuego, Lucha y Tierra. Bastiodon tiene una defensa física y especial inmensa, intenta desgastarlo.",
         pokemon: [
-            {
-                name: "Steelix",
-                id: 208,
-                level: 36,
-                types: ["Acero", "Tierra"],
-                moves: ["Cabeza de Hierro", "Terremoto", "Piedra Afilada", "Bofetón Lodo"]
-            },
-            {
-                name: "Magneton",
-                id: 82,
-                level: 36,
-                types: ["Eléctrico", "Acero"],
-                moves: ["Cabeza de Hierro", "Rayo", "Onda Voltio", "Trueno"]
-            },
-            {
-                name: "Bronzong",
-                id: 437,
-                level: 38,
-                types: ["Acero", "Psíquico"],
-                moves: ["Meteorobús", "Psíquico", "Tierra de Poder", "Reflejo"]
-            }
+            { name: "Magneton", id: 82, level: 37, types: ["Eléctrico", "Acero"], moves: ["Foco Resplandor", "Triataque", "Rayo"] },
+            { name: "Steelix", id: 208, level: 38, types: ["Acero", "Tierra"], moves: ["Terremoto", "Colmillo Hielo", "Cabeza de Hierro"] },
+            { name: "Bastiodon", id: 411, level: 41, types: ["Roca", "Acero"], moves: ["Cabeza de Hierro", "Cuerpo Pesado", "Poder Pasado"] }
         ]
     },
     {
         name: "Candice",
-        city: "Snowpoint City",
+        city: "Ciudad Puntaneva",
         type: "Hielo",
-        badge: "Medalla Escarcha",
-        strategy: "Pokémon helados que congelan al rival.",
+        badge: "Medalla Glaciar",
+        strategy: "Fuego, Lucha, Acero y Roca. Su Froslass usa Granizo y Manto Níveo para que falles tus ataques.",
         pokemon: [
-            {
-                name: "Sealeo",
-                id: 364,
-                level: 40,
-                types: ["Agua", "Hielo"],
-                moves: ["Hidrobomba", "Rayo Aurora", "Raya Lumínica", "Calmia"]
-            },
-            {
-                name: "Piloswine",
-                id: 221,
-                level: 40,
-                types: ["Hielo", "Tierra"],
-                moves: ["Avalancha", "Terremoto", "Piedra Afilada", "Destello"]
-            },
-            {
-                name: "Froslass",
-                id: 478,
-                level: 42,
-                types: ["Hielo", "Fantasma"],
-                moves: ["Rayo de Hielo", "Bola Sombra", "Confusión", "Tormenta de Arena"]
-            }
+            { name: "Sneasel", id: 215, level: 40, types: ["Siniestro", "Hielo"], moves: ["Tajo Umbrío", "Canto Helado", "Finta"] },
+            { name: "Piloswine", id: 221, level: 40, types: ["Hielo", "Tierra"], moves: ["Terremoto", "Avalancha", "Canto Helado"] },
+            { name: "Abomasnow", id: 460, level: 42, types: ["Planta", "Hielo"], moves: ["Mazazo", "Puño Hielo", "Arraigo"] },
+            { name: "Froslass", id: 478, level: 44, types: ["Hielo", "Fantasma"], moves: ["Ventisca", "Bola Sombra", "Rayo Confuso"] }
+        ]
+    },
+    {
+        name: "Volkner",
+        city: "Ciudad Marina",
+        type: "Eléctrico",
+        badge: "Medalla Faro",
+        strategy: "Tipo Tierra es indispensable. Electivire tiene una cobertura de movimientos muy amplia con los Puños Elementales.",
+        pokemon: [
+            { name: "Jolteon", id: 135, level: 46, types: ["Eléctrico"], moves: ["Rayo", "Carga", "Doble Rayo"] },
+            { name: "Raichu", id: 26, level: 46, types: ["Eléctrico"], moves: ["Rayo", "Onda Trueno", "Carga"] },
+            { name: "Luxray", id: 405, level: 48, types: ["Eléctrico"], moves: ["Colmillo Rayo", "Triturar", "Colmillo Hielo"] },
+            { name: "Electivire", id: 466, level: 50, types: ["Eléctrico"], moves: ["Puño Trueno", "Puño Fuego", "Puño Hielo", "Giga Impacto"] }
         ]
     }
 ];
@@ -157,190 +105,62 @@ export const platino_eliteFour = [
     {
         name: "Aaron",
         type: "Bicho",
-        strategy: "Experto en Pokémon de tipo Bicho.",
+        strategy: "Usa tipos Fuego, Volador o Roca. Drapion es su Pokémon más peligroso y solo es débil a Tierra.",
         pokemon: [
-            {
-                name: "Drapion",
-                id: 452,
-                level: 46,
-                types: ["Bicho", "Veneno"],
-                moves: ["Pulso Oscuro", "Tóxico", "Triturar", "Acuchillar"]
-            },
-            {
-                name: "Heracross",
-                id: 214,
-                level: 46,
-                types: ["Bicho", "Lucha"],
-                moves: ["Demolición", "Terremoto", "Piedra Afilada", "Megacuerno"]
-            },
-            {
-                name: "Vespiquen",
-                id: 416,
-                level: 46,
-                types: ["Bicho", "Volador"],
-                moves: ["Poder de Poder", "Ataque Aéreo", "Defensa", "Esporas Tóxicas"]
-            },
-            {
-                name: "Scizor",
-                id: 212,
-                level: 48,
-                types: ["Bicho", "Acero"],
-                moves: ["Cabeza de Hierro", "Demolición", "Golpe de Fuego", "Espada Santa"]
-            }
+            { name: "Yanomega", id: 469, level: 49, types: ["Bicho", "Volador"], moves: ["Tajo Aéreo", "Zumbido", "Ida y Vuelta"] },
+            { name: "Scizor", id: 212, level: 49, types: ["Bicho", "Acero"], moves: ["Cabeza de Hierro", "Tajo Umbrío", "Ataque Rápido"] },
+            { name: "Vespiquen", id: 416, level: 50, types: ["Bicho", "Volador"], moves: ["Al ataque", "A defender", "Auxilio"] },
+            { name: "Heracross", id: 214, level: 51, types: ["Bicho", "Lucha"], moves: ["A bocajarro", "Megacuerno", "Tajo Umbrío"] },
+            { name: "Drapion", id: 452, level: 53, types: ["Veneno", "Siniestro"], moves: ["Veneno X", "Tajo Umbrío", "Colmillo Hielo"] }
         ]
     },
     {
         name: "Bertha",
         type: "Tierra",
-        strategy: "Domina los ataques sísmicos de tipo Tierra.",
+        strategy: "Ataques de Agua y Planta (especialmente especial) destrozan a la mayoría de su equipo.",
         pokemon: [
-            {
-                name: "Whiscash",
-                id: 340,
-                level: 46,
-                types: ["Agua", "Tierra"],
-                moves: ["Hidrobomba", "Terremoto", "Avalancha", "Tierra de Poder"]
-            },
-            {
-                name: "Golem",
-                id: 76,
-                level: 46,
-                types: ["Roca", "Tierra"],
-                moves: ["Terremoto", "Piedra Afilada", "Explosión", "Magnitud"]
-            },
-            {
-                name: "Rhyperior",
-                id: 464,
-                level: 46,
-                types: ["Tierra", "Roca"],
-                moves: ["Terremoto", "Piedra Afilada", "Martillazo", "Avalancha"]
-            },
-            {
-                name: "Hippowdon",
-                id: 450,
-                level: 48,
-                types: ["Tierra"],
-                moves: ["Terremoto", "Piedra Afilada", "Tormenta Arena", "Enfoque Energético"]
-            }
+            { name: "Whiscash", id: 340, level: 50, types: ["Agua", "Tierra"], moves: ["Tierra Viva", "Acua-Aro", "Cede Paso"] },
+            { name: "Gliscor", id: 472, level: 53, types: ["Tierra", "Volador"], moves: ["Terremoto", "Colmillo Ígneo", "Colmillo Rayo"] },
+            { name: "Hippowdon", id: 450, level: 52, types: ["Tierra"], moves: ["Terremoto", "Piedra Afilada", "Relajo"] },
+            { name: "Golem", id: 76, level: 52, types: ["Roca", "Tierra"], moves: ["Terremoto", "Piedra Afilada", "Explosión"] },
+            { name: "Rhyperior", id: 464, level: 55, types: ["Tierra", "Roca"], moves: ["Terremoto", "Roca Afilada", "Megacuerno"] }
         ]
     },
     {
-        name: "Flannery",
+        name: "Flint",
         type: "Fuego",
-        strategy: "Ataques de fuego devastadores.",
+        strategy: "Tierra, Agua y Roca. Su Magmortar y su Infernape son atacantes mixtos muy peligrosos.",
         pokemon: [
-            {
-                name: "Rapidash",
-                id: 78,
-                level: 46,
-                types: ["Fuego"],
-                moves: ["Llamarada", "Giro Fuego", "Sofoco", "Psíquico"]
-            },
-            {
-                name: "Magcargo",
-                id: 219,
-                level: 46,
-                types: ["Fuego", "Roca"],
-                moves: ["Llamarada", "Piedra Afilada", "Tierra de Poder", "Amnesia"]
-            },
-            {
-                name: "Flareon",
-                id: 136,
-                level: 46,
-                types: ["Fuego"],
-                moves: ["Llamarada", "Sofoco", "Enfoque Energético", "Foco Energético"]
-            },
-            {
-                name: "Houndoom",
-                id: 229,
-                level: 48,
-                types: ["Fuego", "Siniestro"],
-                moves: ["Llamarada", "Pulso Oscuro", "Fuego Fatuo", "Acuchillar"]
-            }
+            { name: "Houndoom", id: 229, level: 52, types: ["Siniestro", "Fuego"], moves: ["Lanzallamas", "Pulso Umbrío", "Mofa"] },
+            { name: "Flareon", id: 136, level: 55, types: ["Fuego"], moves: ["Envite Ígneo", "Ataque Rápido", "Fuego Fatuo"] },
+            { name: "Rapidash", id: 78, level: 53, types: ["Fuego"], moves: ["Envite Ígneo", "Bote", "Día Soleado"] },
+            { name: "Magmortar", id: 467, level: 57, types: ["Fuego"], moves: ["Llamarada", "Rayo", "Onda Certera"] },
+            { name: "Infernape", id: 392, level: 55, types: ["Fuego", "Lucha"], moves: ["A bocajarro", "Envite Ígneo", "Puño Trueno"] }
         ]
     },
     {
         name: "Lucian",
         type: "Psíquico",
-        strategy: "Pokémon psíquicos que controlan la mente.",
+        strategy: "Siniestro, Fantasma y Bicho. Gallade usa ataques físicos de lucha para cubrir sus debilidades.",
         pokemon: [
-            {
-                name: "Mr. Mime",
-                id: 122,
-                level: 46,
-                types: ["Psíquico"],
-                moves: ["Psíquico", "Foco Energético", "Defensa Lunar", "Reflejo"]
-            },
-            {
-                name: "Gallade",
-                id: 475,
-                level: 46,
-                types: ["Psíquico", "Lucha"],
-                moves: ["Demolición", "Psíquico", "Tiro Vital", "Terremoto"]
-            },
-            {
-                name: "Alakazam",
-                id: 65,
-                level: 46,
-                types: ["Psíquico"],
-                moves: ["Psíquico", "Foco Energético", "Tormenta de Truenos", "Rayo de Hielo"]
-            },
-            {
-                name: "Bronzong",
-                id: 437,
-                level: 48,
-                types: ["Acero", "Psíquico"],
-                moves: ["Meteorobús", "Psíquico", "Tierra de Poder", "Reflejo"]
-            }
+            { name: "Mr. Mime", id: 122, level: 53, types: ["Psíquico"], moves: ["Psíquico", "Reflejo", "Pantalla Luz"] },
+            { name: "Espeon", id: 196, level: 55, types: ["Psíquico"], moves: ["Psíquico", "Bola Sombra", "Paz Mental"] },
+            { name: "Bronzong", id: 437, level: 54, types: ["Acero", "Psíquico"], moves: ["Giro Bola", "Psíquico", "Terremoto"] },
+            { name: "Alakazam", id: 65, level: 56, types: ["Psíquico"], moves: ["Psíquico", "Recuperación", "Onda Certera"] },
+            { name: "Gallade", id: 475, level: 59, types: ["Psíquico", "Lucha"], moves: ["Psicocorte", "A bocajarro", "Tajo Umbrío", "Hoja Aguda"] }
         ]
     },
     {
         name: "Cynthia",
-        type: "Múltiples",
-        strategy: "Campeona del Torneo Pokémon. Equipo balanceado y formidable.",
+        type: "Campeona",
+        strategy: "La campeona definitiva. Su Garchomp es legendariamente fuerte. Necesitas un ataque de Hielo sí o sí.",
         pokemon: [
-            {
-                name: "Spiritomb",
-                id: 442,
-                level: 46,
-                types: ["Fantasma", "Siniestro"],
-                moves: ["Bola Sombra", "Pulso Oscuro", "Confusión", "Fuego Fatuo"]
-            },
-            {
-                name: "Roserade",
-                id: 407,
-                level: 46,
-                types: ["Planta", "Veneno"],
-                moves: ["Rayo Solar", "Energibola", "Tóxico", "Síntesis"]
-            },
-            {
-                name: "Gastrodon",
-                id: 423,
-                level: 46,
-                types: ["Agua", "Tierra"],
-                moves: ["Hidrobomba", "Terremoto", "Tierra de Poder", "Calmia"]
-            },
-            {
-                name: "Togekiss",
-                id: 468,
-                level: 46,
-                types: ["Normal", "Volador"],
-                moves: ["Aire Cortante", "Energibola", "Agilidad", "Defensa Lunar"]
-            },
-            {
-                name: "Lucario",
-                id: 445,
-                level: 46,
-                types: ["Lucha", "Acero"],
-                moves: ["Demolición", "Cabeza de Hierro", "Enfoque Energético", "Velocidad Extrema"]
-            },
-            {
-                name: "Garchomp",
-                id: 445,
-                level: 48,
-                types: ["Dragón", "Tierra"],
-                moves: ["Terremoto", "Garra Dragón", "Piedra Afilada", "Demolición"]
-            }
+            { name: "Spiritomb", id: 442, level: 58, types: ["Fantasma", "Siniestro"], moves: ["Bola Sombra", "Pulso Umbrío", "Viento Plata"] },
+            { name: "Roserade", id: 407, level: 58, types: ["Planta", "Veneno"], moves: ["Bomba Lodo", "Energibola", "Extrasensorial"] },
+            { name: "Togekiss", id: 468, level: 60, types: ["Normal", "Volador"], moves: ["Tajo Aéreo", "Esfera Aural", "Pulso Ondulado"] },
+            { name: "Lucario", id: 448, level: 60, types: ["Lucha", "Acero"], moves: ["Esfera Aural", "Foco Resplandor", "Psíquico"] },
+            { name: "Milotic", id: 350, level: 58, types: ["Agua"], moves: ["Surf", "Rayo Hielo", "Espejo Manto"] },
+            { name: "Garchomp", id: 445, level: 62, types: ["Dragón", "Tierra"], moves: ["Carga Dragón", "Terremoto", "Llamarada", "Giga Impacto"] }
         ]
     }
 ];

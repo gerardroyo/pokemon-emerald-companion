@@ -1,26 +1,39 @@
 :root {
-  /* Rayquaza Palette (Emerald) */
-  --ray-black: #050505;
-  --ray-charcoal: #121212;
+  /* Rayquaza Palette (Emerald) - REFINED */
+  --ray-black: #080a09;
+  --ray-charcoal: #111413;
   --primary-color: #2d9e6d;
-  --primary-glow: #4ade80;
-  --ray-yellow: #f7cf52;
-  --ray-red: #ff4081;
+  --primary-rgb: 45, 158, 109;
+  /* For RGBA usage */
+  --primary-glow: #6ee7b7;
+  --ray-yellow: #fcd34d;
+  --ray-red: #f43f5e;
 
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shine: rgba(255, 255, 255, 0.1);
+  /* Glassmorphism Refined */
+  --glass-bg: rgba(22, 26, 24, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shine: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(10, 15, 12, 0.85);
 
-  --text-main: #ffffff;
-  --text-muted: #a0a0a0;
-  --text-secondary: #707070;
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --text-secondary: #6b7280;
 
-  --font-main: 'Outfit', sans-serif;
+  --font-main: 'Inter',
+    system-ui,
+    sans-serif;
+  /* Cleaner modern font */
 
-  /* Animation and Effects */
-  --ease-out: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --blur-amount: 10px;
+  /* Animation */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --blur-amount: 16px;
+
+  --bg-image: radial-gradient(circle at 50% 0%, rgba(45, 158, 109, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 90%, rgba(247, 207, 82, 0.05) 0%, transparent 40%);
 }
+
+/* Platinum theme override removed - Handled by JS themes.js */
 
 /* Platino Theme (Gold) */
 body.platino-theme {
@@ -63,9 +76,7 @@ body.platino-theme {
 body {
   font-family: var(--font-main);
   background-color: var(--ray-black);
-  background-image:
-    radial-gradient(circle at 50% 0%, rgba(45, 158, 109, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 90%, rgba(247, 207, 82, 0.05) 0%, transparent 40%);
+  background-image: var(--bg-image);
   color: var(--text-main);
   min-height: 100vh;
   font-size: 16px;
@@ -83,16 +94,33 @@ body {
 
 /* Header */
 header {
-  padding: 1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   position: relative;
-  overflow: hidden;
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  z-index: 100;
+}
+
+/* Ensure Logo stays left */
+h1 {
+  justify-self: start;
+}
+
+/* Ensure Nav stays center */
+nav {
+  justify-self: center;
+}
+
+/* New Actions Container - stays right */
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
 }
 
 /* Background "Stars" or Particles could go here */
@@ -149,7 +177,7 @@ nav {
   background: var(--ray-green);
   color: #000;
   font-weight: 700;
-  box-shadow: 0 0 20px rgba(45, 158, 109, 0.4);
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4);
 }
 
 /* Sections */
@@ -183,7 +211,7 @@ h2::after {
   display: block;
   width: 50px;
   height: 3px;
-  background: var(--ray-green);
+  background: var(--primary-color);
   margin: 1rem auto 0;
   border-radius: 2px;
 }
@@ -196,21 +224,65 @@ h3 {
 }
 
 /* Cards (Glassmorphism) */
+/* Cards (Premium Glassmorphism) */
 .pokemon-card,
 .emulator-box,
 .guide-card,
-.results-panel {
+.results-panel,
+.interactive-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  /* Restored radius */
-  padding: 1.5rem;
-  /* Restored padding */
+  border-radius: 20px;
+  padding: 1.75rem;
   position: relative;
-  transition: all 0.4s var(--ease-out);
-  backdrop-filter: blur(10px);
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), border-color 0.3s ease;
+  backdrop-filter: blur(var(--blur-amount));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* overflow: hidden;  <-- Removed global overflow hidden to fix tooltips */
+}
+
+/* Allow overflow for specific containers if needed */
+.emulator-box.allow-overflow {
   overflow: visible;
-  margin-bottom: 0;
+}
+
+/* Hover Effects (Only for interactive elements) */
+.pokemon-card:hover,
+.guide-card:hover,
+.interactive-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--primary-rgb), 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Shine Effect (Only for interactive elements) */
+.pokemon-card,
+.guide-card,
+.interactive-card {
+  overflow: hidden;
+  /* Shine needs overflow hidden */
+}
+
+.pokemon-card::after,
+.guide-card::after,
+.interactive-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(120deg, transparent 30%, var(--glass-shine) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+.pokemon-card:hover::after,
+.guide-card:hover::after,
+.interactive-card:hover::after {
+  transform: translateX(100%);
 }
 
 .emulator-box {
@@ -238,7 +310,7 @@ h3 {
   transform: translateY(-8px) scale(1.02);
   /* Restored hover */
   border-color: var(--ray-green);
-  box-shadow: 0 10px 40px -10px rgba(45, 158, 109, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(var(--primary-rgb), 0.3);
 }
 
 .pokemon-card:hover .poke-img {
@@ -319,11 +391,11 @@ h3 {
 
 .leader-move-tag {
   font-size: 0.7rem;
-  background: rgba(45, 158, 109, 0.1);
+  background: rgba(var(--primary-rgb), 0.1);
   padding: 4px 8px;
   border-radius: 6px;
   color: #fff;
-  border: 1px solid rgba(45, 158, 109, 0.2);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
   white-space: nowrap;
 }
 
@@ -439,7 +511,7 @@ h3 {
 }
 
 .leader-move-tag:hover {
-  background: rgba(45, 158, 109, 0.2);
+  background: rgba(var(--primary-rgb), 0.2);
   border-color: var(--ray-green);
   transform: translateY(-2px);
 }
@@ -467,7 +539,7 @@ h3 {
 }
 
 .move-tag:hover {
-  background: rgba(45, 158, 109, 0.2);
+  background: rgba(var(--primary-rgb), 0.2);
   border-color: var(--ray-green);
   transform: translateY(-2px);
 }
@@ -489,7 +561,7 @@ h3 {
   visibility: hidden;
   transition: all 0.25s ease;
   z-index: 2000;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 158, 109, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--primary-rgb), 0.2);
   pointer-events: none;
   white-space: normal;
 }
@@ -654,20 +726,27 @@ h3 {
 
 .search-input {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   font-family: var(--font-main);
-  font-size: 1.1rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid var(--glass-border);
-  border-radius: 16px;
+  font-size: 1.05rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  /* Pill shape */
   color: white;
-  transition: 0.3s;
+  transition: all 0.25s var(--ease-smooth);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-input:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--ray-green);
-  box-shadow: 0 0 0 4px rgba(45, 158, 109, 0.1);
+  box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1);
   background: rgba(0, 0, 0, 0.5);
 }
 
@@ -758,7 +837,7 @@ h3 {
   background: var(--ray-green);
   color: #000;
   border-color: var(--ray-green);
-  box-shadow: 0 0 15px rgba(45, 158, 109, 0.3);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
   font-weight: 700;
 }
 
@@ -796,9 +875,17 @@ h3 {
 /* Responsividad para Móviles */
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
     padding: 1rem;
+    display: flex;
+    /* Switch back to flex for mobile easier stacking */
+    flex-direction: column;
     gap: 1rem;
+  }
+
+  .header-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 
   h1 {
@@ -922,7 +1009,7 @@ h3 {
 }
 
 .credits strong {
-  color: var(--rayquaza-green);
+  color: var(--primary-color);
 }
 
 .copyright {
@@ -987,15 +1074,15 @@ h3 {
 .category-tab:hover {
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-main);
-  border-color: var(--ray-green);
+  border-color: var(--primary-color);
 }
 
 .category-tab.active {
-  background: var(--ray-green);
+  background: var(--primary-color);
   color: #000;
   font-weight: 700;
-  border-color: var(--ray-green-glow);
-  box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
 }
 
 /* Team Pills */
@@ -1033,7 +1120,7 @@ h3 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: var(--ray-green);
+  background: var(--primary-color);
   transition: left 0.3s var(--ease-out);
   z-index: -1;
   opacity: 0.3;
@@ -1041,9 +1128,9 @@ h3 {
 
 .team-pill:hover {
   color: var(--text-main);
-  border-color: var(--ray-green);
+  border-color: var(--primary-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 158, 109, 0.2);
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
 }
 
 .team-pill:hover::before {
@@ -1051,11 +1138,11 @@ h3 {
 }
 
 .team-pill.active {
-  background: var(--ray-green);
+  background: var(--primary-color);
   color: #000;
-  border-color: var(--ray-green-glow);
+  border-color: var(--primary-glow);
   font-weight: 700;
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4);
   transform: scale(1.05) translateY(-2px);
 }
 
@@ -1066,8 +1153,8 @@ h3 {
 
 /* Team Description */
 .team-description {
-  background: rgba(45, 158, 109, 0.1);
-  border-left: 3px solid var(--ray-green);
+  background: rgba(var(--primary-rgb), 0.1);
+  border-left: 3px solid var(--primary-color);
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin-top: 1.5rem;
@@ -1088,6 +1175,7 @@ h3 {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1098,15 +1186,19 @@ h3 {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -1171,8 +1263,8 @@ h3 {
   width: 56px;
   height: 56px;
   padding: 6px;
-  background: rgba(45, 158, 109, 0.15);
-  border: 2px solid rgba(45, 158, 109, 0.3);
+  background: rgba(var(--primary-rgb), 0.15);
+  border: 2px solid rgba(var(--primary-rgb), 0.3);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease-out;
@@ -1182,16 +1274,16 @@ h3 {
 }
 
 .game-selector-btn:hover {
-  background: rgba(45, 158, 109, 0.25);
-  border-color: rgba(45, 158, 109, 0.6);
-  box-shadow: 0 0 15px rgba(45, 158, 109, 0.4);
+  background: rgba(var(--primary-rgb), 0.25);
+  border-color: rgba(var(--primary-rgb), 0.6);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.4);
   transform: scale(1.08);
 }
 
 .game-selector-btn.active {
   background: var(--primary-color);
   border-color: var(--primary-color);
-  box-shadow: 0 0 20px rgba(45, 158, 109, 0.6);
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.6);
   transform: scale(1.15);
 }
 
@@ -1217,7 +1309,7 @@ h3 {
 }
 
 .game-selector-btn-single:hover {
-  box-shadow: 0 6px 20px rgba(45, 158, 109, 0.5);
+  box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.5);
   transform: scale(1.12) translateY(-2px);
 }
 
@@ -1277,7 +1369,7 @@ h3 {
   position: relative;
   z-index: 10000;
   background: linear-gradient(135deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
-  border: 2px solid rgba(45, 158, 109, 0.5);
+  border: 2px solid rgba(var(--primary-rgb), 0.5);
   border-radius: 24px;
   padding: 3rem 2rem;
   max-width: 600px;
@@ -1291,6 +1383,7 @@ h3 {
     transform: translateY(40px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1311,21 +1404,23 @@ h3 {
   gap: 1rem;
   padding: 2rem 1.5rem;
   background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(45, 158, 109, 0.2);
+  border: 2px solid rgba(var(--primary-rgb), 0.2);
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease-out;
   min-width: 180px;
 }
 
-.game-option-card:hover {
+/* Emerald Card Hover (Always Green) */
+.game-option-card[data-game="emerald"]:hover {
   background: rgba(45, 158, 109, 0.15);
   border-color: rgba(45, 158, 109, 0.5);
   transform: translateY(-8px);
   box-shadow: 0 15px 40px rgba(45, 158, 109, 0.2);
 }
 
-.game-option-card.platinum:hover {
+/* Platinum Card Hover (Always Gold) */
+.game-option-card[data-game="platinum"]:hover {
   background: rgba(212, 175, 55, 0.15);
   border-color: rgba(212, 175, 55, 0.5);
   box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
@@ -1359,8 +1454,15 @@ h3 {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--text-main);
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-glow));
-  -webkit-background-clip: text;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.game-option-card[data-game="emerald"] .game-subtitle {
+  background-image: linear-gradient(135deg, #2d9e6d, #6ee7b7);
+}
+
+.game-option-card[data-game="platinum"] .game-subtitle {
+  background-image: linear-gradient(135deg, #d4af37, #f9e58b);
 }

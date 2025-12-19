@@ -38,7 +38,14 @@ function renderTeamSelector() {
   const { teams: currentTeams, categories: currentCategories } = getCurrentTeamsData();
   const currentCategoryId = getSavedCategoryId();
   const currentTeamId = getSavedTeamId();
-  const currentTeam = currentTeams[currentTeamId];
+  let currentTeam = currentTeams[currentTeamId];
+
+  // Fallback if saved team doesn't exist in current game
+  if (!currentTeam) {
+    const firstTeamId = Object.keys(currentTeams)[0];
+    currentTeam = currentTeams[firstTeamId];
+    saveTeamId(firstTeamId); // Update storage
+  }
 
   // Get teams for current category
   const teamsByCategory = Object.values(currentTeams).filter(t => t.category === currentCategoryId);
@@ -112,11 +119,11 @@ function renderTeamPokemon(currentTeam) {
           </div>
           <div class="moves-list">
             ${pokemon.moves.map(move => {
-              const moveInfo = moveData[move.name] || { type: move.type, category: move.category, desc: 'Movimiento desconocido', power: null, accuracy: 100 };
-              const categoryIcon = getCategoryIcon(moveInfo.category);
-              const powerText = moveInfo.power ? `Potencia: ${moveInfo.power}` : 'Sin potencia';
-              const accuracyText = moveInfo.accuracy ? `Precisión: ${moveInfo.accuracy}%` : 'Precisión: 100%';
-              return `
+    const moveInfo = moveData[move.name] || { type: move.type, category: move.category, desc: 'Movimiento desconocido', power: null, accuracy: 100 };
+    const categoryIcon = getCategoryIcon(moveInfo.category);
+    const powerText = moveInfo.power ? `Potencia: ${moveInfo.power}` : 'Sin potencia';
+    const accuracyText = moveInfo.accuracy ? `Precisión: ${moveInfo.accuracy}%` : 'Precisión: 100%';
+    return `
                 <div class="move-wrapper">
                   <div class="move-tag">
                     <span class="move-type-indicator type-${moveInfo.type.toLowerCase()}">${moveInfo.type.substring(0, 3).toUpperCase()}</span>
@@ -132,7 +139,7 @@ function renderTeamPokemon(currentTeam) {
                   </div>
                 </div>
               `;
-            }).join('')}
+  }).join('')}
           </div>
           <div style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary); text-align:center;">
              📍 ${pokemon.location}
@@ -164,12 +171,12 @@ export function renderTeamView() {
 
 function attachTeamViewHandlers() {
   // Expose handlers to global scope for onclick attributes
-  window.handleCategoryChange = function(categoryId) {
+  window.handleCategoryChange = function (categoryId) {
     saveCategoryId(categoryId);
     renderTeamView();
   };
 
-  window.handleTeamChange = function(teamId) {
+  window.handleTeamChange = function (teamId) {
     saveTeamId(teamId);
     renderTeamView();
   };

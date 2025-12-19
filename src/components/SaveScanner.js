@@ -1,19 +1,22 @@
 import { SaveParser } from '../utils/SaveParser.js';
+import { getGameDisplayName, getSelectedGame } from '../data/gameManager.js';
 
 export function renderSaveScanner() {
     const container = document.getElementById('save-scanner-root');
     if (!container) return;
 
+    const gameName = getGameDisplayName(getSelectedGame());
+
     container.innerHTML = `
     <div style="text-align:center; padding: 2rem; animation: fadeIn 0.5s;">
       <h2 style="color:var(--ray-yellow); text-shadow:0 0 10px var(--ray-green);">Escáner de Partida (.sav)</h2>
-      <p style="color:#ccc; margin-bottom:2rem;">Arrastra tu archivo .sav de Pokémon Esmeralda para ver lo invisible.</p>
+      <p style="color:#ccc; margin-bottom:2rem;">Arrastra tu archivo .sav de ${gameName} para ver lo invisible.</p>
       
       <div id="drop-zone" style="
-          border: 2px dashed var(--ray-green); 
+          border: 2px dashed var(--primary-color); 
           border-radius: 16px; 
           padding: 3rem; 
-          background: rgba(0, 20, 0, 0.5); 
+          background: rgba(var(--primary-rgb), 0.05); 
           cursor: pointer;
           transition: all 0.3s;
           margin-bottom: 2rem;
@@ -37,20 +40,20 @@ export function renderSaveScanner() {
 
     dropZone.addEventListener('dragover', (e) => {
         e.preventDefault();
-        dropZone.style.background = 'rgba(0, 255, 127, 0.2)';
+        dropZone.style.background = 'rgba(var(--primary-rgb), 0.2)';
         dropZone.style.borderColor = '#fff';
     });
 
     dropZone.addEventListener('dragleave', (e) => {
         e.preventDefault();
-        dropZone.style.background = 'rgba(0, 20, 0, 0.5)';
-        dropZone.style.borderColor = 'var(--ray-green)';
+        dropZone.style.background = 'rgba(var(--primary-rgb), 0.05)';
+        dropZone.style.borderColor = 'var(--primary-color)';
     });
 
     dropZone.addEventListener('drop', (e) => {
         e.preventDefault();
-        dropZone.style.background = 'rgba(0, 20, 0, 0.5)';
-        dropZone.style.borderColor = 'var(--ray-green)';
+        dropZone.style.background = 'rgba(var(--primary-rgb), 0.05)';
+        dropZone.style.borderColor = 'var(--primary-color)';
 
         if (e.dataTransfer.files.length) {
             handleFile(e.dataTransfer.files[0]);
@@ -63,7 +66,7 @@ export function renderSaveScanner() {
 
     function handleFile(file) {
         errorDiv.innerText = "";
-        resultsDiv.innerHTML = "<p style='color:var(--ray-green); width:100%; text-align:center;'>Analizando estructura binaria...</p>";
+        resultsDiv.innerHTML = "<p style='color:var(--primary-color); width:100%; text-align:center;'>Analizando estructura binaria...</p>";
 
         const reader = new FileReader();
         reader.onload = (event) => {
