@@ -78,9 +78,10 @@ export function renderGuide() {
               <div class="moves-label">⚔️ Movimientos:</div>
               <div class="leader-moves">
                 ${p.moves.map(m => {
-      const data = moveData[m] || { type: 'Normal', category: 'Físico', desc: 'Ataque normal.', power: null };
+      const data = moveData[m] || { type: 'Normal', category: 'Físico', desc: 'Ataque normal.', power: null, accuracy: 100 };
       const categoryIcon = getCategoryIcon(data.category);
       const powerText = data.power ? `Potencia: ${data.power}` : 'Sin potencia';
+      const accuracyText = data.accuracy ? `Precisión: ${data.accuracy}%` : 'Precisión: 100%';
       return `
                     <div class="move-wrapper">
                       <span class="leader-move-tag">
@@ -92,7 +93,7 @@ export function renderGuide() {
                           <span class="tooltip-name">${m}</span>
                           <span class="tooltip-type type-pill type-${data.type.toLowerCase()}">${data.type}</span>
                         </div>
-                        <div class="tooltip-category">${categoryIcon} ${data.category} · ${powerText}</div>
+                        <div class="tooltip-category">${categoryIcon} ${data.category} · ${powerText} · ${accuracyText}</div>
                         <p class="tooltip-desc">${data.desc}</p>
                       </div>
                     </div>

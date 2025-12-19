@@ -13,8 +13,13 @@
 
   --text-main: #ffffff;
   --text-muted: #a0a0a0;
+  --text-secondary: #707070;
 
   --font-main: 'Outfit', sans-serif;
+
+  /* Animation and Effects */
+  --ease-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --blur-amount: 10px;
 }
 
 /* Custom Scrollbar */
@@ -191,7 +196,7 @@ h3 {
   position: relative;
   transition: all 0.4s var(--ease-out);
   backdrop-filter: blur(10px);
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 0;
 }
 
@@ -434,25 +439,46 @@ h3 {
   letter-spacing: 0.02em;
 }
 
+.move-tag {
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.move-tag:hover {
+  background: rgba(45, 158, 109, 0.2);
+  border-color: var(--ray-green);
+  transform: translateY(-2px);
+}
+
 /* Move Tooltip */
 .move-tooltip {
   position: absolute;
-  bottom: 100%;
+  bottom: 120%;
   left: 50%;
-  transform: translateX(-50%) translateY(-8px);
+  transform: translateX(-50%) translateY(0);
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid var(--ray-green);
   border-radius: 12px;
   padding: 0.75rem;
-  min-width: 220px;
-  max-width: 280px;
+  min-width: 240px;
+  max-width: 300px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.25s ease;
-  z-index: 1000;
+  z-index: 2000;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 158, 109, 0.2);
   pointer-events: none;
+  white-space: normal;
 }
 
 .move-wrapper:hover .move-tooltip {
@@ -502,24 +528,11 @@ h3 {
 
 /* Moves */
 .moves-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.move-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 0.5rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  transition: 0.3s;
-  text-align: center;
-}
-
-.move-tag:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--ray-green);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Type Colors */
@@ -917,5 +930,225 @@ h3 {
 
   .copyright {
     font-size: 0.75rem;
+  }
+}
+
+/* Team Selector Styles */
+.team-selector-container {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+  animation: slideUpFade 0.6s var(--ease-out) forwards;
+}
+
+.team-selector-container h2 {
+  margin-bottom: 2rem;
+}
+
+/* Category Tabs */
+.category-tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.category-tab {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s var(--ease-out);
+  position: relative;
+}
+
+.category-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border-color: var(--ray-green);
+}
+
+.category-tab.active {
+  background: var(--ray-green);
+  color: #000;
+  font-weight: 700;
+  border-color: var(--ray-green-glow);
+  box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
+}
+
+/* Team Pills */
+.team-pills-container {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.team-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  padding: 0.6rem 1.2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--ray-green);
+  transition: left 0.3s var(--ease-out);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.team-pill:hover {
+  color: var(--text-main);
+  border-color: var(--ray-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 158, 109, 0.2);
+}
+
+.team-pill:hover::before {
+  left: 0;
+}
+
+.team-pill.active {
+  background: var(--ray-green);
+  color: #000;
+  border-color: var(--ray-green-glow);
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+  transform: scale(1.05) translateY(-2px);
+}
+
+.team-pill.active::before {
+  left: 0;
+  opacity: 1;
+}
+
+/* Team Description */
+.team-description {
+  background: rgba(45, 158, 109, 0.1);
+  border-left: 3px solid var(--ray-green);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  color: var(--text-main);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  animation: fadeIn 0.4s var(--ease-out) 0.1s both;
+}
+
+.team-description p {
+  margin: 0;
+}
+
+/* Animations */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Team Selector */
+@media (max-width: 768px) {
+  .team-selector-container {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-tabs {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-tab {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .team-pills-container {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .team-pill {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .team-description {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-selector-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .category-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .team-pill {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .team-description {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
   }
 }
