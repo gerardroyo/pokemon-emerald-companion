@@ -14,7 +14,7 @@ export function renderReference() {
       </div>
 
       <div class="emulator-box" style="background: transparent; border: none; padding: 0;">
-        <div id="natures-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem;">
+        <div id="natures-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;">
           <!-- JS Populated -->
         </div>
       </div>
