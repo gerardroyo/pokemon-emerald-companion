@@ -1,8 +1,16 @@
 import { types, typeMatrix } from '../data/types.js';
 import { team } from '../data/team.js';
+import { teams } from '../data/teams_data.js';
 import { translateType, typeTranslations } from '../data/translations.js';
 
 let allPokemon = [];
+
+// Get the currently selected team
+function getCurrentTeam() {
+  const selectedTeamId = localStorage.getItem('selectedTeamId') || 'competitive';
+  const selectedTeam = teams[selectedTeamId];
+  return selectedTeam ? selectedTeam.pokemon : team;
+}
 
 export async function renderCalculator() {
     const container = document.getElementById('calculator');
@@ -169,37 +177,40 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
 
     // Weak Column
     if (weakList.length > 0) {
-        weakHtml += `<div><h4 style="color:#ff6b6b; margin-bottom:0.5rem; text-align:center; font-size:0.9rem;">⚠️ Muy Débil A</h4>
-        <div style="display:flex; flex-wrap:wrap; gap:0.25rem; justify-content:center;">`;
+        weakHtml += `<div style="background:rgba(255,107,107,0.05); border:1px solid rgba(255,107,107,0.3); border-radius:12px; padding:1rem; backdrop-filter:blur(10px);">
+          <h4 style="color:#ff6b6b; margin:0 0 0.75rem 0; text-align:center; font-size:1rem; font-weight:600;">⚠️ Muy Débil A</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">`;
         weakHtml += weakList.map(([t, mod]) => `
-            <span class="type-pill type-${t.toLowerCase()}">
-                ${translateType(t)} <strong style="color:white; margin-left:2px;">x${mod}</strong>
+            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.2); font-weight:600;">
+                ${translateType(t)} <strong style="color:var(--ray-yellow); margin-left:4px;">x${mod}</strong>
             </span>
         `).join('');
         weakHtml += `</div></div>`;
     } else {
-        weakHtml += `<div style="text-align:center;"><span style="color:var(--text-muted); font-size:0.8rem;">Sin debilidades</span></div>`;
+        weakHtml += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center;"><span style="color:var(--text-muted); font-size:0.85rem;">Sin debilidades</span></div>`;
     }
 
     // Resist Column
     if (resistList.length > 0) {
-        weakHtml += `<div><h4 style="color:#48dbfb; margin-bottom:0.5rem; text-align:center; font-size:0.9rem; margin-top:0.5rem;">🛡️ Resiste</h4>
-        <div style="display:flex; flex-wrap:wrap; gap:0.25rem; justify-content:center;">`;
+        weakHtml += `<div style="background:rgba(72,219,251,0.05); border:1px solid rgba(72,219,251,0.3); border-radius:12px; padding:1rem; backdrop-filter:blur(10px);">
+          <h4 style="color:#48dbfb; margin:0 0 0.75rem 0; text-align:center; font-size:1rem; font-weight:600;">🛡️ Resiste</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center;">`;
         weakHtml += resistList.map(([t, mod]) => `
-            <span class="type-pill type-${t.toLowerCase()}" style="opacity:0.9;">
-                ${translateType(t)} x${mod}
+            <span class="type-pill type-${t.toLowerCase()}" style="border:1px solid rgba(255,255,255,0.2); opacity:1;">
+                ${translateType(t)} <strong style="color:var(--ray-yellow); margin-left:4px;">x${mod}</strong>
             </span>
         `).join('');
         weakHtml += `</div></div>`;
     } else {
-        weakHtml += `<div style="text-align:center;"><span style="color:var(--text-muted); font-size:0.8rem;">Daño neutro</span></div>`;
+        weakHtml += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center;"><span style="color:var(--text-muted); font-size:0.85rem;">Daño neutro</span></div>`;
     }
     weakHtml += `</div>`;
 
     weaknessContainer.innerHTML = weakHtml;
 
-    // 3. Team Suggestions
-    const analysis = team.map(member => {
+    // 3. Team Suggestions - Use the currently selected team
+    const currentTeam = getCurrentTeam();
+    const analysis = currentTeam.map(member => {
         let bestMove = { name: "Ninguno", mod: 0 };
         member.moves.forEach(move => {
             if (move.category === 'Status') return;
