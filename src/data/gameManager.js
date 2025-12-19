@@ -1,3 +1,5 @@
+import { THEMES } from './themes.js';
+
 // Game version manager - Controls which game's data is displayed
 
 export const GAMES = {
@@ -12,14 +14,29 @@ export function getSelectedGame() {
 export function setSelectedGame(game) {
     if (Object.values(GAMES).includes(game)) {
         localStorage.setItem('selectedGame', game);
+        notifyGameChange();
     }
 }
 
 export function getGameDisplayName(game) {
-    return game === GAMES.PLATINUM ? 'Pokémon Platino' : 'Pokémon Esmeralda';
+    switch (game) {
+        case GAMES.PLATINUM: return 'Pokémon Platino';
+        default: return 'Pokémon Esmeralda';
+    }
 }
 
 // Utility to reload all components when game changes
 export function notifyGameChange() {
-    window.dispatchEvent(new CustomEvent('gameChanged', { detail: getSelectedGame() }));
+    const game = getSelectedGame();
+    updateTheme(game);
+    window.dispatchEvent(new CustomEvent('gameChanged', { detail: game }));
+}
+
+export function updateTheme(game) {
+    const theme = THEMES[game] || THEMES[GAMES.EMERALD];
+
+    // Apply all CSS variables from the theme config
+    Object.entries(theme).forEach(([property, value]) => {
+        document.documentElement.style.setProperty(property, value);
+    });
 }

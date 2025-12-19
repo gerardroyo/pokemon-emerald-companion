@@ -12,19 +12,20 @@
 
 <body>
   <header>
-    <div style="display:flex; align-items:center; gap:2rem; flex:1;">
-      <h1>Guía Pokémon</h1>
-      <button id="game-selector" class="game-selector-btn-single" title="Click para cambiar versión">
-        <!-- Game Logo with version-specific image -->
-        <img id="game-selector-icon" src="" alt="Pokémon Esmeralda" style="width:48px; height:48px; object-fit: contain;">
-      </button>
-    </div>
+    <h1>Guía Pokémon</h1>
+
     <nav>
       <button class="nav-btn active" data-target="team">Mi Equipo</button>
       <button class="nav-btn" data-target="calculator">Calculadora</button>
       <button class="nav-btn" data-target="guide">Guía y Consejos</button>
       <button class="nav-btn" data-target="reference">Naturalezas</button>
     </nav>
+
+    <div class="header-actions">
+      <button id="game-selector" class="game-selector-btn-single" title="Click para cambiar versión">
+        <img id="game-selector-icon" src="" alt="Pokémon Esmeralda">
+      </button>
+    </div>
   </header>
 
   <!-- Game Version Modal - Nintendo DS Style -->
@@ -34,12 +35,16 @@
       <h2 style="text-align:center; margin-bottom:2rem; font-size:1.8rem;">Elige tu Aventura</h2>
       <div class="game-options">
         <div class="game-option-card" data-game="emerald">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png" alt="Rayquaza" class="game-sprite">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png"
+            alt="Rayquaza" class="game-sprite">
           <div class="game-name">Pokémon</div>
           <div class="game-subtitle">Esmeralda</div>
         </div>
         <div class="game-option-card platinum" data-game="platinum">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/487.png" alt="Giratina" class="game-sprite">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/487.png"
+            alt="Giratina" class="game-sprite">
           <div class="game-name">Pokémon</div>
           <div class="game-subtitle">Platino</div>
         </div>
