@@ -22,11 +22,11 @@ export function renderReference() {
       <div class="guide-card" style="margin-top: 2rem;">
         <h3>Ratios de Captura (Fórmula Simplificada)</h3>
         <p style="margin-top: 1rem; color: #ccc; font-size: 0.9rem; line-height: 1.6;">
-          1. <strong style="color:var(--ray-green)">Baja la vida:</strong> Cuanto menos HP tenga, mejor (Rojo es x3).<br>
-          2. <strong style="color:var(--ray-green)">Estado:</strong> Dormir (Sleep) o Congelar (Freeze) multiplica x2. Parálisis/Veneno/Quemado x1.5.<br>
-          3. <strong style="color:var(--ray-green)">Pokéball:</strong> Ultra Ball es x2. Net Ball (Agua/Bicho) es x3.
+          1. <strong style="color:var(--ray-green)">Baja la vida:</strong> Cuanto menos PS tenga, mejor (Rojo es x3).<br>
+          2. <strong style="color:var(--ray-green)">Estado:</strong> Dormir o Congelar multiplica x2. Parálisis/Veneno/Quemado x1.5.<br>
+          3. <strong style="color:var(--ray-green)">Pokéball:</strong> Ultra Ball es x2. Malla Ball (Agua/Bicho) es x3.
           <br><br>
-          <em style="color:var(--ray-green-glow)">Tip: Usa a Breloom con Espora (Spore) para dormir al 100% de precisión y Falsotortazo (False Swipe).</em>
+          <em style="color:var(--ray-green-glow)">Consejo: Usa a Breloom con Espora para dormir al 100% de precisión y Falsotortazo.</em>
         </p>
       </div>
     </div>
@@ -64,8 +64,7 @@ export function renderReference() {
                
                ${isNeutral ? '<div style="position:absolute; inset:0; background:rgba(255,255,255,0.02); pointer-events:none;"></div>' : ''}
 
-               <h4 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: #fff;">${nat.name.split(' (')[0]}</h4>
-               <span style="font-size: 0.75rem; color: #666; margin-bottom: 0.5rem;">${nat.name.split(' (')[1].replace(')', '')}</span>
+               <h4 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: #fff;">${nat.name}</h4>
                
                <div style="width: 100%; border-top: 1px solid rgba(255,255,255,0.1); margin: 0.5rem 0;"></div>
 

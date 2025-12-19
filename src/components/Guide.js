@@ -9,22 +9,22 @@ export function renderGuide() {
   const spriteBase = "https://play.pokemonshowdown.com/sprites/trainers/";
 
   const gyms = [
-    { name: "Roxanne", type: "Roca", img: "roxanne-gen3.png", team: "Nv 14 Geodude, Nv 15 Nosepass.", strat: "Agua o Planta (Mudkip/Treecko/Lotad/Shroomish)." },
-    { name: "Brawly", type: "Lucha", img: "brawly-gen3.png", team: "Nv 16 Machop, Nv 19 Makuhita.", strat: "Volador (Taillow/Wingull) o Psíquico (Ralts)." },
-    { name: "Wattson", type: "Eléctrico", img: "wattson-gen3.png", team: "Nv 20 Voltorb, Nv 20 Electrike, Nv 22 Magneton, Nv 24 Manectric.", strat: "Tierra (Marshtomp/Geodude). Cuidado con Magneton (Acero)." },
-    { name: "Flannery", type: "Fuego", img: "flannery-gen3.png", team: "Nv 24 Numel, Nv 24 Slugma, Nv 26 Camerupt, Nv 29 Torkoal.", strat: "Agua (Marshtomp/Tentacool/Gyarados)." },
+    { name: "Petra", type: "Roca", img: "roxanne-gen3.png", team: "Nv 14 Geodude, Nv 15 Nosepass.", strat: "Agua o Planta (Mudkip/Treecko/Lotad/Shroomish)." },
+    { name: "Marcial", type: "Lucha", img: "brawly-gen3.png", team: "Nv 16 Machop, Nv 19 Makuhita.", strat: "Volador (Taillow/Wingull) o Psíquico (Ralts)." },
+    { name: "Erico", type: "Eléctrico", img: "wattson-gen3.png", team: "Nv 20 Voltorb, Nv 20 Electrike, Nv 22 Magneton, Nv 24 Manectric.", strat: "Tierra (Marshtomp/Geodude). Cuidado con Magneton (Acero)." },
+    { name: "Candela", type: "Fuego", img: "flannery-gen3.png", team: "Nv 24 Numel, Nv 24 Slugma, Nv 26 Camerupt, Nv 29 Torkoal.", strat: "Agua (Marshtomp/Tentacool/Gyarados)." },
     { name: "Norman", type: "Normal", img: "norman-gen3.png", team: "Nv 27 Spinda, Nv 27 Vigoroth, Nv 29 Linoone, Nv 31 Slaking.", strat: "Lucha (Breloom). Usa Protección/Excavar contra Slaking." },
-    { name: "Winona", type: "Volador", img: "winona-gen3.png", team: "Nv 29 Swablu, Nv 29 Tropius, Nv 30 Pelipper, Nv 31 Skarmory, Nv 33 Altaria.", strat: "Rayo Hielo. Electricidad para todo menos Altaria." },
-    { name: "Tate & Liza", type: "Psíquico", img: "tateandliza-gen3.png", team: "Nv 41 Claydol, Nv 41 Xatu, Nv 42 Lunatone, Nv 42 Solrock.", strat: "Surf (Swampert) golpea a ambos. Siniestro o Fantasma." },
-    { name: "Juan", type: "Agua", img: "juan-gen3.png", team: "Nv 41 Luvdisc, Nv 41 Whiscash, Nv 43 Sealeo, Nv 43 Crawdaunt, Nv 46 Kingdra.", strat: "Planta y Electricidad. Kingdra necesita daño neutro fuerte." }
+    { name: "Alana", type: "Volador", img: "winona-gen3.png", team: "Nv 29 Swablu, Nv 29 Tropius, Nv 30 Pelipper, Nv 31 Skarmory, Nv 33 Altaria.", strat: "Rayo Hielo. Electricidad para todo menos Altaria." },
+    { name: "Vito y Leti", type: "Psíquico", img: "tateandliza-gen3.png", team: "Nv 41 Claydol, Nv 41 Xatu, Nv 42 Lunatone, Nv 42 Solrock.", strat: "Surf (Swampert) golpea a ambos. Siniestro o Fantasma." },
+    { name: "Galano", type: "Agua", img: "juan-gen3.png", team: "Nv 41 Luvdisc, Nv 41 Whiscash, Nv 43 Sealeo, Nv 43 Crawdaunt, Nv 46 Kingdra.", strat: "Planta y Electricidad. Kingdra necesita daño neutro fuerte." }
   ];
 
   const eliteFour = [
-    { name: "Sidney", type: "Siniestro", img: "sidney-gen3.png", team: "Mightyena (46), Shiftry (48), Cacturne (46), Crawdaunt (48), Absol (49).", strat: "Lucha (Breloom/Hariyama) barre casi todo. Fuego o Volador para Shiftry/Cacturne." },
-    { name: "Phoebe", type: "Fantasma", img: "phoebe-gen3.png", team: "Dusclops (48), Banette (49), Sableye (50), Banette (49), Dusclops (51).", strat: "Siniestro (Absol/Mightyena) o Fantasma. Sableye solo tiene debilidad a Hada (no existe en Gen 3), usa fuerza bruta." },
-    { name: "Glacia", type: "Hielo", img: "glacia-gen3.png", team: "Sealeo (50), Glalie (50), Sealeo (52), Glalie (52), Walrein (53).", strat: "Lucha (Breloom) y Electricidad (Manectric). Walrein es muy tanque, cuidado con Frío Polar." },
-    { name: "Drake", type: "Dragón", img: "drake-gen3.png", team: "Shelgon (52), Altaria (54), Kingdra (53), Flygon (53), Salamence (55).", strat: "Rayo Hielo es obligatorio (x4 a casi todos). Kingdra es débil a Dragón." },
-    { name: "Wallace", type: "Campeón (Agua)", img: "wallace-gen3.png", team: "Wailord (57), Tentacruel (55), Ludicolo (56), Whiscash (56), Gyarados (56), Milotic (58).", strat: "Planta para Whiscash/Wailord. Electricidad para Gyarados/Tentacruel/Milotic. Volador para Ludicolo." }
+    { name: "Sixto", type: "Siniestro", img: "sidney-gen3.png", team: "Mightyena (46), Shiftry (48), Cacturne (46), Crawdaunt (48), Absol (49).", strat: "Lucha (Breloom/Hariyama) barre casi todo. Fuego o Volador para Shiftry/Cacturne." },
+    { name: "Fátima", type: "Fantasma", img: "phoebe-gen3.png", team: "Dusclops (48), Banette (49), Sableye (50), Banette (49), Dusclops (51).", strat: "Siniestro (Absol/Mightyena) o Fantasma. Sableye solo tiene debilidad a Hada (no existe en Gen 3), usa fuerza bruta." },
+    { name: "Nívea", type: "Hielo", img: "glacia-gen3.png", team: "Sealeo (50), Glalie (50), Sealeo (52), Glalie (52), Walrein (53).", strat: "Lucha (Breloom) y Electricidad (Manectric). Walrein es muy tanque, cuidado con Frío Polar." },
+    { name: "Dracón", type: "Dragón", img: "drake-gen3.png", team: "Shelgon (52), Altaria (54), Kingdra (53), Flygon (53), Salamence (55).", strat: "Rayo Hielo es obligatorio (x4 a casi todos). Kingdra es débil a Dragón." },
+    { name: "Plubio", type: "Campeón (Agua)", img: "wallace-gen3.png", team: "Wailord (57), Tentacruel (55), Ludicolo (56), Whiscash (56), Gyarados (56), Milotic (58).", strat: "Planta para Whiscash/Wailord. Electricidad para Gyarados/Tentacruel/Milotic. Volador para Ludicolo." }
   ];
 
   /* New Data for Held Items */
@@ -101,7 +101,7 @@ export function renderGuide() {
             <div>
               <h3 style="margin-bottom:0.25rem;">${i + 1}. ${g.name} <span style="font-size:0.8em; opacity:0.7;">(${g.type})</span></h3>
               <p class="pixel-text" style="font-size:0.85rem; margin-bottom:0.5rem; color:#ccc;">${g.team}</p>
-              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Tip:</em> ${g.strat}</p>
+              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Estrategia:</em> ${g.strat}</p>
             </div>
          </div>
        `).join('')}
@@ -115,25 +115,25 @@ export function renderGuide() {
             <div>
               <h3 style="margin-bottom:0.25rem; color:${i === 4 ? 'var(--ray-yellow)' : 'white'};">${e.name} <span style="font-size:0.8em; opacity:0.7;">(${e.type})</span></h3>
               <p class="pixel-text" style="font-size:0.85rem; margin-bottom:0.5rem; color:#ccc;">${e.team}</p>
-              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Tip:</em> ${e.strat}</p>
+              <p style="font-size:0.85rem; color:var(--ray-green-glow);"><em>Estrategia:</em> ${e.strat}</p>
             </div>
          </div>
        `).join('')}
     </div>
 
-    <!-- HMs / TMs -->
+    <!-- MOs / MTs -->
     <div id="tab-items" class="tab-content hidden">
        <div class="emulator-box">
-        <h3>Ubicación de MOs (HMs)</h3>
+        <h3>Ubicación de MOs</h3>
         <ul style="list-style: none; margin-top: 1rem; display:grid; gap:0.75rem;">
           ${hms.map(hm => {
     // Simple type inference for color/icon
     let type = 'normal';
-    if (hm.name.includes('Surf') || hm.name.includes('Waterfall') || hm.name.includes('Dive')) type = 'water';
-    if (hm.name.includes('Fly')) type = 'flying';
-    if (hm.name.includes('Rock Smash') || hm.name.includes('Strength')) type = 'fighting';
-    if (hm.name.includes('Cut')) type = 'grass';
-    if (hm.name.includes('Flash')) type = 'electric';
+    if (hm.name.includes('Surf') || hm.name.includes('Cascada') || hm.name.includes('Buceo')) type = 'water';
+    if (hm.name.includes('Vuelo')) type = 'flying';
+    if (hm.name.includes('Golpe Roca') || hm.name.includes('Fuerza')) type = 'fighting';
+    if (hm.name.includes('Corte')) type = 'grass';
+    if (hm.name.includes('Destello')) type = 'electric';
 
     const safeItemUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png";
 
@@ -149,7 +149,7 @@ export function renderGuide() {
         </ul>
       </div>
       <div class="emulator-box" style="margin-top:1rem;">
-        <h3>MTs Importantes (TMs)</h3>
+        <h3>MTs Importantes</h3>
         <ul style="list-style: none; margin-top: 1rem; display:grid; gap:0.75rem;">
           ${tms.map(tm => {
       const tmUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png";
