@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esmeralda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Esmeralda</h1>
+    <nav>
+      <button class="nav-btn active" data-target="team">Mi Equipo</button>
+      <button class="nav-btn" data-target="calculator">Calculadora</button>
+      <button class="nav-btn" data-target="guide">Guía & Tips</button>
+      <button class="nav-btn" data-target="reference">Naturalezas</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <!-- Sections will be injected here by JS -->
+    <section id="team" class="section active">
+      <!-- TeamView component -->
+    </section>
+
+    <section id="calculator" class="section">
+      <!-- Calculator component -->
+    </section>
+
+    <section id="guide" class="section">
+      <!-- Guide component -->
+    </section>
+
+    <section id="reference" class="section">
+      <!-- Reference component -->
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
