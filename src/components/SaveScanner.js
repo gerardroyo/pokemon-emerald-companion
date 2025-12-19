@@ -139,7 +139,7 @@ export function renderSaveScanner() {
                    <span style="color:${getTypeColor(pk.hiddenPower.type)}">${pk.hiddenPower.type}</span> (${pk.hiddenPower.power})
                 </p>
                 <p style="font-size:0.9rem; margin:0;">
-                   ❤️ <strong>Amistad:</strong><br>
+                   ❤️ <strong>Felicidad:</strong><br>
                    ${pk.friendship} / 255
                 </p>
             </div>

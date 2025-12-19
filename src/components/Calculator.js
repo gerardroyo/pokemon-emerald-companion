@@ -1,6 +1,6 @@
 import { types, typeMatrix } from '../data/types.js';
 import { team } from '../data/team.js';
-import { translateType } from '../data/translations.js';
+import { translateType, typeTranslations } from '../data/translations.js';
 
 let allPokemon = [];
 
@@ -115,7 +115,10 @@ async function analyzePokemonUrl(url) {
         const res = await fetch(url);
         const data = await res.json();
 
-        const enemyTypes = data.types.map(t => t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1));
+        const enemyTypes = data.types.map(t => {
+            const apiType = t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1);
+            return typeTranslations[apiType] || apiType;
+        });
         analyzeTypes(enemyTypes, data.name.toUpperCase(), data.sprites.front_default);
 
     } catch (e) {
@@ -237,7 +240,7 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
           <div style="flex:1;">
             <div style="font-weight:bold; font-size:0.9rem; color:white;">${item.member.name}</div>
             <div style="font-size:0.75rem; color:#ccc;">
-              Ataca: <span style="color:${item.bestMove.mod >= 1.5 ? 'var(--ray-green-glow)' : 'inherit'};">${item.bestMove.name}</span> 
+              Ataca con: <span style="color:${item.bestMove.mod >= 1.5 ? 'var(--ray-green-glow)' : 'inherit'};">${item.bestMove.name}</span> 
               (${item.bestMove.mod.toFixed(1)}x)
             </div>
           </div>

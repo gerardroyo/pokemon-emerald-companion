@@ -25,7 +25,7 @@ export function renderTeamView() {
               <span>${pokemon.role}</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Item</span>
+              <span class="detail-label">Objeto</span>
               <span>${pokemon.item}</span>
             </div>
             <div class="detail-row">
