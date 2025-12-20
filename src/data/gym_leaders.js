@@ -25,7 +25,7 @@ export const gymLeaders = [
                 id: 299,
                 level: 15,
                 types: ["Roca"],
-                moves: ["Placaje", "Fortaleza", "Bloqueo", "Tumba Rocas"],
+                moves: ["Bloqueo", "Fortaleza", "Placaje", "Tumba Rocas"],
                 item: "Baya Aranja"
             }
         ]
@@ -42,22 +42,22 @@ export const gymLeaders = [
                 id: 66,
                 level: 16,
                 types: ["Lucha"],
-                moves: ["Patada Baja", "Karate-choque", "Corpulencia", "Mov. Sísmico"]
+                moves: ["Patada Baja", "Corpulencia", "Foco Energía", "Venganza"]
             },
             {
                 name: "Meditite",
                 id: 307,
                 level: 16,
                 types: ["Lucha", "Psíquico"],
-                moves: ["Puño Certero", "Pantalla Luz", "Reflejo", "Corpulencia"]
+                moves: ["Foco Energía", "Confusión", "Detección", "Corpulencia"]
             },
             {
                 name: "Makuhita",
                 id: 296,
                 level: 19,
                 types: ["Lucha"],
-                moves: ["Empujón", "Tiro Vital", "Corpulencia", "Inversión"],
-                item: "Baya Gidra"
+                moves: ["Empujón", "Vigor", "Corpulencia", "Tiro Vital"],
+                item: "Baya Aranja"
             }
         ]
     },
@@ -73,28 +73,28 @@ export const gymLeaders = [
                 id: 100,
                 level: 20,
                 types: ["Eléctrico"],
-                moves: ["Desenrollar", "Chispa", "Autodestrucción", "Sónico"]
+                moves: ["Desenrollar", "Chispa", "Autodestrucción", "Onda Voltio"]
             },
             {
                 name: "Electrike",
                 id: 309,
                 level: 20,
                 types: ["Eléctrico"],
-                moves: ["Malicioso", "Ataque Rápido", "Chispa", "Aullido"]
+                moves: ["Ataque Rápido", "Malicioso", "Aullido", "Onda Voltio"]
             },
             {
                 name: "Magneton",
                 id: 82,
                 level: 22,
                 types: ["Eléctrico", "Acero"],
-                moves: ["Onda Trueno", "Sónico", "Supersónico", "Onda Voltio"]
+                moves: ["Supersónico", "Onda Trueno", "Bomba Sónica", "Onda Voltio"]
             },
             {
                 name: "Manectric",
                 id: 310,
                 level: 24,
                 types: ["Eléctrico"],
-                moves: ["Onda Voltio", "Ataque Rápido", "Onda Trueno", "Aullido"]
+                moves: ["Ataque Rápido", "Onda Trueno", "Aullido", "Onda Voltio"]
             }
         ]
     },
@@ -110,28 +110,28 @@ export const gymLeaders = [
                 id: 322,
                 level: 24,
                 types: ["Fuego", "Tierra"],
-                moves: ["Sofoco", "Derribo", "Magnitud", "Día Soleado"]
+                moves: ["Día Soleado", "Velo Sagrado", "Magnitud", "Sofoco"]
             },
             {
                 name: "Slugma",
                 id: 218,
                 level: 24,
                 types: ["Fuego"],
-                moves: ["Sofoco", "Día Soleado", "Polución", "Pantalla Luz"]
+                moves: ["Día Soleado", "Polución", "Pantalla Luz", "Sofoco"]
             },
             {
                 name: "Camerupt",
                 id: 323,
                 level: 26,
                 types: ["Fuego", "Tierra"],
-                moves: ["Sofoco", "Día Soleado", "Atracción", "Magnitud"]
+                moves: ["Día Soleado", "Atracción", "Magnitud", "Sofoco"]
             },
             {
                 name: "Torkoal",
                 id: 324,
                 level: 29,
                 types: ["Fuego"],
-                moves: ["Sofoco", "Golpe Cuerpo", "Día Soleado", "Atracción"],
+                moves: ["Día Soleado", "Cuerpo Llama", "Atracción", "Sofoco"],
                 item: "Hierba Blanca"
             }
         ]
@@ -148,29 +148,29 @@ export const gymLeaders = [
                 id: 327,
                 level: 27,
                 types: ["Normal"],
-                moves: ["Danza Caos", "Psicorrayo", "Imagen", "Otra Vez"]
+                moves: ["Psicorrayo", "Otra Vez", "Danza Caos", "Imagen"]
             },
             {
                 name: "Vigoroth",
                 id: 288,
                 level: 27,
                 types: ["Normal"],
-                moves: ["Cuchillada", "Imagen", "Otra Vez", "Finta"]
+                moves: ["Cuchillada", "Finta", "Otra Vez", "Imagen"]
             },
             {
                 name: "Linoone",
                 id: 264,
                 level: 29,
                 types: ["Normal"],
-                moves: ["Cuchillada", "Imagen", "Tambor", "Finta"]
+                moves: ["Cuchillada", "Tambor", "Golpe Cabeza", "Imagen"]
             },
             {
                 name: "Slaking",
                 id: 289,
                 level: 31,
                 types: ["Normal"],
-                moves: ["Puño Certero", "Imagen", "Relajo", "Bostezo"],
-                item: "Baya Gidra"
+                moves: ["Bostezo", "Finta", "Contador", "Imagen"],
+                item: "Baya Ziuela"
             }
         ]
     },
@@ -186,28 +186,28 @@ export const gymLeaders = [
                 id: 333,
                 level: 29,
                 types: ["Normal", "Volador"],
-                moves: ["Picotazo", "Mov. Espejo", "Velo Sagrado", "Dragoaliento"]
+                moves: ["Golpe Aéreo", "Mov. Espejo", "Velo Sagrado", "Canto Mortal"]
             },
             {
                 name: "Tropius",
                 id: 357,
                 level: 29,
                 types: ["Planta", "Volador"],
-                moves: ["Día Soleado", "Rayo Solar", "Golpe Aéreo", "Ala de Acero"]
+                moves: ["Día Soleado", "Rayo Solar", "Golpe Aéreo", "Síntesis"]
             },
             {
                 name: "Pelipper",
                 id: 279,
                 level: 30,
                 types: ["Agua", "Volador"],
-                moves: ["Hidropulso", "Protección", "Supersónico", "Golpe Aéreo"]
+                moves: ["Pistola Agua", "Protección", "Supersónico", "Golpe Aéreo"]
             },
             {
                 name: "Skarmory",
                 id: 227,
                 level: 31,
                 types: ["Acero", "Volador"],
-                moves: ["Ataque Arena", "Rapidez", "Agilidad", "Golpe Aéreo"]
+                moves: ["Ataque Arena", "Ala de Acero", "Ataque Furia", "Golpe Aéreo"]
             },
             {
                 name: "Altaria",
@@ -238,21 +238,21 @@ export const gymLeaders = [
                 id: 178,
                 level: 41,
                 types: ["Psíquico", "Volador"],
-                moves: ["Psíquico", "Día Soleado", "Rayo Confuso", "Paz Mental"]
+                moves: ["Psíquico", "Rayo Confuso", "Paz Mental", "Teletransporte"]
             },
             {
                 name: "Lunatone",
                 id: 337,
                 level: 42,
                 types: ["Roca", "Psíquico"],
-                moves: ["Psíquico", "Hipnosis", "Pantalla Luz", "Paz Mental"]
+                moves: ["Psíquico", "Hipnosis", "Pantalla Luz", "Rayo Confuso"]
             },
             {
                 name: "Solrock",
                 id: 338,
                 level: 42,
                 types: ["Roca", "Psíquico"],
-                moves: ["Psíquico", "Lanzallamas", "Día Soleado", "Rayo Solar"]
+                moves: ["Psíquico", "Lanzallamas", "Día Soleado", "Reflejo"]
             }
         ]
     },
@@ -289,7 +289,7 @@ export const gymLeaders = [
                 id: 342,
                 level: 43,
                 types: ["Agua", "Siniestro"],
-                moves: ["Martillazo", "Malicioso", "Mofa", "Hidropulso"]
+                moves: ["Martillazo", "Hidropulso", "Malicioso", "Mofa"]
             },
             {
                 name: "Kingdra",
@@ -314,35 +314,36 @@ export const eliteFour = [
                 id: 262,
                 level: 46,
                 types: ["Siniestro"],
-                moves: ["Mordisco", "Ataque Arena", "Rugido", "Contoneo"]
+                moves: ["Triturar", "Doble Filo", "Ataque Arena", "Rugido"]
             },
             {
                 name: "Cacturne",
                 id: 332,
                 level: 46,
                 types: ["Planta", "Siniestro"],
-                moves: ["Drenadoras", "Finta", "Brazo Pincho", "Espora Alg."]
+                moves: ["Finta", "Brazo Pincho", "Drenadoras", "Espora Alg."]
             },
             {
                 name: "Shiftry",
                 id: 275,
-                level: 48,
+                level: 46,
                 types: ["Planta", "Siniestro"],
-                moves: ["Paranormal", "Bola Sombra", "Doble Equipo", "Contoneo"]
+                moves: ["Paranormal", "Doble Equipo", "Contoneo", "Tormento"]
             },
             {
-                name: "Sharpedo",
-                id: 319,
+                name: "Crawdaunt",
+                id: 342,
                 level: 48,
                 types: ["Agua", "Siniestro"],
-                moves: ["Surf", "Acuchillar", "Triturar", "Contoneo"]
+                moves: ["Danza Espada", "Fuerza", "Imagen", "Surf"]
             },
             {
                 name: "Absol",
                 id: 359,
                 level: 49,
                 types: ["Siniestro"],
-                moves: ["Golpe Aéreo", "Tumba Rocas", "Danza Espada", "Acuchillar"]
+                moves: ["Danza Espada", "Avalancha", "Golpe Aéreo", "Acuchillar"],
+                item: "Baya Ziuela"
             }
         ]
     },
@@ -356,40 +357,41 @@ export const eliteFour = [
                 id: 356,
                 level: 48,
                 types: ["Fantasma"],
-                moves: ["Puño Sombra", "Rayo Confuso", "Fuego Fatuo", "Maldición"]
+                moves: ["Protección", "Maldición", "Rayo Confuso", "Puño Sombra"]
             },
             {
                 name: "Banette",
                 id: 354,
                 level: 49,
                 types: ["Fantasma"],
-                moves: ["Bola Sombra", "Finta", "Fuego Fatuo", "Psíquico"]
+                moves: ["Rabia", "Fuego Fatuo", "Finta", "Bola Sombra"]
             },
             {
                 name: "Sableye",
                 id: 302,
                 level: 50,
                 types: ["Siniestro", "Fantasma"],
-                moves: ["Bola Sombra", "Finta", "Tinieblas", "Rayo Confuso"]
+                moves: ["Doble Equipo", "Tinieblas", "Finta", "Bola Sombra"]
             },
             {
                 name: "Banette",
                 id: 354,
                 level: 49,
                 types: ["Fantasma"],
-                moves: ["Bola Sombra", "Psíquico", "Rayo", "Tóxico"]
+                moves: ["Bola Sombra", "Rayo", "Psíquico", "Imagen"]
             },
             {
                 name: "Dusclops",
                 id: 356,
                 level: 51,
                 types: ["Fantasma"],
-                moves: ["Bola Sombra", "Rayo Hielo", "Avalancha", "Terremoto"]
+                moves: ["Rayo Hielo", "Bola Sombra", "Avalancha", "Terremoto"],
+                item: "Baya Ziuela"
             }
         ]
     },
     {
-        name: "Glacia",
+        name: "Nívea",
         type: "Hielo",
         strategy: "Tipos Lucha, Fuego, Roca o Eléctrico. Walrein puede usar Frío Agudo, un movimiento que debilita de un golpe.",
         pokemon: [
@@ -398,77 +400,79 @@ export const eliteFour = [
                 id: 364,
                 level: 50,
                 types: ["Hielo", "Agua"],
-                moves: ["Granizo", "Otra Vez", "Bola Hielo", "Hidropulso"]
+                moves: ["Bola Hielo", "Golpe Cuerpo", "Rayo Aurora", "Granizo"]
             },
             {
                 name: "Glalie",
                 id: 362,
                 level: 50,
                 types: ["Hielo"],
-                moves: ["Granizo", "Rayo Hielo", "Pantalla Luz", "Triturar"]
+                moves: ["Rayo Hielo", "Triturar", "Pantalla Luz", "Granizo"]
             },
             {
                 name: "Sealeo",
                 id: 364,
                 level: 52,
                 types: ["Hielo", "Agua"],
-                moves: ["Granizo", "Ventisca", "Doble Filo", "Buceo"]
+                moves: ["Rayo Hielo", "Ventisca", "Atracción", "Granizo"]
             },
             {
                 name: "Glalie",
                 id: 362,
                 level: 52,
                 types: ["Hielo"],
-                moves: ["Granizo", "Rayo Hielo", "Bola Sombra", "Explosión"]
+                moves: ["Rayo Hielo", "Terremoto", "Explosión", "Granizo"]
             },
             {
                 name: "Walrein",
                 id: 365,
                 level: 53,
                 types: ["Hielo", "Agua"],
-                moves: ["Surf", "Rayo Hielo", "Golpe Cuerpo", "Frío Agudo"]
+                moves: ["Rayo Hielo", "Surf", "Golpe Cuerpo", "Frío Agudo"],
+                item: "Baya Ziuela"
             }
         ]
     },
     {
         name: "Dracón",
         type: "Dragón",
-        strategy: "Ataques de Hielo son x4 efectivos contra Altaria, Salamence y Flygon. Cuidado con Kingdra, solo débil a Dragón.",
+        strategy: "Ataques de Hielo son x4 efectivos contra Altaria, Salamence y Flygon. Kingdra solo es débil a Dragón.",
         pokemon: [
             {
                 name: "Shelgon",
                 id: 372,
                 level: 52,
                 types: ["Dragón"],
-                moves: ["Tumba Rocas", "Garra Dragón", "Protección", "Doble Filo"]
+                moves: ["Garra Dragón", "Tumba Rocas", "Protección", "Dragoaliento"]
             },
             {
                 name: "Altaria",
                 id: 334,
                 level: 54,
                 types: ["Dragón", "Volador"],
-                moves: ["Danza Dragón", "Dragoaliento", "Golpe Aéreo", "Derribo"]
+                moves: ["Danza Dragón", "Dragoaliento", "Golpe Aéreo", "Doble Filo"]
+            },
+            {
+                name: "Kingdra",
+                id: 230,
+                level: 53,
+                types: ["Agua", "Dragón"],
+                moves: ["Surf", "Golpe Cuerpo", "Danza Dragón", "Pantalla Humo"]
             },
             {
                 name: "Flygon",
                 id: 330,
                 level: 53,
                 types: ["Tierra", "Dragón"],
-                moves: ["Dragoaliento", "Lanzallamas", "Triturar", "Tormenta Arena"]
-            },
-            {
-                name: "Flygon",
-                id: 330,
-                level: 53,
-                types: ["Tierra", "Dragón"],
-                moves: ["Dragoaliento", "Giga Drenado", "Triturar", "Garra Dragón"]
+                moves: ["Dragoaliento", "Tormenta Arena", "Terremoto", "Triturar"]
             },
             {
                 name: "Salamence",
                 id: 373,
                 level: 55,
                 types: ["Dragón", "Volador"],
-                moves: ["Garra Dragón", "Lanzallamas", "Vuelo", "Triturar"]
+                moves: ["Garra Dragón", "Lanzallamas", "Triturar", "Avalancha"],
+                item: "Baya Ziuela"
             }
         ]
     },
@@ -489,7 +493,7 @@ export const eliteFour = [
                 id: 73,
                 level: 55,
                 types: ["Agua", "Veneno"],
-                moves: ["Tóxico", "Hidrobomba", "Bomba Lodo", "Rayo Hielo"]
+                moves: ["Hidrobomba", "Bomba Lodo", "Rayo Hielo", "Tóxico"]
             },
             {
                 name: "Ludicolo",
@@ -518,8 +522,9 @@ export const eliteFour = [
                 level: 58,
                 types: ["Agua"],
                 moves: ["Recuperación", "Surf", "Rayo Hielo", "Tóxico"],
-                item: "Baya Aranja"
+                item: "Baya Ziuela"
             }
         ]
     }
 ];
+
