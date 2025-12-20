@@ -136,23 +136,23 @@ export function renderGuide() {
     "Juan": "juan-gen3.png",
     "Sixto": "sidney-gen3.png",
     "Fátima": "phoebe-gen3.png",
-    "Glacia": "glacia-gen3.png",
+    "Nívea": "glacia-gen3.png",
     "Dracón": "drake-gen3.png",
     "Plubio": "wallace-gen3.png",
     // Platino
-    "Roark": "roark.png",
+    "Roco": "roark.png",
     "Gardenia": "gardenia.png",
     "Fantina": "fantina.png",
-    "Maylene": "maylene.png",
-    "Crasher Wake": "crasherwake.png",
-    "Byron": "byron.png",
-    "Candice": "candice.png",
-    "Volkner": "volkner.png",
-    "Aaron": "aaron.png",
-    "Bertha": "bertha.png",
-    "Flint": "flint.png",
-    "Lucian": "lucian.png",
-    "Cynthia": "cynthia.png"
+    "Brega": "maylene.png",
+    "Mananti": "crasherwake.png",
+    "Acerón": "byron.png",
+    "Inverna": "candice.png",
+    "Lectro": "volkner.png",
+    "Alecrán": "aaron.png",
+    "Gaia": "bertha.png",
+    "Fausto": "flint.png",
+    "Delos": "lucian.png",
+    "Cintia": "cynthia.png"
   };
 
   // Update HTML Container
@@ -171,7 +171,7 @@ export function renderGuide() {
     <div id="tab-gyms" class="tab-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap:2rem;">
        ${currentGymLeaders.map((g, i) => `
          <div class="emulator-box" style="display:flex; flex-direction:column; height:100%;">
-            <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+             <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border); position: relative; z-index: 2;">
               <div style="position:relative;">
                  <img src="${spriteBase}${trainerImages[g.name]}" style="height:100px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.5)); transform: scale(1.1);">
               </div>
@@ -206,7 +206,7 @@ export function renderGuide() {
     <div id="tab-e4" class="tab-content hidden" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap:2rem;">
        ${currentEliteFour.map((e, i) => `
          <div class="emulator-box" style="border-color:${i === currentEliteFour.length - 1 ? 'var(--ray-yellow)' : 'var(--glass-border)'};">
-            <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+             <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border); position: relative; z-index: 2;">
               <img src="${spriteBase}${trainerImages[e.name]}" style="height:100px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.5));">
               <div>
                 <h3 style="margin:0; font-size: 1.5rem; text-align:left; color:${i === currentEliteFour.length - 1 ? 'var(--ray-yellow)' : 'white'};">
@@ -215,7 +215,7 @@ export function renderGuide() {
                 <span class="type-pill type-${e.type.toLowerCase().includes('/') ? 'water' : e.type.toLowerCase()}" style="margin-top:0.5rem; display:inline-block;">${e.type}</span>
               </div>
             </div>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem; padding:1rem; background:rgba(255,255,255,0.03); border-radius:12px; font-style:italic;">
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem; padding:1rem; background:rgba(255,255,255,0.03); border-radius:12px; font-style:italic; position: relative; z-index: 2;">
                 ${e.strategy}
             </p>
             ${renderPokemonTeam(e.pokemon)}
