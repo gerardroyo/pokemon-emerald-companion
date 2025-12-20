@@ -93,7 +93,7 @@ function renderTeamPokemon(currentTeam) {
   return `
     <div class="team-grid">
       ${currentTeam.pokemon.map(pokemon => `
-        <div class="pokemon-card">
+        <div class="pokemon-card clickable" onclick="openPokemonModal(${pokemon.id})" title="Haz clic para ver detalles">
           <div class="card-header">
             <span class="poke-name">${pokemon.name}</span>
             <div class="poke-types">

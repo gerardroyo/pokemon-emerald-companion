@@ -80,7 +80,7 @@ export function renderGuide() {
     return `
       <div class="leader-team">
         ${pokemon.map(p => `
-          <div class="leader-poke-card">
+          <div class="leader-poke-card clickable" onclick="openPokemonModal(${p.id})" title="Haz clic para ver detalles">
             <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom: 0.75rem;">
                 <img src="${pokeSpriteBase}${p.id}.png" class="leader-poke-img" alt="${p.name}">
                 <div style="flex:1;">
