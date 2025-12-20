@@ -131,11 +131,12 @@ async function analyzePokemonUrl(url) {
         const res = await fetch(url);
         const data = await res.json();
 
+        const pokemonId = data.id;
         const enemyTypes = data.types.map(t => {
             const apiType = t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1);
             return typeTranslations[apiType] || apiType;
         });
-        analyzeTypes(enemyTypes, data.name.toUpperCase(), data.sprites.front_default);
+        analyzeTypes(enemyTypes, data.name.toUpperCase(), data.sprites.front_default, pokemonId);
 
     } catch (e) {
         console.error(e);
@@ -143,7 +144,7 @@ async function analyzePokemonUrl(url) {
     }
 }
 
-function analyzeTypes(enemyTypes, name, spriteUrl) {
+function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
     const container = document.getElementById('calc-results');
     const header = document.getElementById('enemy-header');
     const weaknessContainer = document.getElementById('weakness-info');
@@ -152,17 +153,21 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
     // Make sure container is visible
     container.style.display = 'grid';
 
-    // 1. Header (Image + Types)
+    // 1. Header (Image + Types) - Make clickable
     let html = '';
     if (spriteUrl) {
         html += `
-          <div style="position:relative; width:120px; height:120px; margin:0 auto;">
+          <div style="position:relative; width:120px; height:120px; margin:0 auto; cursor:pointer;" 
+               class="clickable"
+               onclick="openPokemonModal(${pokemonId})">
              <div style="position:absolute; inset:0; background:var(--primary-glow); filter:blur(40px); opacity:0.2; border-radius:50%;"></div>
              <img src="${spriteUrl}" style="width:100%; height:100%; position:relative; z-index:1; image-rendering:pixelated; transform:scale(1.2);">
           </div>
         `;
     }
-    html += `<h2 style="margin:0.5rem 0 1rem 0; color:var(--text-main); font-size:1.8rem; letter-spacing:-1px;">${name}</h2>`;
+    html += `<h2 style="margin:0.5rem 0 1rem 0; color:var(--text-main); font-size:1.8rem; letter-spacing:-1px; cursor:pointer;" 
+                class="clickable" 
+                onclick="openPokemonModal(${pokemonId})">${name}</h2>`;
     html += `<div class="poke-types" style="justify-content:center; gap:0.5rem; margin-bottom:1rem;">
       ${enemyTypes.map(t => `<span class="type-pill type-${t.toLowerCase()}" style="padding:0.3rem 1rem; font-size:1rem;">${translateType(t)}</span>`).join('')}
     </div>`;
@@ -269,7 +274,9 @@ function analyzeTypes(enemyTypes, name, spriteUrl) {
         }
 
         return `
-        <div class="recommendation-card" style="border-left: 3px solid ${borderColor}; background:${bgColor}; padding:0.75rem 1rem; margin:0; display:flex; align-items:center; gap:1rem;">
+        <div class="recommendation-card clickable" 
+             style="border-left: 3px solid ${borderColor}; background:${bgColor}; padding:0.75rem 1rem; margin:0; display:flex; align-items:center; gap:1rem; cursor:pointer;"
+             onclick="openPokemonModal(${item.member.id})">
           <img src="${item.member.image}" style="width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.5)); transform:scale(1.1);">
           
           <div style="flex:1;">

@@ -4,12 +4,16 @@ import { renderTeamView } from './components/TeamView.js';
 import { renderReference } from './components/Reference.js';
 import { renderGuide } from './components/Guide.js';
 import { renderCalculator } from './components/Calculator.js';
+import { initPokemonModal } from './components/PokemonDetailModal.js';
 import { getSelectedGame, setSelectedGame, GAMES, notifyGameChange, updateTheme } from './data/gameManager.js';
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
   // Apply initial theme
   updateTheme(getSelectedGame());
+
+  // Initialize Pokemon detail modal
+  initPokemonModal();
 
   renderTeamView();
   renderReference();

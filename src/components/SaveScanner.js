@@ -99,7 +99,7 @@ export function renderSaveScanner() {
                 : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pk.isShiny ? 'shiny/' : ''}${pk.nationalId}.png`;
 
             return `
-        <div class="emulator-box" style="text-align:left; position:relative; overflow:hidden; border: 1px solid ${pk.isShiny ? '#ffd700' : 'rgba(255,255,255,0.1)'};">
+        <div class="emulator-box clickable" style="text-align:left; position:relative; overflow:hidden; border: 1px solid ${pk.isShiny ? '#ffd700' : 'rgba(255,255,255,0.1)'}; cursor:pointer;" onclick="openPokemonModal(${pk.nationalId})" title="Haz clic para ver detalles">
             ${pk.isShiny ? '<div style="position:absolute; top:5px; right:5px; font-size:1.2rem; animation: pulse 2s infinite;">✨</div>' : ''}
             
             <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.05);">
