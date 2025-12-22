@@ -1,19 +1,18 @@
 import { types, typeMatrix } from '../data/types.js';
-import { team } from '../data/team.js';
-import { teams } from '../data/teams_data.js';
-import { platino_teams } from '../data/platino_teams_data.js';
+// import { team } from '../data/team.js'; // REMOVED
+// import { teams } from '../data/teams_data.js'; // REMOVED
+// import { platino_teams } from '../data/platino_teams_data.js'; // REMOVED
 import { translateType, typeTranslations } from '../data/translations.js';
-import { getSelectedGame, GAMES } from '../data/gameManager.js';
+import { getActiveTeam } from '../data/teamManager.js';
 
 let allPokemon = [];
 
 // Get the currently selected team
 function getCurrentTeam() {
-    const selectedTeamId = localStorage.getItem('selectedTeamId') || 'competitive';
-    const game = getSelectedGame();
-    const currentTeams = game === GAMES.PLATINUM ? platino_teams : teams;
-    const selectedTeam = currentTeams[selectedTeamId];
-    return selectedTeam ? selectedTeam.pokemon : team;
+    // Now centralized in teamManager
+    const activeTeam = getActiveTeam();
+    // Filter out empty slots
+    return activeTeam.slots.filter(s => s !== null);
 }
 
 export async function renderCalculator() {
@@ -228,7 +227,8 @@ function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
     const currentTeam = getCurrentTeam();
     const analysis = currentTeam.map(member => {
         let bestMove = { name: "Ninguno", mod: 0 };
-        member.moves.forEach(move => {
+        const validMoves = member.moves ? member.moves.filter(m => m) : [];
+        validMoves.forEach(move => {
             if (move.category === 'Status') return;
             // Simplified check based on type only for now as basic heuristic
             let mod = 1;

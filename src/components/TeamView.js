@@ -4,6 +4,7 @@ import { platino_teams, platino_teamCategories } from '../data/platino_teams_dat
 import { translateType } from '../data/translations.js';
 import { moveData, getCategoryIcon } from '../data/move_types.js';
 import { getSelectedGame, GAMES } from '../data/gameManager.js';
+import { renderTeamBuilder, hydrateTeamBuilder } from './TeamBuilder.js';
 
 // Get the correct teams and categories based on game version
 function getCurrentTeamsData() {
@@ -34,7 +35,20 @@ function saveCategoryId(categoryId) {
   localStorage.setItem('selectedCategoryId', categoryId);
 }
 
+// Builder Mode State
+let isBuilderMode = false;
+
 function renderTeamSelector() {
+  // If in builder mode, show builder instead of selector
+  if (isBuilderMode) {
+    try {
+      return renderTeamBuilder();
+    } catch (e) {
+      console.error("Error rendering TeamBuilder:", e);
+      return `<div class="error-banner">Error cargando el constructor de equipos: ${e.message}</div>`;
+    }
+  }
+
   const { teams: currentTeams, categories: currentCategories } = getCurrentTeamsData();
   const currentCategoryId = getSavedCategoryId();
   const currentTeamId = getSavedTeamId();
@@ -118,7 +132,7 @@ function renderTeamPokemon(currentTeam) {
             </div>
           </div>
           <div class="moves-list">
-            ${pokemon.moves.map(move => {
+            ${pokemon.moves.filter(m => m).map(move => {
     const moveInfo = moveData[move.name] || { type: move.type, category: move.category, desc: 'Movimiento desconocido', power: null, accuracy: 100 };
     const categoryIcon = getCategoryIcon(moveInfo.category);
     const powerText = moveInfo.power ? `Potencia: ${moveInfo.power}` : 'Sin potencia';
@@ -150,6 +164,20 @@ function renderTeamPokemon(currentTeam) {
   `;
 }
 
+// Helper for the Toggle Switch
+function renderModeToggle() {
+  return `
+      <div class="team-mode-toggle" style="display: flex; justify-content: center; margin-bottom: 2rem; gap: 1rem;">
+          <button class="nav-btn ${!isBuilderMode ? 'active' : ''}" onclick="window.setSafeBuilderMode(false)">
+            📋 Recomendados
+          </button>
+          <button class="nav-btn ${isBuilderMode ? 'active' : ''}" onclick="window.setSafeBuilderMode(true)">
+            🛠️ Crear Equipo
+          </button>
+      </div>
+    `;
+}
+
 export function renderTeamView() {
   const container = document.getElementById('team');
   if (!container) return;
@@ -159,14 +187,20 @@ export function renderTeamView() {
   const currentTeam = currentTeams[currentTeamId];
 
   container.innerHTML = `
+    ${renderModeToggle()}
     ${renderTeamSelector()}
     <div style="margin-top: 2rem;">
-      ${renderTeamPokemon(currentTeam)}
+      ${!isBuilderMode ? renderTeamPokemon(currentTeam) : ''}
     </div>
   `;
 
   // Attach event handlers
   attachTeamViewHandlers();
+
+  if (isBuilderMode) {
+    // Hydrate the builder with event listeners
+    setTimeout(() => hydrateTeamBuilder(), 0);
+  }
 }
 
 function attachTeamViewHandlers() {
@@ -178,6 +212,11 @@ function attachTeamViewHandlers() {
 
   window.handleTeamChange = function (teamId) {
     saveTeamId(teamId);
+    renderTeamView();
+  };
+
+  window.setSafeBuilderMode = function (enable) {
+    isBuilderMode = enable;
     renderTeamView();
   };
 }

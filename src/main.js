@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Navigation Logic
-  const btns = document.querySelectorAll('.nav-btn');
+  const btns = document.querySelectorAll('header nav .nav-btn');
   const sections = document.querySelectorAll('.section');
 
   btns.forEach(btn => {
