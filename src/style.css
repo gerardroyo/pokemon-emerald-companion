@@ -2109,6 +2109,88 @@ h3 {
   text-align: left;
 }
 
+/* Team Selector Layout */
+.team-selector-wrapper-fix {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+  gap: 1.5rem !important;
+  width: 100% !important;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.8rem !important;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+}
+
+.team-tabs-container-fix {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  flex: 1;
+  padding-bottom: 2px;
+  /* For scrollbar space if needed */
+  scrollbar-width: thin;
+}
+
+.team-tabs-container-fix::-webkit-scrollbar {
+  height: 4px;
+}
+
+.team-actions-fix {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  border-left: 1px solid var(--glass-border);
+  padding-left: 0.5rem;
+}
+
+.team-tab {
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+}
+
+.team-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.team-tab.active {
+  background: rgba(var(--primary-rgb), 0.15);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.new-team-tab {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.new-team-tab:hover {
+  background: rgba(var(--primary-rgb), 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+
 .builder-header h2::after {
   display: none;
 }
@@ -2361,9 +2443,144 @@ h3 {
   overflow: hidden;
 }
 
-.search-box-container {
-  padding: 1rem;
+.search-box-container-fix {
+  /* Normal padding for the search bar */
+  padding: 1.5rem;
   border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 1rem;
+}
+
+.search-input-fix {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.search-input-fix:focus {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
+}
+
+/* Move Pills in Team Cards */
+.move-wrapper {
+  position: relative;
+}
+
+.move-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.move-type-label {
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Type-specific backgrounds for move labels */
+.move-pill.type-normal .move-type-label {
+  background: #A8A878;
+}
+
+.move-pill.type-fire .move-type-label {
+  background: #F08030;
+}
+
+.move-pill.type-water .move-type-label {
+  background: #6890F0;
+}
+
+.move-pill.type-electric .move-type-label {
+  background: #F8D030;
+  color: #333 !important;
+}
+
+.move-pill.type-grass .move-type-label {
+  background: #78C850;
+}
+
+.move-pill.type-ice .move-type-label {
+  background: #98D8D8;
+  color: #333 !important;
+}
+
+.move-pill.type-fighting .move-type-label {
+  background: #C03028;
+}
+
+.move-pill.type-poison .move-type-label {
+  background: #A040A0;
+}
+
+.move-pill.type-ground .move-type-label {
+  background: #E0C068;
+  color: #333 !important;
+}
+
+.move-pill.type-flying .move-type-label {
+  background: #A890F0;
+}
+
+.move-pill.type-psychic .move-type-label {
+  background: #F85888;
+}
+
+.move-pill.type-bug .move-type-label {
+  background: #A8B820;
+}
+
+.move-pill.type-rock .move-type-label {
+  background: #B8A038;
+}
+
+.move-pill.type-ghost .move-type-label {
+  background: #705898;
+}
+
+.move-pill.type-dragon .move-type-label {
+  background: #7038F8;
+}
+
+.move-pill.type-dark .move-type-label {
+  background: #705848;
+}
+
+.move-pill.type-steel .move-type-label {
+  background: #B8B8D0;
+  color: #333 !important;
+}
+
+.move-pill.type-fairy .move-type-label {
+  background: #EE99AC;
+}
+
+.move-name-text {
+  color: #ffffff !important;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.slot-moves-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
 }
 
 .pokemon-source-list {
@@ -2395,7 +2612,9 @@ h3 {
 .source-pokemon-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 5;
 }
 
 .source-pokemon-card:active {
