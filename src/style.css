@@ -3639,3 +3639,154 @@ h3 {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
 }
+
+/* 
+   Team Selection UI Redesign 
+   Fixes layout alignment and improved visuals 
+*/
+
+.team-selector-container {
+  display: grid;
+  grid-template-columns: 200px 1fr 300px;
+  /* Categories | Pills | Description */
+  gap: 2rem;
+  align-items: start;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* Header spans all columns */
+.team-selector-container h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 1rem;
+  text-align: left !important;
+  font-size: 1.8rem;
+  padding-left: 0.5rem;
+  border-left: 4px solid var(--primary-color);
+  line-height: 1.2;
+}
+
+/* Left Column: Categories */
+.category-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.category-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-main);
+  text-align: left;
+}
+
+.category-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+  color: #fff;
+}
+
+.category-tab.active {
+  background: rgba(var(--primary-rgb), 0.15);
+  border-color: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.2);
+}
+
+/* Middle Column: Team Pills */
+.team-pills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+  align-content: start;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 16px;
+}
+
+.team-pill {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  font-family: var(--font-main);
+}
+
+.team-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.team-pill.active {
+  background: var(--primary-color);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+/* Right Column: Description */
+.team-description {
+  background: rgba(var(--primary-rgb), 0.05);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+  position: relative;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.team-description::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 4rem;
+  opacity: 0.1;
+  color: var(--primary-color);
+  line-height: 1;
+  font-family: serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  .team-selector-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .category-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .category-tab {
+    flex: 0 0 auto;
+  }
+}
