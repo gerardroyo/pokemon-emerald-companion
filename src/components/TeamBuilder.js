@@ -217,8 +217,8 @@ function renderInnerBuilderHTML() {
             </div>
         </div>
 
-        <div class="team-selector-container">
-            <div class="team-tabs-wrapper">
+        <div class="team-selector-wrapper-fix">
+            <div class="team-tabs-container-fix">
                 ${allTeams.map(t => `
                     <div class="team-tab ${t.id === activeTeam.id ? 'active' : ''}" data-id="${t.id}">
                         <span class="tab-name">${t.name}</span>
@@ -228,7 +228,7 @@ function renderInnerBuilderHTML() {
                 <button id="btn-new-team" class="new-team-tab" title="Nuevo Equipo">+</button>
             </div>
             
-            <div class="team-actions">
+            <div class="team-actions-fix">
                  <button id="btn-rename-team" class="action-btn-icon" title="Renombrar Equipo">✏️</button>
                  <button id="btn-delete-team" class="action-btn-icon danger" title="Borrar Equipo">🗑️</button>
             </div>
@@ -274,9 +274,9 @@ function renderInnerBuilderHTML() {
             ${activeTeam.slots.map((slot, index) => renderTeamSlot(slot, index)).join('')}
         </div>
 
-        <div class="pokemon-source-panel">
-            <div class="search-box-container">
-                    <input type="text" id="builder-search" class="search-input" placeholder="Buscar Pokémon...">
+        <div class="pokemon-source-panel" style="margin-top: 1.1rem;">
+            <div class="search-box-container-fix">
+                    <input type="text" id="builder-search" class="search-input-fix" placeholder="Buscar por nombre...">
             </div>
             <div id="pokemon-source-list" class="pokemon-source-list">
                 ${allPokemonCache.length === 0 ? '<div class="loading-spinner">Cargando Pokémon...</div>' : ''}

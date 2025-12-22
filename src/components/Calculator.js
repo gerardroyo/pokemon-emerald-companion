@@ -311,18 +311,18 @@ function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
         if (group.length === 0) return '';
         return `
          <div class="eff-row" style="background:rgba(255,255,255,0.03); border-radius:12px; padding:0.8rem; border-left:4px solid ${color};">
-            <div style="font-weight:700; color:${color}; font-size:0.9rem; margin-bottom:0.5rem; text-transform:uppercase;">${label}</div>
+            <div style="font-weight:700; color:${color}; font-size:0.9rem; margin-bottom:0.5rem;">${label}</div>
             <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-               ${group.map(t => `<span class="type-badge-modern type-${t.toLowerCase()}" style="font-size:0.8rem; padding:4px 8px;">${translateType(t)}</span>`).join('')}
+               ${group.map(t => `<span class="type-badge-modern type-${t.toLowerCase()}" style="font-size:0.8rem; padding:4px 8px; text-transform:uppercase;">${translateType(t)}</span>`).join('')}
             </div>
          </div>
         `;
     };
 
-    if (groups['4'].length) chartHtml += renderRow('Súper Eficaz (x4)', '#ef4444', groups['4']);
+    if (groups['4'].length) chartHtml += renderRow('Súper eficaz (x4)', '#ef4444', groups['4']);
     if (groups['2'].length) chartHtml += renderRow('Eficaz (x2)', '#f97316', groups['2']);
-    if (groups['0.5'].length) chartHtml += renderRow('Poco Eficaz (x0.5)', '#3b82f6', groups['0.5']);
-    if (groups['0.25'].length) chartHtml += renderRow('Muy Poco Eficaz (x0.25)', '#6366f1', groups['0.25']);
+    if (groups['0.5'].length) chartHtml += renderRow('Poco eficaz (x0.5)', '#3b82f6', groups['0.5']);
+    if (groups['0.25'].length) chartHtml += renderRow('Muy poco eficaz (x0.25)', '#6366f1', groups['0.25']);
     if (groups['0'].length) chartHtml += renderRow('Inmune (x0)', '#64748b', groups['0']);
 
     chartHtml += `</div>`;
@@ -333,25 +333,65 @@ function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
     if (currentTeam.length === 0) {
         teamContainer.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:2rem;">Añade Pokémon a tu equipo para ver sugerencias.</div>`;
     } else {
+        // Helper to convert English type to Spanish for matrix lookup
+        const typeToSpanish = {
+            'normal': 'Normal', 'fire': 'Fuego', 'water': 'Agua', 'electric': 'Eléctrico',
+            'grass': 'Planta', 'ice': 'Hielo', 'fighting': 'Lucha', 'poison': 'Veneno',
+            'ground': 'Tierra', 'flying': 'Volador', 'psychic': 'Psíquico', 'bug': 'Bicho',
+            'rock': 'Roca', 'ghost': 'Fantasma', 'dragon': 'Dragón', 'dark': 'Siniestro', 'steel': 'Acero',
+            'fairy': 'Hada'
+        };
+
         const analysis = currentTeam.map(member => {
-            let bestMove = { name: "Ninguno", mod: 0 };
+            let bestMove = { name: "Ninguno", displayName: "Sin movimiento efectivo", mod: 0, typeES: null };
             const validMoves = member.moves ? member.moves.filter(m => m) : [];
+
             validMoves.forEach(move => {
-                if (move.category === 'Status') return;
+                if (move.category === 'Status' || move.damageClass === 'status') return;
+
+                // Convert move type to Spanish for matrix lookup
+                const moveTypeES = typeToSpanish[move.type?.toLowerCase()] || move.type;
+
                 let mod = 1;
                 enemyTypes.forEach(eType => {
-                    const atkIdx = types.indexOf(move.type);
+                    const atkIdx = types.indexOf(moveTypeES);
                     const defIdx = types.indexOf(eType);
-                    if (atkIdx !== -1 && defIdx !== -1) mod *= typeMatrix[atkIdx][defIdx];
+                    if (atkIdx !== -1 && defIdx !== -1) {
+                        mod *= typeMatrix[atkIdx][defIdx];
+                    }
                 });
-                if (member.types.includes(move.type)) mod *= 1.5;
-                if (mod > bestMove.mod) bestMove = { name: move.name, mod: mod, type: move.type };
+
+                // Apply STAB - check both Spanish types on member
+                // member.types can be strings or objects like {english: 'fire', spanish: 'Fuego'}
+                const memberTypesES = member.types.map(t => {
+                    const typeName = typeof t === 'string' ? t : (t?.english || t?.spanish || '');
+                    return typeToSpanish[typeName?.toLowerCase()] || typeName;
+                });
+                const hasSTAB = memberTypesES.includes(moveTypeES);
+                if (hasSTAB) mod *= 1.5;
+
+                if (mod > bestMove.mod) {
+                    bestMove = {
+                        name: move.name,
+                        displayName: move.displayName || move.name,
+                        mod: mod,
+                        type: move.type,
+                        typeES: moveTypeES,
+                        typeTranslated: move.typeTranslated || moveTypeES,
+                        hasSTAB: hasSTAB
+                    };
+                }
             });
 
+            // Calculate damage received
             let maxReceiveMod = 0;
+            const memberTypesES = member.types.map(t => {
+                const typeName = typeof t === 'string' ? t : (t?.english || t?.spanish || '');
+                return typeToSpanish[typeName?.toLowerCase()] || typeName;
+            });
             enemyTypes.forEach(eType => {
                 let mod = 1;
-                member.types.forEach(mType => {
+                memberTypesES.forEach(mType => {
                     const atkIdx = types.indexOf(eType);
                     const defIdx = types.indexOf(mType);
                     if (atkIdx !== -1 && defIdx !== -1) mod *= typeMatrix[atkIdx][defIdx];
@@ -362,18 +402,33 @@ function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
             return { member, bestMove, maxReceiveMod };
         });
 
-        analysis.sort((a, b) => b.bestMove.mod - a.bestMove.mod);
+        // Sort by best offensive matchup, then by defensive safety
+        analysis.sort((a, b) => {
+            if (b.bestMove.mod !== a.bestMove.mod) return b.bestMove.mod - a.bestMove.mod;
+            return a.maxReceiveMod - b.maxReceiveMod;
+        });
 
-        teamContainer.innerHTML = analysis.map(item => {
+        teamContainer.innerHTML = analysis.map((item, index) => {
             let borderColor = 'transparent';
             let bgColor = 'rgba(255,255,255,0.03)';
-            if (item.bestMove.mod >= 2) {
+            let badgeHtml = '';
+
+            // Best counter gets special treatment
+            if (index === 0 && item.bestMove.mod >= 2) {
+                borderColor = '#22c55e';
+                bgColor = 'rgba(34, 197, 94, 0.15)';
+                badgeHtml = '<span style="background:#22c55e; color:#000; font-size:0.65rem; padding:0.15rem 0.5rem; border-radius:4px; font-weight:700; margin-left:0.5rem;">⭐ MEJOR</span>';
+            } else if (item.bestMove.mod >= 2) {
                 borderColor = 'var(--primary-color)';
                 bgColor = 'rgba(var(--primary-rgb), 0.1)';
             } else if (item.maxReceiveMod >= 2) {
                 borderColor = 'var(--ray-red)';
                 bgColor = 'rgba(244, 63, 94, 0.05)';
             }
+
+            // Type badge displayed separately
+            const typeLabel = item.bestMove.typeTranslated || item.bestMove.typeES || '???';
+            const typeClass = item.bestMove.type ? `type-${item.bestMove.type.toLowerCase()}` : '';
 
             return `
             <div class="recommendation-card clickable" 
@@ -382,10 +437,16 @@ function analyzeTypes(enemyTypes, name, spriteUrl, pokemonId = null) {
               <img src="${item.member.image}" style="width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.5)); transform:scale(1.1);">
               
               <div style="flex:1;">
-                <div style="font-weight:700; font-size:1rem; color:var(--text-main); margin-bottom:0.2rem;">${item.member.name}</div>
+                <div style="font-weight:700; font-size:1rem; color:var(--text-main); margin-bottom:0.2rem; display:flex; align-items:center;">
+                    ${item.member.name}${badgeHtml}
+                </div>
                 ${item.bestMove.mod >= 1
-                    ? `<div style="font-size:0.85rem; color:var(--text-muted);">Usa <span style="color:var(--primary-glow); font-weight:600;">${item.bestMove.name}</span> <span style="background:rgba(0,0,0,0.3); padding:0 4px; border-radius:4px; font-size:0.75rem;">x${item.bestMove.mod.toFixed(1)}</span></div>`
-                    : `<div style="font-size:0.85rem; color:var(--text-muted);">Poco efectivo</div>`
+                    ? `<div style="font-size:0.85rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem;">
+                        Usa <span style="color:#fff; font-weight:600;">${item.bestMove.displayName}</span>
+                        <span class="type-pill ${typeClass}" style="padding:0.1rem 0.4rem; font-size:0.65rem;">${typeLabel}</span>
+                        <span style="background:rgba(0,0,0,0.3); padding:0 4px; border-radius:4px; font-size:0.75rem;">x${item.bestMove.mod.toFixed(1)}</span>
+                       </div>`
+                    : `<div style="font-size:0.85rem; color:var(--text-muted);">Sin movimientos efectivos</div>`
                 }
               </div>
 
