@@ -151,6 +151,62 @@ export async function getLearnsetByVersion(pokemonId, versionGroup) {
 }
 
 /**
+ * Get ALL learnable moves for a version (Level-up, Machine, Tutor, Egg)
+ * Returns array of objects with move details
+ */
+export async function getAllLearnableMoves(pokemonId, versionGroup) {
+    try {
+        const pokemon = await getPokemonData(pokemonId);
+        const validMoves = [];
+
+        // 1. Filter moves for this version
+        for (const moveEntry of pokemon.moves) {
+            const versionDetails = moveEntry.version_group_details.find(
+                vd => vd.version_group.name === versionGroup // Matches 'emerald', 'platinum' etc.
+            );
+
+            if (versionDetails) {
+                validMoves.push({
+                    name: moveEntry.move.name, // We will formatting later
+                    method: versionDetails.move_learn_method.name,
+                    level: versionDetails.level_learned_at,
+                    url: moveEntry.move.url
+                });
+            }
+        }
+
+        // 2 Fetch details for ALL valid moves (Parallelized)
+        // Note: This might be heavy (50+ requests). We should use cache effectively or batch?
+        // For Client-side, maybe we fetch details only on demand or cached?
+        // Getting Basic info (Type/Category) is essential for the UI.
+        // Optimization: We could rely on a pre-fetched 'move-summary' or just fetch details on hover?
+        // User asked for "Dropdown with Type/Power". We need the data.
+        // Let's Promise.all but maybe limit or rely on cache.
+
+        // We will return the list of names/urls and let the UI fetch details on render or search?
+        // Better: Fetch all details now so search is instant. Browser cache will help subsequent loads.
+
+        const moveDetailsPromises = validMoves.map(m => getMoveDetails(m.name));
+        const moveDetails = await Promise.all(moveDetailsPromises);
+
+        // Merge details
+        return validMoves.map((m, i) => {
+            const details = moveDetails[i];
+            if (!details) return null;
+            return {
+                ...m,
+                ...details, // types, power, pp etc
+                displayName: details.displayName || formatMoveName(m.name)
+            };
+        }).filter(m => m !== null);
+
+    } catch (error) {
+        console.error("Error getting all learnable moves", error);
+        return [];
+    }
+}
+
+/**
  * Get move details (type, power, accuracy, description)
  */
 export async function getMoveDetails(moveName) {
@@ -160,6 +216,10 @@ export async function getMoveDetails(moveName) {
     try {
         const data = await fetchWithCache(url, cache.moves, key);
 
+        // Get Spanish Name
+        const esNameObj = data.names.find(e => e.language.name === 'es');
+        const esName = esNameObj ? esNameObj.name : (moveNamesES[data.name] || formatMoveName(data.name));
+
         // Get Spanish flavor text if available, fallback to English
         let description = '';
         const esText = data.flavor_text_entries.find(e => e.language.name === 'es');
@@ -168,11 +228,14 @@ export async function getMoveDetails(moveName) {
 
         return {
             name: data.name,
-            type: data.type.name,
+            displayName: esName, // New field for UI
+            type: data.type.name, // Keep English for CSS class mapping
+            typeTranslated: typeTranslationsES[data.type.name] || data.type.name,
             power: data.power,
             accuracy: data.accuracy,
             pp: data.pp,
-            damageClass: data.damage_class.name, // physical, special, status
+            damageClass: data.damage_class.name,
+            damageClassTranslated: damageClassTranslationsES[data.damage_class.name] || data.damage_class.name,
             description: description.replace(/\n|\f/g, ' ')
         };
     } catch (error) {
