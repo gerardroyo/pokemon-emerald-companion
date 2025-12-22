@@ -3790,3 +3790,50 @@ h3 {
     flex: 0 0 auto;
   }
 }
+
+.manual-type-btn:hover {
+  transform: scale(1.1) !important;
+  filter: brightness(1.2) grayscale(0) !important;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Calculator Styles */
+.calc-tab {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1.5rem;
+  border-radius: 100px;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-main);
+}
+
+.calc-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.calc-tab.active {
+  background: var(--primary-color);
+  color: #000;
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.4);
+}
+
+.calc-search-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  padding: 0;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.calc-search-box:focus-within {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1);
+}
