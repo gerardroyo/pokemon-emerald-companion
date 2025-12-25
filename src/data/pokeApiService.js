@@ -158,12 +158,18 @@ export async function getAllLearnableMoves(pokemonId, versionGroup) {
     try {
         const pokemon = await getPokemonData(pokemonId);
         const validMoves = [];
+        let foundMatchingVersion = false;
 
         // 1. Filter moves for this version
         for (const moveEntry of pokemon.moves) {
-            const versionDetails = moveEntry.version_group_details.find(
+            let versionDetails = moveEntry.version_group_details.find(
                 vd => vd.version_group.name === versionGroup // Matches 'emerald', 'platinum' etc.
             );
+            if (versionDetails) {
+                foundMatchingVersion = true;
+            } else if (moveEntry.version_group_details.length > 0) {
+                versionDetails = moveEntry.version_group_details[moveEntry.version_group_details.length - 1];
+            }
 
             if (versionDetails) {
                 validMoves.push({
@@ -173,6 +179,10 @@ export async function getAllLearnableMoves(pokemonId, versionGroup) {
                     url: moveEntry.move.url
                 });
             }
+        }
+
+        if (!foundMatchingVersion) {
+            console.warn(`[PokeAPI] No moves found for version group "${versionGroup}". Falling back to latest available moves.`);
         }
 
         // 2 Fetch details for ALL valid moves (Parallelized)
