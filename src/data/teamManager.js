@@ -1,5 +1,7 @@
 
 import { getSelectedGame } from './gameManager.js';
+import { getCurrentUser } from '../services/authService.js';
+import { saveAllTeamsToCloud, deleteTeamFromCloud } from '../services/firestoreService.js';
 
 const STORAGE_KEY_PREFIX = 'poke_companion_teams_';
 const ACTIVE_TEAM_KEY = 'poke_companion_active_team_id';
@@ -20,6 +22,18 @@ function generateId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
+function normalizeTeamName(name) {
+    return name.trim().toLowerCase();
+}
+
+function isTeamNameTaken(name, excludeId = null) {
+    const normalized = normalizeTeamName(name);
+    return getAllTeams().some(team => {
+        if (excludeId && team.id === excludeId) return false;
+        return normalizeTeamName(team.name) === normalized;
+    });
+}
+
 export function getAllTeams() {
     try {
         const json = localStorage.getItem(getStorageKey());
@@ -30,11 +44,34 @@ export function getAllTeams() {
     }
 }
 
+export function clearAllTeams() {
+    localStorage.removeItem(getStorageKey());
+    localStorage.removeItem(ACTIVE_TEAM_KEY);
+}
+
 export function saveAllTeams(teams) {
+    // Always save to localStorage first (offline-first approach)
     localStorage.setItem(getStorageKey(), JSON.stringify(teams));
+
+    // Sync to cloud if user is authenticated
+    const user = getCurrentUser();
+    console.log('[TeamManager] Saving teams. User authenticated:', !!user, user?.uid);
+
+    if (user) {
+        console.log('[TeamManager] Syncing', teams.length, 'teams to cloud for user:', user.uid);
+        saveAllTeamsToCloud(user.uid, teams)
+            .then(() => console.log('[TeamManager] ✅ Cloud sync successful'))
+            .catch(err => {
+                console.warn('[TeamManager] ❌ Failed to sync teams to cloud:', err);
+            });
+    }
 }
 
 export function createNewTeam(name = "Nuevo Equipo") {
+    if (isTeamNameTaken(name)) {
+        alert("Ya existe un equipo con ese nombre.");
+        return null;
+    }
     const teams = getAllTeams();
     const newTeam = {
         id: generateId(),
@@ -93,13 +130,19 @@ export function updateActiveTeamSlots(slots) {
 }
 
 export function updateTeamName(id, name) {
+    if (isTeamNameTaken(name, id)) {
+        alert("Ya existe un equipo con ese nombre.");
+        return false;
+    }
     const teams = getAllTeams();
     const team = teams.find(t => t.id === id);
     if (team) {
         team.name = name;
         saveAllTeams(teams);
         window.dispatchEvent(new CustomEvent('teamListUpdated'));
+        return true;
     }
+    return false;
 }
 
 export function deleteTeam(id) {
@@ -116,5 +159,14 @@ export function deleteTeam(id) {
         setActiveTeamId(teams[0].id);
     } else {
         window.dispatchEvent(new CustomEvent('teamListUpdated'));
+    }
+
+    const user = getCurrentUser();
+    if (user) {
+        deleteTeamFromCloud(user.uid, id)
+            .then(() => console.log('[TeamManager] ✅ Cloud delete successful'))
+            .catch(err => {
+                console.warn('[TeamManager] ❌ Failed to delete team from cloud:', err);
+            });
     }
 }

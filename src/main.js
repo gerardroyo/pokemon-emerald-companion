@@ -5,6 +5,7 @@ import { renderReference } from './components/Reference.js';
 import { renderGuide } from './components/Guide.js';
 import { renderCalculator } from './components/Calculator.js';
 import { initPokemonModal } from './components/PokemonDetailModal.js';
+import { renderAuthUI } from './components/AuthUI.js';
 import { getSelectedGame, setSelectedGame, GAMES, notifyGameChange, updateTheme } from './data/gameManager.js';
 
 // Init
@@ -14,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Pokemon detail modal
   initPokemonModal();
+
+  // Initialize Auth UI
+  renderAuthUI();
 
   renderTeamView();
   renderReference();
