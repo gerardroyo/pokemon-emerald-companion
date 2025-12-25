@@ -5,6 +5,7 @@ import { auth } from './firebaseConfig.js';
 import {
     GoogleAuthProvider,
     signInWithPopup,
+    signInWithRedirect,
     signOut,
     onAuthStateChanged
 } from 'firebase/auth';
@@ -34,8 +35,17 @@ export async function signInWithGoogle() {
         // Handle specific errors
         if (error.code === 'auth/popup-closed-by-user') {
             console.log('User closed the popup');
+            return null;
         } else if (error.code === 'auth/popup-blocked') {
             alert('El popup fue bloqueado. Por favor, permite popups para este sitio.');
+            await signInWithRedirect(auth, googleProvider);
+            return null;
+        } else if (error.code === 'auth/cancelled-popup-request') {
+            await signInWithRedirect(auth, googleProvider);
+            return null;
+        } else if (error.code === 'auth/unauthorized-domain') {
+            alert('Este dominio no está autorizado para el inicio de sesión con Google. Revisa la configuración de Firebase.');
+            return null;
         }
 
         return null;
