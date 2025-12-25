@@ -22,6 +22,18 @@ function generateId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
+function normalizeTeamName(name) {
+    return name.trim().toLowerCase();
+}
+
+function isTeamNameTaken(name, excludeId = null) {
+    const normalized = normalizeTeamName(name);
+    return getAllTeams().some(team => {
+        if (excludeId && team.id === excludeId) return false;
+        return normalizeTeamName(team.name) === normalized;
+    });
+}
+
 export function getAllTeams() {
     try {
         const json = localStorage.getItem(getStorageKey());
@@ -56,6 +68,10 @@ export function saveAllTeams(teams) {
 }
 
 export function createNewTeam(name = "Nuevo Equipo") {
+    if (isTeamNameTaken(name)) {
+        alert("Ya existe un equipo con ese nombre.");
+        return null;
+    }
     const teams = getAllTeams();
     const newTeam = {
         id: generateId(),
@@ -114,13 +130,19 @@ export function updateActiveTeamSlots(slots) {
 }
 
 export function updateTeamName(id, name) {
+    if (isTeamNameTaken(name, id)) {
+        alert("Ya existe un equipo con ese nombre.");
+        return false;
+    }
     const teams = getAllTeams();
     const team = teams.find(t => t.id === id);
     if (team) {
         team.name = name;
         saveAllTeams(teams);
         window.dispatchEvent(new CustomEvent('teamListUpdated'));
+        return true;
     }
+    return false;
 }
 
 export function deleteTeam(id) {
