@@ -9,6 +9,12 @@ import { natures } from '../data/natures.js';
 let allPokemonCache = [];
 let filteredPokemon = [];
 let isFetching = false;
+let currentSearchTerm = '';
+
+const GAME_POKEDEX_LIMITS = {
+    emerald: 386,
+    platinum: 493
+};
 
 // Helpers
 const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
@@ -501,7 +507,7 @@ function saveEditModal(slotIndex) {
 // Fetch Logic (Copied/Adapted)
 async function initPokemonList() {
     if (allPokemonCache.length > 0) {
-        renderPokemonList();
+        applyGameFilter();
         return;
     }
     if (isFetching) return;
@@ -516,8 +522,7 @@ async function initPokemonList() {
             url: p.url,
             sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
         }));
-        filteredPokemon = [...allPokemonCache];
-        renderPokemonList();
+        applyGameFilter();
     } catch (e) {
         console.error("Fetch error", e);
     } finally {
@@ -544,8 +549,21 @@ function renderPokemonList() {
 }
 
 function handleSearch(query) {
-    const q = query.toLowerCase();
-    filteredPokemon = allPokemonCache.filter(p => p.name.includes(q) || String(p.id).includes(q));
+    currentSearchTerm = query.toLowerCase();
+    applyGameFilter();
+}
+
+function applyGameFilter() {
+    const selectedGame = getSelectedGame();
+    const maxDex = GAME_POKEDEX_LIMITS[selectedGame] || GAME_POKEDEX_LIMITS.emerald;
+    filteredPokemon = allPokemonCache.filter(p => p.id <= maxDex);
+
+    if (currentSearchTerm) {
+        filteredPokemon = filteredPokemon.filter(p =>
+            p.name.includes(currentSearchTerm) || String(p.id).includes(currentSearchTerm)
+        );
+    }
+
     renderPokemonList();
 }
 
@@ -729,11 +747,13 @@ function confirmPrompt() {
     if (!value) return; // Validate empty
 
     if (pendingPromptAction === 'create') {
-        createNewTeam(value);
+        const createdTeam = createNewTeam(value);
+        if (!createdTeam) return;
         renderTeamBuilderImpl();
     } else if (pendingPromptAction === 'rename') {
         const activeTeam = getActiveTeam();
-        updateTeamName(activeTeam.id, value);
+        const renamed = updateTeamName(activeTeam.id, value);
+        if (!renamed) return;
         renderTeamBuilderImpl();
     }
 

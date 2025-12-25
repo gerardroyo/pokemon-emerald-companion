@@ -3,8 +3,10 @@
 
 import { signInWithGoogle, signOutUser, getUserInfo, onAuthStateChange } from '../services/authService.js';
 import { migrateLocalDataToCloud, getTeamsFromCloud } from '../services/firestoreService.js';
-import { getAllTeams, saveAllTeams, setActiveTeamId } from '../data/teamManager.js';
+import { getAllTeams, saveAllTeams, setActiveTeamId, getActiveTeamId, clearAllTeams } from '../data/teamManager.js';
 import { getSelectedGame } from '../data/gameManager.js';
+
+let hasSyncedCloudTeams = false;
 
 /**
  * Render the auth UI component
@@ -17,10 +19,38 @@ export function renderAuthUI(containerId = 'auth-container') {
   // Listen for auth state changes
   onAuthStateChange((user) => {
     updateAuthUI(container, user);
+    if (user) {
+      syncTeamsFromCloud(user);
+    } else {
+      hasSyncedCloudTeams = false;
+    }
   });
 
   // Initial render
   updateAuthUI(container, null);
+}
+
+async function syncTeamsFromCloud(user) {
+  if (hasSyncedCloudTeams) return;
+  hasSyncedCloudTeams = true;
+
+  try {
+    const cloudTeams = await getTeamsFromCloud(user.uid);
+    const selectedGame = getSelectedGame();
+    const gameTeams = cloudTeams.filter(team => team.game === selectedGame);
+    clearAllTeams();
+    if (gameTeams.length === 0) return;
+    saveAllTeams(gameTeams);
+
+    if (!getActiveTeamId() && gameTeams.length > 0) {
+      setActiveTeamId(gameTeams[0].id);
+    }
+
+    window.dispatchEvent(new CustomEvent('teamListUpdated'));
+    window.dispatchEvent(new CustomEvent('teamChanged'));
+  } catch (error) {
+    console.warn('[Auth] Failed to sync teams from cloud:', error);
+  }
 }
 
 /**
@@ -28,22 +58,31 @@ export function renderAuthUI(containerId = 'auth-container') {
  */
 function updateAuthUI(container, user) {
   if (user) {
-    const userInfo = getUserInfo();
+    const cachedUserInfo = getUserInfo();
+    const userInfo = {
+      uid: user.uid,
+      displayName: user.displayName || cachedUserInfo?.displayName || 'Usuario',
+      email: user.email || cachedUserInfo?.email || '',
+      photoURL: user.photoURL || cachedUserInfo?.photoURL || null
+    };
+    const displayName = userInfo.displayName || 'Usuario';
+    const email = userInfo.email || '';
+    const photoURL = userInfo.photoURL;
     container.innerHTML = `
       <div class="auth-user-profile">
         <button class="auth-profile-btn" onclick="toggleAuthDropdown(event)">
-          ${userInfo.photoURL
-        ? `<img src="${userInfo.photoURL}" alt="Avatar" class="auth-avatar" referrerpolicy="no-referrer">`
-        : `<div class="auth-avatar-placeholder">${userInfo.displayName.charAt(0).toUpperCase()}</div>`
+          ${photoURL
+        ? `<img src="${photoURL}" alt="Avatar" class="auth-avatar" referrerpolicy="no-referrer">`
+        : `<div class="auth-avatar-placeholder">${displayName.charAt(0).toUpperCase()}</div>`
       }
-          <span class="auth-user-name">${userInfo.displayName}</span>
+          <span class="auth-user-name">${displayName}</span>
           <svg class="auth-chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
           </svg>
         </button>
         <div class="auth-dropdown hidden" id="auth-dropdown">
           <div class="auth-dropdown-header">
-            <span class="auth-dropdown-email">${userInfo.email}</span>
+            <span class="auth-dropdown-email">${email}</span>
           </div>
           <div class="auth-dropdown-divider"></div>
           <button class="auth-dropdown-item" onclick="handleSignOut()">
@@ -59,7 +98,7 @@ function updateAuthUI(container, user) {
     `;
   } else {
     container.innerHTML = `
-      <button class="auth-login-btn" onclick="handleGoogleLogin()">
+      <button class="auth-login-btn" onclick="handleGoogleLogin(event)">
         <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -75,7 +114,11 @@ function updateAuthUI(container, user) {
 /**
  * Handle Google login button click
  */
-window.handleGoogleLogin = async function () {
+window.handleGoogleLogin = async function (event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   const user = await signInWithGoogle();
 
   if (user) {
@@ -86,19 +129,17 @@ window.handleGoogleLogin = async function () {
 
     // Load cloud data first
     const cloudTeams = await getTeamsFromCloud(user.uid);
-    console.log('[Auth] Cloud teams:', cloudTeams.length, '| Local teams:', localTeams.length);
+    const selectedGame = getSelectedGame();
+    const gameTeams = cloudTeams.filter(team => team.game === selectedGame);
+    console.log('[Auth] Cloud teams:', gameTeams.length, '| Local teams:', localTeams.length);
 
-    if (cloudTeams.length > 0) {
-      // Cloud has data - merge with local (cloud takes priority)
-      const mergedTeams = mergeTeams(localTeams, cloudTeams);
-      console.log('[Auth] Merged teams:', mergedTeams.length);
+    if (gameTeams.length > 0) {
+      console.log('[Auth] Loading cloud teams:', gameTeams.length);
+      clearAllTeams();
+      saveAllTeams(gameTeams);
 
-      // Save merged teams to localStorage (this will also sync back to cloud)
-      saveAllTeams(mergedTeams);
-
-      // Set active team
-      if (mergedTeams.length > 0) {
-        setActiveTeamId(mergedTeams[0].id);
+      if (gameTeams.length > 0) {
+        setActiveTeamId(gameTeams[0].id);
       }
     } else if (localTeams.length > 0) {
       // No cloud data but has local - migrate to cloud
@@ -110,6 +151,7 @@ window.handleGoogleLogin = async function () {
     console.log('[Auth] Refreshing UI...');
     window.dispatchEvent(new CustomEvent('teamListUpdated'));
     window.dispatchEvent(new CustomEvent('teamChanged'));
+    window.location.reload();
   }
 };
 
@@ -118,6 +160,9 @@ window.handleGoogleLogin = async function () {
  */
 window.handleSignOut = async function () {
   await signOutUser();
+  hasSyncedCloudTeams = false;
+  clearAllTeams();
+  window.location.reload();
 
   // Close dropdown
   const dropdown = document.getElementById('auth-dropdown');
@@ -146,18 +191,3 @@ document.addEventListener('click', (e) => {
 /**
  * Merge local and cloud teams, preferring cloud data for conflicts
  */
-function mergeTeams(localTeams, cloudTeams) {
-  const teamMap = new Map();
-
-  // Add local teams first
-  localTeams.forEach(team => {
-    teamMap.set(team.id, team);
-  });
-
-  // Override/add cloud teams
-  cloudTeams.forEach(team => {
-    teamMap.set(team.id, team);
-  });
-
-  return Array.from(teamMap.values());
-}
