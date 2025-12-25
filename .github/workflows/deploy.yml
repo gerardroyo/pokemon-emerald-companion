@@ -21,6 +21,9 @@ jobs:
         run: |
           npm install
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            if [ -f ".env.production" ]; then
+              cp .env.production .env
+            fi
             npm run build -- --base=/pokemon-emerald-companion/
           else
             if [ -f ".env.dev" ]; then
