@@ -36,12 +36,14 @@ async function syncTeamsFromCloud(user) {
 
   try {
     const cloudTeams = await getTeamsFromCloud(user.uid);
+    const selectedGame = getSelectedGame();
+    const gameTeams = cloudTeams.filter(team => team.game === selectedGame);
     clearAllTeams();
-    if (cloudTeams.length === 0) return;
-    saveAllTeams(cloudTeams);
+    if (gameTeams.length === 0) return;
+    saveAllTeams(gameTeams);
 
-    if (!getActiveTeamId() && cloudTeams.length > 0) {
-      setActiveTeamId(cloudTeams[0].id);
+    if (!getActiveTeamId() && gameTeams.length > 0) {
+      setActiveTeamId(gameTeams[0].id);
     }
 
     window.dispatchEvent(new CustomEvent('teamListUpdated'));
@@ -127,15 +129,17 @@ window.handleGoogleLogin = async function (event) {
 
     // Load cloud data first
     const cloudTeams = await getTeamsFromCloud(user.uid);
-    console.log('[Auth] Cloud teams:', cloudTeams.length, '| Local teams:', localTeams.length);
+    const selectedGame = getSelectedGame();
+    const gameTeams = cloudTeams.filter(team => team.game === selectedGame);
+    console.log('[Auth] Cloud teams:', gameTeams.length, '| Local teams:', localTeams.length);
 
-    if (cloudTeams.length > 0) {
-      console.log('[Auth] Loading cloud teams:', cloudTeams.length);
+    if (gameTeams.length > 0) {
+      console.log('[Auth] Loading cloud teams:', gameTeams.length);
       clearAllTeams();
-      saveAllTeams(cloudTeams);
+      saveAllTeams(gameTeams);
 
-      if (cloudTeams.length > 0) {
-        setActiveTeamId(cloudTeams[0].id);
+      if (gameTeams.length > 0) {
+        setActiveTeamId(gameTeams[0].id);
       }
     } else if (localTeams.length > 0) {
       // No cloud data but has local - migrate to cloud
