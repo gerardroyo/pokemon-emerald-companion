@@ -10,7 +10,7 @@ import { getSelectedGame, setSelectedGame, GAMES, notifyGameChange, updateTheme 
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-  // Apply initial theme
+  // Apply initial theme 
   updateTheme(getSelectedGame());
 
   // Initialize Pokemon detail modal
