@@ -35,13 +35,12 @@ async function syncTeamsFromCloud(user) {
   hasSyncedCloudTeams = true;
 
   const localTeams = getAllTeams();
-  if (localTeams.length > 0) {
-    return;
-  }
-
   try {
     const cloudTeams = await getTeamsFromCloud(user.uid);
     if (cloudTeams.length === 0) return;
+    if (localTeams.length > 0 && !isPlaceholderTeams(localTeams)) {
+      return;
+    }
 
     saveAllTeams(cloudTeams);
 
@@ -54,6 +53,15 @@ async function syncTeamsFromCloud(user) {
   } catch (error) {
     console.warn('[Auth] Failed to sync teams from cloud:', error);
   }
+}
+
+function isPlaceholderTeams(teams) {
+  if (teams.length !== 1) return false;
+  const [team] = teams;
+  if (!team) return false;
+  if (team.name !== 'Mi Equipo Principal') return false;
+  if (!Array.isArray(team.slots)) return false;
+  return team.slots.every(slot => slot === null);
 }
 
 /**
@@ -156,6 +164,7 @@ window.handleGoogleLogin = async function (event) {
     console.log('[Auth] Refreshing UI...');
     window.dispatchEvent(new CustomEvent('teamListUpdated'));
     window.dispatchEvent(new CustomEvent('teamChanged'));
+    window.location.reload();
   }
 };
 
@@ -165,6 +174,7 @@ window.handleGoogleLogin = async function (event) {
 window.handleSignOut = async function () {
   await signOutUser();
   hasSyncedCloudTeams = false;
+  window.location.reload();
 
   // Close dropdown
   const dropdown = document.getElementById('auth-dropdown');
