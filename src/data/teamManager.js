@@ -32,6 +32,11 @@ export function getAllTeams() {
     }
 }
 
+export function clearAllTeams() {
+    localStorage.removeItem(getStorageKey());
+    localStorage.removeItem(ACTIVE_TEAM_KEY);
+}
+
 export function saveAllTeams(teams) {
     // Always save to localStorage first (offline-first approach)
     localStorage.setItem(getStorageKey(), JSON.stringify(teams));
@@ -132,5 +137,14 @@ export function deleteTeam(id) {
         setActiveTeamId(teams[0].id);
     } else {
         window.dispatchEvent(new CustomEvent('teamListUpdated'));
+    }
+
+    const user = getCurrentUser();
+    if (user) {
+        deleteTeamFromCloud(user.uid, id)
+            .then(() => console.log('[TeamManager] ✅ Cloud delete successful'))
+            .catch(err => {
+                console.warn('[TeamManager] ❌ Failed to delete team from cloud:', err);
+            });
     }
 }
