@@ -1,5 +1,7 @@
 
 import { getSelectedGame } from './gameManager.js';
+import { getCurrentUser } from '../services/authService.js';
+import { saveAllTeamsToCloud, deleteTeamFromCloud } from '../services/firestoreService.js';
 
 const STORAGE_KEY_PREFIX = 'poke_companion_teams_';
 const ACTIVE_TEAM_KEY = 'poke_companion_active_team_id';
@@ -31,7 +33,21 @@ export function getAllTeams() {
 }
 
 export function saveAllTeams(teams) {
+    // Always save to localStorage first (offline-first approach)
     localStorage.setItem(getStorageKey(), JSON.stringify(teams));
+
+    // Sync to cloud if user is authenticated
+    const user = getCurrentUser();
+    console.log('[TeamManager] Saving teams. User authenticated:', !!user, user?.uid);
+
+    if (user) {
+        console.log('[TeamManager] Syncing', teams.length, 'teams to cloud for user:', user.uid);
+        saveAllTeamsToCloud(user.uid, teams)
+            .then(() => console.log('[TeamManager] ✅ Cloud sync successful'))
+            .catch(err => {
+                console.warn('[TeamManager] ❌ Failed to sync teams to cloud:', err);
+            });
+    }
 }
 
 export function createNewTeam(name = "Nuevo Equipo") {
