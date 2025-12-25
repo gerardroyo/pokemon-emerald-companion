@@ -3,7 +3,7 @@
 
 import { signInWithGoogle, signOutUser, getUserInfo, onAuthStateChange } from '../services/authService.js';
 import { migrateLocalDataToCloud, getTeamsFromCloud } from '../services/firestoreService.js';
-import { getAllTeams, saveAllTeams, setActiveTeamId, getActiveTeamId } from '../data/teamManager.js';
+import { getAllTeams, saveAllTeams, setActiveTeamId, getActiveTeamId, clearAllTeams } from '../data/teamManager.js';
 import { getSelectedGame } from '../data/gameManager.js';
 
 let hasSyncedCloudTeams = false;
@@ -34,14 +34,10 @@ async function syncTeamsFromCloud(user) {
   if (hasSyncedCloudTeams) return;
   hasSyncedCloudTeams = true;
 
-  const localTeams = getAllTeams();
   try {
     const cloudTeams = await getTeamsFromCloud(user.uid);
+    clearAllTeams();
     if (cloudTeams.length === 0) return;
-    if (localTeams.length > 0 && !isPlaceholderTeams(localTeams)) {
-      return;
-    }
-
     saveAllTeams(cloudTeams);
 
     if (!getActiveTeamId() && cloudTeams.length > 0) {
@@ -53,15 +49,6 @@ async function syncTeamsFromCloud(user) {
   } catch (error) {
     console.warn('[Auth] Failed to sync teams from cloud:', error);
   }
-}
-
-function isPlaceholderTeams(teams) {
-  if (teams.length !== 1) return false;
-  const [team] = teams;
-  if (!team) return false;
-  if (team.name !== 'Mi Equipo Principal') return false;
-  if (!Array.isArray(team.slots)) return false;
-  return team.slots.every(slot => slot === null);
 }
 
 /**
@@ -143,16 +130,12 @@ window.handleGoogleLogin = async function (event) {
     console.log('[Auth] Cloud teams:', cloudTeams.length, '| Local teams:', localTeams.length);
 
     if (cloudTeams.length > 0) {
-      // Cloud has data - merge with local (cloud takes priority)
-      const mergedTeams = mergeTeams(localTeams, cloudTeams);
-      console.log('[Auth] Merged teams:', mergedTeams.length);
+      console.log('[Auth] Loading cloud teams:', cloudTeams.length);
+      clearAllTeams();
+      saveAllTeams(cloudTeams);
 
-      // Save merged teams to localStorage (this will also sync back to cloud)
-      saveAllTeams(mergedTeams);
-
-      // Set active team
-      if (mergedTeams.length > 0) {
-        setActiveTeamId(mergedTeams[0].id);
+      if (cloudTeams.length > 0) {
+        setActiveTeamId(cloudTeams[0].id);
       }
     } else if (localTeams.length > 0) {
       // No cloud data but has local - migrate to cloud
@@ -174,6 +157,7 @@ window.handleGoogleLogin = async function (event) {
 window.handleSignOut = async function () {
   await signOutUser();
   hasSyncedCloudTeams = false;
+  clearAllTeams();
   window.location.reload();
 
   // Close dropdown
@@ -203,18 +187,3 @@ document.addEventListener('click', (e) => {
 /**
  * Merge local and cloud teams, preferring cloud data for conflicts
  */
-function mergeTeams(localTeams, cloudTeams) {
-  const teamMap = new Map();
-
-  // Add local teams first
-  localTeams.forEach(team => {
-    teamMap.set(team.id, team);
-  });
-
-  // Override/add cloud teams
-  cloudTeams.forEach(team => {
-    teamMap.set(team.id, team);
-  });
-
-  return Array.from(teamMap.values());
-}

@@ -32,6 +32,11 @@ export function getAllTeams() {
     }
 }
 
+export function clearAllTeams() {
+    localStorage.removeItem(getStorageKey());
+    localStorage.removeItem(ACTIVE_TEAM_KEY);
+}
+
 export function saveAllTeams(teams) {
     // Always save to localStorage first (offline-first approach)
     localStorage.setItem(getStorageKey(), JSON.stringify(teams));
