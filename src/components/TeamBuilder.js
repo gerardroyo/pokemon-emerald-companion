@@ -729,11 +729,13 @@ function confirmPrompt() {
     if (!value) return; // Validate empty
 
     if (pendingPromptAction === 'create') {
-        createNewTeam(value);
+        const createdTeam = createNewTeam(value);
+        if (!createdTeam) return;
         renderTeamBuilderImpl();
     } else if (pendingPromptAction === 'rename') {
         const activeTeam = getActiveTeam();
-        updateTeamName(activeTeam.id, value);
+        const renamed = updateTeamName(activeTeam.id, value);
+        if (!renamed) return;
         renderTeamBuilderImpl();
     }
 
