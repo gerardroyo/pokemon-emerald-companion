@@ -139,7 +139,28 @@ export const moveData = {
     "Mofa": { type: "Siniestro", category: "Estado", power: null, accuracy: 100, desc: "Provoca al rival. Solo puede usar ataques." },
 
     // Acero
-    "Ala de Acero": { type: "Acero", category: "Físico", power: 70, accuracy: 100, desc: "Golpea con alas de acero. Puede subir Defensa." }
+    "Ala de Acero": { type: "Acero", category: "Físico", power: 70, accuracy: 100, desc: "Golpea con alas de acero. Puede subir Defensa." },
+
+    // Gen 5 / Nuevos
+    "Voltiocambio": { type: "Eléctrico", category: "Especial", power: 70, accuracy: 100, desc: "Ataca y cambia al usuario por otro Pokémon." },
+    "Represalia": { type: "Normal", category: "Físico", power: 70, accuracy: 100, desc: "Doble de potencia si un aliado cayó el turno anterior." },
+    "Antiaéreo": { type: "Roca", category: "Físico", power: 50, accuracy: 100, desc: "Derriba a objetivos en vuelo o levitación." },
+    "Nitrocarga": { type: "Fuego", category: "Físico", power: 50, accuracy: 100, desc: "Ataca y sube la Velocidad del usuario." },
+    "Terratemblor": { type: "Tierra", category: "Físico", power: 60, accuracy: 100, desc: "Baja la Velocidad del objetivo." },
+    "Acróbata": { type: "Volador", category: "Físico", power: 55, accuracy: 100, desc: "Doble potencia si no lleva objeto." },
+    "Vaho Gélido": { type: "Hielo", category: "Especial", power: 60, accuracy: 90, desc: "Siempre resulta en golpe crítico." },
+    "Cola Dragón": { type: "Dragón", category: "Físico", power: 60, accuracy: 90, desc: "Obliga al objetivo a cambiar de Pokémon." },
+    "Tajo Umbrío": { type: "Siniestro", category: "Físico", power: 70, accuracy: 100, desc: "Alta probabilidad de golpe crítico." },
+    "Tijera X": { type: "Bicho", category: "Físico", power: 80, accuracy: 100, desc: "Corte cruzado con guadañas o garras." },
+    "Zumbido": { type: "Bicho", category: "Especial", power: 90, accuracy: 100, desc: "Vibración sónica. Puede bajar Def. Esp." },
+    "Energibola": { type: "Planta", category: "Especial", power: 90, accuracy: 100, desc: "Bola de energía natural. Puede bajar Def. Esp." },
+    "Onda Certera": { type: "Lucha", category: "Especial", power: 120, accuracy: 70, desc: "Golpe certero pero poco preciso. Puede bajar Def. Esp." },
+    "Foco Resplandor": { type: "Acero", category: "Especial", power: 80, accuracy: 100, desc: "Disparo de luz. Puede bajar Def. Esp." },
+    "Cabezahierro": { type: "Acero", category: "Físico", power: 80, accuracy: 100, desc: "Cabezazo de acero. Puede hacer retroceder." },
+    "Escaldar": { type: "Agua", category: "Especial", power: 80, accuracy: 100, desc: "Chorro de agua hirviendo. Puede quemar." },
+    "Ida y Vuelta": { type: "Bicho", category: "Físico", power: 70, accuracy: 100, desc: "Ataca y cambia al usuario." },
+    "Picadura": { type: "Bicho", category: "Físico", power: 60, accuracy: 100, desc: "Roba y come la baya del rival." },
+    "Juego Sucio": { type: "Siniestro", category: "Físico", power: 95, accuracy: 100, desc: "Usa el Ataque del rival para calcular el daño." }
 };
 
 // Helper function to get move type

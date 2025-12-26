@@ -1,6 +1,7 @@
 import { team } from '../data/team.js';
 import { teams, teamCategories } from '../data/teams_data.js';
 import { platino_teams, platino_teamCategories } from '../data/platino_teams_data.js';
+import { blanco_teams, blanco_teamCategories } from '../data/blanco_teams_data.js';
 import { translateType } from '../data/translations.js';
 import { moveData, getCategoryIcon } from '../data/move_types.js';
 import { getSelectedGame, GAMES } from '../data/gameManager.js';
@@ -11,6 +12,8 @@ function getCurrentTeamsData() {
   const game = getSelectedGame();
   if (game === GAMES.PLATINUM) {
     return { teams: platino_teams, categories: platino_teamCategories };
+  } else if (game === GAMES.WHITE) {
+    return { teams: blanco_teams, categories: blanco_teamCategories };
   }
   return { teams, categories: teamCategories };
 }

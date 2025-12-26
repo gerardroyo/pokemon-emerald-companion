@@ -27,9 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set initial page title based on selected game
   const pageTitle = document.getElementById('page-title');
   if (pageTitle) {
-    pageTitle.textContent = getSelectedGame() === GAMES.PLATINUM
-      ? 'Guía Pokémon Platino'
-      : 'Guía Pokémon Esmeralda';
+    const game = getSelectedGame();
+    if (game === GAMES.PLATINUM) pageTitle.textContent = 'Guía Pokémon Platino';
+    else if (game === GAMES.WHITE) pageTitle.textContent = 'Guía Pokémon Blanco';
+    else pageTitle.textContent = 'Guía Pokémon Esmeralda';
   }
 
   // Navigation Logic
@@ -60,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Game logo images - External URLs (Restored by user request)
   const gameLogos = {
     emerald: 'https://cdn2.steamgriddb.com/icon_thumb/5d12d5a76a9683536eb23a6a1c9767cc.png',
-    platinum: 'https://cdn2.steamgriddb.com/icon_thumb/691f73fdf1c5edeb3f600c515715a358.png'
+    platinum: 'https://cdn2.steamgriddb.com/icon_thumb/691f73fdf1c5edeb3f600c515715a358.png',
+    white: 'https://cdn2.steamgriddb.com/icon/59cf35ec5effe5787749804bd77dfb45.png'
   };
 
   // Set initial logo
@@ -91,15 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Page Title
     const pageTitle = document.getElementById('page-title');
     if (pageTitle) {
-      pageTitle.textContent = newGame === GAMES.PLATINUM
-        ? 'Guía Pokémon Platino'
-        : 'Guía Pokémon Esmeralda';
+      if (newGame === GAMES.PLATINUM) pageTitle.textContent = 'Guía Pokémon Platino';
+      else if (newGame === GAMES.WHITE) pageTitle.textContent = 'Guía Pokémon Blanco';
+      else pageTitle.textContent = 'Guía Pokémon Esmeralda';
     }
 
     // Update Selector Logo
     if (gameSelectorImg) {
       gameSelectorImg.src = gameLogos[newGame];
-      gameSelectorImg.alt = newGame === GAMES.PLATINUM ? 'Pokémon Platino' : 'Pokémon Esmeralda';
+      let altText = 'Pokémon Esmeralda';
+      if (newGame === GAMES.PLATINUM) altText = 'Pokémon Platino';
+      if (newGame === GAMES.WHITE) altText = 'Pokémon Blanco';
+      gameSelectorImg.alt = altText;
     }
 
     // Re-render components

@@ -1510,6 +1510,17 @@ h3 {
   background-image: linear-gradient(135deg, #d4af37, #f9e58b);
 }
 
+/* White Card Hover (Electric Blue) */
+.game-option-card[data-game="white"]:hover {
+  background: rgba(0, 210, 255, 0.15);
+  border-color: rgba(0, 210, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 210, 255, 0.2);
+}
+
+.game-option-card[data-game="white"] .game-subtitle {
+  background-image: linear-gradient(135deg, #00d2ff, #a3eaff);
+}
+
 /* ===================================== */
 /* Pokemon Detail Modal                  */
 /* ===================================== */

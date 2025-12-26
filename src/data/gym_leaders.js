@@ -257,7 +257,7 @@ export const gymLeaders = [
         ]
     },
     {
-        name: "Juan",
+        name: "Galano",
         city: "Arrecípolis",
         type: "Agua",
         badge: "Medalla Lluvia",
@@ -326,7 +326,7 @@ export const eliteFour = [
             {
                 name: "Shiftry",
                 id: 275,
-                level: 46,
+                level: 48,
                 types: ["Planta", "Siniestro"],
                 moves: ["Paranormal", "Doble Equipo", "Contoneo", "Tormento"]
             },

@@ -56,9 +56,9 @@ export const platino_gymLeaders = [
         badge: "Medalla Ciénaga",
         strategy: "Tipo Eléctrico y Planta son necesarios. Cuidado con Quagsire, que es inmune a la electricidad por ser tipo Tierra.",
         pokemon: [
-            { name: "Gyarados", id: 130, level: 27, types: ["Agua", "Volador"], moves: ["Salmuera", "Mordisco", "Furia Dragón", "Contoneo"] },
-            { name: "Quagsire", id: 195, level: 27, types: ["Agua", "Tierra"], moves: ["Portazo", "Bomba Lodo", "Mudar Agua", "Látigo"] },
-            { name: "Floatzel", id: 419, level: 30, types: ["Agua"], moves: ["Salmuera", "Colmillo Hielo", "Persecución", "Ataque Rápido"], item: "Baya Ziuela" }
+            { name: "Gyarados", id: 130, level: 33, types: ["Agua", "Volador"], moves: ["Cascada", "Salmuera", "Mordisco", "Ciclón"] },
+            { name: "Quagsire", id: 195, level: 34, types: ["Agua", "Tierra"], moves: ["Hidropulso", "Tumba Rocas", "Disparo Lodo", "Bostezo"] },
+            { name: "Floatzel", id: 419, level: 37, types: ["Agua"], moves: ["Salmuera", "Triturar", "Colmillo Hielo", "Acua Jet"], item: "Baya Ziuela" }
         ]
     },
     {
@@ -68,9 +68,9 @@ export const platino_gymLeaders = [
         badge: "Medalla Mina",
         strategy: "Tipo Fuego, Lucha y Tierra. Bastiodon tiene una defensa física y especial inmensa, intenta desgastarlo.",
         pokemon: [
-            { name: "Bronzor", id: 436, level: 36, types: ["Acero", "Psíquico"], moves: ["Trampa Rocas", "Hipnosis", "Rayo Confuso", "Giro Bola"] },
-            { name: "Steelix", id: 208, level: 36, types: ["Acero", "Tierra"], moves: ["Colmillo Hielo", "Colmillo Rayo", "Colmillo Ígneo", "Terremoto"] },
-            { name: "Bastiodon", id: 411, level: 39, types: ["Roca", "Acero"], moves: ["Roca Afilada", "Defensa Férrea", "Mofa", "Represión Metal"], item: "Baya Ziuela" }
+            { name: "Magneton", id: 82, level: 37, types: ["Eléctrico", "Acero"], moves: ["Foco Resplandor", "Rayo", "Triataque", "Eco Metálico"] },
+            { name: "Steelix", id: 208, level: 38, types: ["Acero", "Tierra"], moves: ["Foco Resplandor", "Terremoto", "Colmillo Hielo", "Tormenta Arena"] },
+            { name: "Bastiodon", id: 411, level: 41, types: ["Roca", "Acero"], moves: ["Represión Metal", "Roca Afilada", "Defensa Férrea", "Mofa"], item: "Baya Ziuela" }
         ]
     },
     {
@@ -157,9 +157,9 @@ export const platino_eliteFour = [
         pokemon: [
             { name: "Spiritomb", id: 442, level: 58, types: ["Fantasma", "Siniestro"], moves: ["Pulso Umbrío", "Viento Plata", "Bola Sombra", "Psíquico"] },
             { name: "Roserade", id: 407, level: 58, types: ["Planta", "Veneno"], moves: ["Bomba Lodo", "Energibola", "Tóxico", "Extrasensorial"] },
-            { name: "Togekiss", id: 468, level: 60, types: ["Normal", "Volador"], moves: ["Tajo Aéreo", "Esfera Aural", "Hidropulso", "Velocidad Extrema"] },
+            { name: "Togekiss", id: 468, level: 60, types: ["Normal", "Volador"], moves: ["Tajo Aéreo", "Esfera Aural", "Hidropulso", "Onda Voltio"] },
             { name: "Lucario", id: 448, level: 60, types: ["Lucha", "Acero"], moves: ["Esfera Aural", "Bola Sombra", "Roca Afilada", "Velocidad Extrema"] },
-            { name: "Milotic", id: 350, level: 58, types: ["Agua"], moves: ["Surf", "Rayo Hielo", "Espejo Manto", "Acua Aro"] },
+            { name: "Milotic", id: 350, level: 58, types: ["Agua"], moves: ["Surf", "Rayo Hielo", "Espejo Manto", "Pulso Dragón"] },
             { name: "Garchomp", id: 445, level: 62, types: ["Dragón", "Tierra"], moves: ["Carga Dragón", "Terremoto", "Lanzallamas", "Giga Impacto"], item: "Baya Ziuela" }
         ]
     }

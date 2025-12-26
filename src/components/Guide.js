@@ -3,6 +3,7 @@ import { emeraldItemsList } from '../data/emerald_items.js';
 import { renderSaveScanner } from './SaveScanner.js';
 import { gymLeaders, eliteFour } from '../data/gym_leaders.js';
 import { platino_gymLeaders, platino_eliteFour } from '../data/platino_gym_leaders.js';
+import { blanco_gymLeaders, blanco_eliteFour } from '../data/blanco_gym_leaders.js';
 import { moveData, getCategoryIcon } from '../data/move_types.js';
 import { getSelectedGame, GAMES } from '../data/gameManager.js';
 
@@ -12,14 +13,29 @@ export function renderGuide() {
 
   // Get the correct gym leaders based on game version
   const game = getSelectedGame();
-  const currentGymLeaders = game === GAMES.PLATINUM ? platino_gymLeaders : gymLeaders;
-  const currentEliteFour = game === GAMES.PLATINUM ? platino_eliteFour : eliteFour;
+
+  let currentGymLeaders, currentEliteFour;
+
+  switch (game) {
+    case GAMES.PLATINUM:
+      currentGymLeaders = platino_gymLeaders;
+      currentEliteFour = platino_eliteFour;
+      break;
+    case GAMES.WHITE:
+      currentGymLeaders = blanco_gymLeaders;
+      currentEliteFour = blanco_eliteFour;
+      break;
+    default:
+      currentGymLeaders = gymLeaders;
+      currentEliteFour = eliteFour;
+  }
 
   const spriteBase = "https://play.pokemonshowdown.com/sprites/trainers/";
   const pokeSpriteBase = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
   /* Full Item Dex Logic */
   const renderItemDex = (items) => {
+    // ... logic remains same ...
     const container = document.getElementById('item-dex-container');
     if (!container) return;
 
@@ -73,7 +89,16 @@ export function renderGuide() {
     "Medalla Reliquia": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/29.png",
     "Medalla Mina": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/30.png",
     "Medalla Glaciar": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/31.png",
-    "Medalla Faro": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/32.png"
+    "Medalla Faro": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/32.png",
+    // White (Gen 5)
+    "Medalla Trío": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/33.png",
+    "Medalla Base": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/34.png",
+    "Medalla Élitro": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/35.png",
+    "Medalla Voltio": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/36.png",
+    "Medalla Temblor": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/37.png",
+    "Medalla Jet": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/38.png",
+    "Medalla Candelizo": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/39.png",
+    "Medalla Leyenda": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/badges/40.png"
   };
 
   const renderPokemonTeam = (pokemon) => {
@@ -152,7 +177,21 @@ export function renderGuide() {
     "Gaia": "bertha.png",
     "Fausto": "flint.png",
     "Delos": "lucian.png",
-    "Cintia": "cynthia.png"
+    "Cintia": "cynthia.png",
+    // Blanco (Gen 5)
+    "Maíz, Zeo y Millo": "cilan.png", // Using Cilan as representative
+    "Aloe": "lenora.png",
+    "Camus": "burgh.png",
+    "Camila": "elesa.png",
+    "Yakón": "clay.png",
+    "Gerania": "skyla.png",
+    "Junco": "brycen.png",
+    "Iris": "iris.png",
+    "Anís": "shauntal.png",
+    "Aza": "grimsley.png",
+    "Catleya": "caitlin.png",
+    "Lotto": "marshal.png",
+    "Mirto": "alder.png"
   };
 
   // Update HTML Container
