@@ -4,7 +4,8 @@ import { THEMES } from './themes.js';
 
 export const GAMES = {
     EMERALD: 'emerald',
-    PLATINUM: 'platinum'
+    PLATINUM: 'platinum',
+    WHITE: 'white'
 };
 
 export function getSelectedGame() {
@@ -21,6 +22,7 @@ export function setSelectedGame(game) {
 export function getGameDisplayName(game) {
     switch (game) {
         case GAMES.PLATINUM: return 'Pokémon Platino';
+        case GAMES.WHITE: return 'Pokémon Blanco';
         default: return 'Pokémon Esmeralda';
     }
 }

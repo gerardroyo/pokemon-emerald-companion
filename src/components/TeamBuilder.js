@@ -13,7 +13,8 @@ let currentSearchTerm = '';
 
 const GAME_POKEDEX_LIMITS = {
     emerald: 386,
-    platinum: 493
+    platinum: 493,
+    white: 649
 };
 
 // Helpers
@@ -514,7 +515,7 @@ async function initPokemonList() {
     isFetching = true;
 
     try {
-        const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=493');
+        const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=649');
         const data = await res.json();
         allPokemonCache = data.results.map((p, index) => ({
             id: index + 1,

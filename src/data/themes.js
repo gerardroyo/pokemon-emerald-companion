@@ -23,5 +23,16 @@ export const THEMES = {
         '--glass-strong': 'rgba(10, 10, 14, 0.85)',
         '--bg-image': `radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
                    radial-gradient(circle at 15% 90%, rgba(75, 75, 90, 0.1) 0%, transparent 40%)`
+    },
+    'white': {
+        '--primary-color': '#00d2ff',
+        '--primary-rgb': '0, 210, 255',
+        '--primary-glow': '#a3eaff',
+        '--ray-black': '#050510',
+        '--ray-charcoal': '#10101e',
+        '--glass-bg': 'rgba(16, 20, 30, 0.6)',
+        '--glass-strong': 'rgba(8, 10, 20, 0.85)',
+        '--bg-image': `radial-gradient(circle at 60% 0%, rgba(0, 210, 255, 0.15) 0%, transparent 60%),
+                       radial-gradient(circle at 20% 90%, rgba(100, 100, 255, 0.1) 0%, transparent 50%)`
     }
 };
